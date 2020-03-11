@@ -1,10 +1,19 @@
 <?php 
 include "verifText.php";
 include "connection.php";
+include "blog/get_langue.php";
+include "blog/insert_langue.php";
 
 $Lib1Lang = "";
 $Lib2Lang = "";
 $numPays = "";
+
+$error = NULL;
+$success = NULL;
+
+function error() {
+    $error = "Une erreur c'est produite!";
+}
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -19,40 +28,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $Lib2Lang = ctrlSaisies($_POST["Lib2Langs"]);
             $numPays = ctrlSaisies($_POST["TypPays"]);
 
-            $error = false;
+            $NumLang = getNextLangueID($numPays, $conn);
 
-            $numPaysSelect = $numPays;
-            $parmNumLang = $numPaysSelect . '%';
-            $requete = "SELECT MAX(NumLang) AS NumLang FROM LANGUE WHERE NumLang LIKE '$parmNumLang';";
-
-            $result = $conn->query($requete);
-            
-            if($result) {
-                $tuple = $result->fetch();
-                $NumLang = $tuple["NumLang"];
-                $numSeqLang = 0;
-                $StrLang = "";
-                if(is_null($NumLang)) {
-                    $NumLang = 0;
-                    $StrLang = $numPaysSelect;
+            if($NumLang != NULL) {
+                if(createLangue($NumLang, $Lib1Lang, $Lib2Lang, $numPays, $conn)) {
+                    $success = "La langue " . $Lib1Lang . " a bien été crée";
                 }else{
-                    $StrLang = substr($NumLang, 0, 4);
-                    $numSeqLang = (int)substr($NumLang, 4);
+                    error();
                 }
-                $numSeqLang++;
-                $NumLang = $StrLang . ($numSeqLang < 10 ? '0' : '') . $numSeqLang;
-
-                try {
-                    $stmt = $conn->prepare("INSERT INTO LANGUE (NumLang, Lib1Lang, Lib2Lang, NumPays) VALUES (:NumLang, :Lib1Lang, :Lib2Lang, :NumPays)");
-                    $stmt->bindParam(':NumLang', $NumLang);
-                    $stmt->bindParam(':Lib1Lang', $Lib1Lang);
-                    $stmt->bindParam(':Lib2Lang', $Lib2Lang);
-                    $stmt->bindParam(':NumPays', $numPays);
-
-                    $stmt->execute();
-                } catch (\Throwable $th) {
-                    //throw $th;
-                }
+            }else{
+                error();
             }
         }
     }
@@ -72,6 +57,11 @@ $countries = $conn->query($requete);
 </head>
 <body>
     <div class="container">
+        <?php if($error || $success) { ?>
+            <div class="alert alert-<?php echo ($error ? "danger" : "success")?>" role="alert">
+                <?php echo $error ? $error :  $success; ?>
+            </div>
+        <?php } ?>
         <h1>Ajoutez une langue</h1>
         <form method="post" action="index.php">
             <div class="form-group">
