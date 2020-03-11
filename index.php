@@ -6,17 +6,25 @@ $Lib1Lang = "";
 $Lib2Lang = "";
 $numPays = "";
 
+echo $conn == NULL ? "oui" : "non";
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
+    echo "test 1";
     $Submit = isset($_POST['Submit']) ? $_POST['Submit'] : '';
     
     if(isset($_POST['id']) AND $_POST['id'] == 0) {
-        if( ( isset($_POST['Lib1Lang']) AND !empty($_POST['Lib1Lang'])) AND 
-            ( isset($_POST['Lib2Lang']) AND !empty($_POST['Lib2Lang'])) AND
-            ( isset($_POST['TypPays']) AND !empty($_POST['TypPays']))
+        echo "test 2";
+        echo print_r($_POST);
+        if( ( isset($_POST['Lib1Langs'])) AND 
+            ( isset($_POST['Lib2Langs'])) AND
+            ( isset($_POST['TypPays']))
         ) {
-            $Lib1Lang = ctrlSaisies($_POST["Lib1Lang"]);
-            $Lib2Lang = ctrlSaisies($_POST["Lib2Lang"]);
+            echo "test 3";
+            $Lib1Lang = ctrlSaisies($_POST["Lib1Langs"]);
+            $Lib2Lang = ctrlSaisies($_POST["Lib2Langs"]);
             $numPays = ctrlSaisies($_POST["TypPays"]);
+
+            echo $Lib1Lang . ' ' . $Lib2Lang . ' ' . $numPays;
 
             $error = false;
 
@@ -24,12 +32,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $parmNumLang = $numPaysSelect . '%';
             $requete = "SELECT MAX(NumLang) AS NumLang FROM LANGUE WHERE NumLang LIKE '$parmNumLang;'";
 
-            $result = $bdPdo->query($request);
+            $result = $conn->query($requete);
             
             if($result) {
                 $tuple = $result->fetch();
                 $NumLang = $tuple["NumLang"];
                 $numSeqLang = 0;
+                $StrLang = "";
                 if(is_null($NumLang)) {
                     $NumLang = 0;
                     $StrLang = $numPaysSelect;
@@ -39,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
 
                 $numSeqLang++;
-                $NumLang =  $SrtLang . ($NumSeqLang < 10 ? '0' : '') . $NumSeqLang;
+                $NumLang = $StrLang . ($numSeqLang < 10 ? '0' : '') . $numSeqLang;
 
                 try {
                     $stmt = $conn->prepare("INSERT INTO LANGUE (NumLang, Lib1Lang, Lib2Lang, NumPays) VALUES (:NumLang, :Lib1Lang, :Lib2Lang, :NumPays)");
@@ -76,7 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <form method="post" action="index.php">
             <div class="form-group">
                 <label for="Lib1Lang">Libellé court</label>
-                <input type="text" class="form-control" id="Lib1Langs" maxlength="25" placeholder="Libellé court" autofocus="autofocus" 
+                <input type="text" class="form-control" id="Lib1Langs" name="Lib1Langs" maxlength="25" placeholder="Libellé court" autofocus="autofocus" 
                 value="<?php 
                         if(isset($_GET["id"])) {
                             echo $_POSt["LibLang1"];
@@ -85,11 +94,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="form-group">
                 <label for="Lib2Lang">Libellé long</label>
-                <input type="text" class="form-control" id="Lib2Langs" maxlength="25" placeholder="Libellé long">
+                <input type="text" class="form-control" id="Lib2Langs" name="Lib2Langs" maxlength="25" placeholder="Libellé long">
             </div>
             <div class="form-group">
                 <label for="TypPays">Libellé long</label>
-                <input type="text" class="form-control" id="TypPays" maxlength="25" placeholder="Pays">
+                <input type="text" class="form-control" name="TypPays" id="TypPays" maxlength="25" placeholder="Pays">
             </div>
             <button name="id" type="submit" name="Submit" class="btn btn-primary">Valider</button>
         </form>
