@@ -11,7 +11,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $Submit = isset($_POST['Submit']) ? $_POST['Submit'] : '';
     
     if(isset($_POST['id']) AND $_POST['id'] == 0) {
-        echo print_r($_POST);
         if( ( isset($_POST['Lib1Langs'])) AND 
             ( isset($_POST['Lib2Langs'])) AND
             ( isset($_POST['TypPays']))
@@ -19,8 +18,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $Lib1Lang = ctrlSaisies($_POST["Lib1Langs"]);
             $Lib2Lang = ctrlSaisies($_POST["Lib2Langs"]);
             $numPays = ctrlSaisies($_POST["TypPays"]);
-
-            echo $Lib1Lang . ' ' . $Lib2Lang . ' ' . $numPays;
 
             $error = false;
 
@@ -56,14 +53,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 } catch (\Throwable $th) {
                     //throw $th;
                 }
-                
             }
-
-
         }
     }
-
 }
+
+$requete = "SELECT * FROM `pays` WHERE 1";
+$countries = $conn->query($requete);
 
 ?>
 <!DOCTYPE html>
@@ -91,9 +87,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="Lib2Lang">Libellé long</label>
                 <input type="text" class="form-control" id="Lib2Langs" name="Lib2Langs" maxlength="25" placeholder="Libellé long">
             </div>
-            <div class="form-group">
-                <label for="TypPays">Libellé long</label>
-                <input type="text" class="form-control" name="TypPays" id="TypPays" maxlength="25" placeholder="Pays">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="TypPays">Pays</label>
+                </div>
+                <select class="custom-select" name="TypPays" id="TypPays">
+                    <?php 
+                    while($country = $countries->fetch()){ 
+                        echo '<option value="' . $country["numPays"] . '"' . 
+                        ' ' . ($country["numPays"] == "FRAN" ? 'selected' : '') . 
+                        ' >' . $country['frPays']. '</option>';
+                    }
+                    ?>
+                </select>
             </div>
             <button name="id" type="submit" name="Submit" class="btn btn-primary">Valider</button>
         </form>
