@@ -21,4 +21,8 @@ function getNextLangueID($numPays, $conn){
     }
 }
 
+function getLangueList($conn)  {
+    $requete = "SELECT * FROM LANGUE WHERE 1";
+    return $conn->query($requete);
+}
 ?>
