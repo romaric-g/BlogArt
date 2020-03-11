@@ -6,20 +6,16 @@ $Lib1Lang = "";
 $Lib2Lang = "";
 $numPays = "";
 
-echo $conn == NULL ? "oui" : "non";
-
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-    echo "test 1";
+
     $Submit = isset($_POST['Submit']) ? $_POST['Submit'] : '';
     
     if(isset($_POST['id']) AND $_POST['id'] == 0) {
-        echo "test 2";
         echo print_r($_POST);
         if( ( isset($_POST['Lib1Langs'])) AND 
             ( isset($_POST['Lib2Langs'])) AND
             ( isset($_POST['TypPays']))
         ) {
-            echo "test 3";
             $Lib1Lang = ctrlSaisies($_POST["Lib1Langs"]);
             $Lib2Lang = ctrlSaisies($_POST["Lib2Langs"]);
             $numPays = ctrlSaisies($_POST["TypPays"]);
@@ -30,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $numPaysSelect = $numPays;
             $parmNumLang = $numPaysSelect . '%';
-            $requete = "SELECT MAX(NumLang) AS NumLang FROM LANGUE WHERE NumLang LIKE '$parmNumLang;'";
+            $requete = "SELECT MAX(NumLang) AS NumLang FROM LANGUE WHERE NumLang LIKE '$parmNumLang';";
 
             $result = $conn->query($requete);
             
@@ -43,10 +39,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     $NumLang = 0;
                     $StrLang = $numPaysSelect;
                 }else{
-                    $SrtLang = substr($numLang, 0, 4);
+                    $StrLang = substr($NumLang, 0, 4);
                     $numSeqLang = (int)substr($NumLang, 4);
                 }
-
                 $numSeqLang++;
                 $NumLang = $StrLang . ($numSeqLang < 10 ? '0' : '') . $numSeqLang;
 
