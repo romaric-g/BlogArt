@@ -22,7 +22,7 @@ function getNextLangueID($numPays, $conn){
 }
 
 function getLangueList($conn)  {
-    $requete = "SELECT * FROM LANGUE WHERE 1";
+    $requete = "SELECT * FROM LANGUE INNER JOIN PAYS ON LANGUE.NumPays = PAYS.numPays";
     return $conn->query($requete);
 }
 ?>

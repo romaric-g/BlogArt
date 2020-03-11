@@ -64,12 +64,12 @@ $countries = $conn->query($requete);
 </head>
 <body>
     <div class="container">
+        <h1>Modifier une langue</h1>
         <?php if($error || $success) { ?>
             <div class="alert alert-<?php echo ($error ? "danger" : "success")?>" role="alert">
                 <?php echo $error ? $error :  $success; ?>
             </div>
         <?php } ?>
-        <h1>Modifier une langue</h1>
         <form method="post" action="update.php">
             <input type="hidden" id="NumLang" name="NumLang" value="<?php echo $NumLang?>">
             <div class="form-group">

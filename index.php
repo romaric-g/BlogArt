@@ -1,8 +1,16 @@
 <?php 
+session_start();
+
 include "verifText.php";
 include "connection.php";
 include "blog/get_langue.php";
 include "blog/insert_langue.php";
+
+$success = isset($_SESSION["success"]) ? $_SESSION["success"] : NULL;
+$error = isset($_SESSION["error"]) ? $_SESSION["error"] : NULL;
+
+unset($_SESSION["success"]);
+unset($_SESSION["error"]);
 
 $countries = getLangueList($conn);
 ?>
@@ -17,6 +25,11 @@ $countries = getLangueList($conn);
 <body>
 <div class="container">
     <h1>Liste des langues</h1>
+    <?php if($error || $success) { ?>
+            <div class="alert alert-<?php echo ($error ? "danger" : "success")?>" role="alert">
+                <?php echo $error ? $error :  $success; ?>
+            </div>
+    <?php } ?>
     <table class="table">
         <thead>
             <tr>
@@ -31,7 +44,7 @@ $countries = getLangueList($conn);
                 <tr>
                     <td><?php echo $country["Lib1Lang"] ?></td>
                     <td><?php echo $country["Lib2Lang"] ?></td>
-                    <td><?php echo $country["NumPays"] ?></td>
+                    <td><?php echo $country["frPays"] ?></td>
                     <td>
                         <a href="delete.php?id=<?php echo $country["NumLang"] ?>" class="btn btn-danger">Supprimer</a>
                         <a href="update.php?id=<?php echo $country["NumLang"] ?>" class="btn btn-info">Update</a>
