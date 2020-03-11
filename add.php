@@ -1,4 +1,8 @@
 <?php 
+include "verifText.php";
+include "connection.php";
+include "blog/get_langue.php";
+include "blog/insert_langue.php";
 
 $Lib1Lang = "";
 $Lib2Lang = "";
@@ -43,22 +47,26 @@ $requete = "SELECT * FROM `pays` WHERE 1";
 $countries = $conn->query($requete);
 
 ?>
-    <div class="createlangue">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
         <h1>Ajoutez une langue</h1>
         <?php if($error || $success) { ?>
             <div class="alert alert-<?php echo ($error ? "danger" : "success")?>" role="alert">
                 <?php echo $error ? $error :  $success; ?>
             </div>
         <?php } ?>
-        <form method="post" action="index.php">
+        <form method="post" action="add.php">
             <div class="form-group">
                 <label for="Lib1Lang">Libellé court</label>
-                <input type="text" class="form-control" id="Lib1Langs" name="Lib1Langs" maxlength="25" placeholder="Libellé court" autofocus="autofocus" 
-                value="<?php 
-                        if(isset($_GET["id"])) {
-                            echo $_POSt["LibLang1"];
-                        }
-                        ?>">
+                <input type="text" class="form-control" id="Lib1Langs" name="Lib1Langs" maxlength="25" placeholder="Libellé court" autofocus="autofocus" >
             </div>
             <div class="form-group">
                 <label for="Lib2Lang">Libellé long</label>
@@ -78,6 +86,9 @@ $countries = $conn->query($requete);
                     ?>
                 </select>
             </div>
-            <button name="id" type="submit" name="Submit" class="btn btn-primary">Valider</button>
+            <button name="id" type="submit" name="Submit" class="btn btn-success">Valider</button>
+            <a href="index.php" class="btn btn-primary">Retour</a>
         </form>
     </div>
+</body>
+</html>
