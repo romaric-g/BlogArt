@@ -6,13 +6,16 @@ include "connection.php";
 include "blog/get_langue.php";
 include "blog/insert_langue.php";
 
+include "./class/Blog/Langue.php";
+
 $success = isset($_SESSION["success"]) ? $_SESSION["success"] : NULL;
 $error = isset($_SESSION["error"]) ? $_SESSION["error"] : NULL;
 
 unset($_SESSION["success"]);
 unset($_SESSION["error"]);
 
-$countries = getLangueList($conn);
+$langues = Langue::loadAll($conn);
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -40,14 +43,14 @@ $countries = getLangueList($conn);
             </tr>
         </thead>
         <tbody>
-            <?php while($country = $countries->fetch()){ ?>
+            <?php foreach($langues as $langue){ ?>
                 <tr>
-                    <td><?php echo $country["Lib1Lang"] ?></td>
-                    <td><?php echo $country["Lib2Lang"] ?></td>
-                    <td><?php echo $country["frPays"] ?></td>
+                    <td><?= $langue->Lib1Lang ?></td>
+                    <td><?= $langue->Lib2Lang ?></td>
+                    <td><?= $langue->tuple["frPays"] ?></td>
                     <td>
-                        <a href="delete.php?id=<?php echo $country["NumLang"] ?>" class="btn btn-danger">Supprimer</a>
-                        <a href="update.php?id=<?php echo $country["NumLang"] ?>" class="btn btn-info">Update</a>
+                        <a href="delete.php?id=<?= $langue->NumLang ?>" class="btn btn-danger">Supprimer</a>
+                        <a href="update.php?id=<?= $langue->NumLang ?>" class="btn btn-info">Update</a>
                     </td>
                 </tr>
             <?php } ?> 

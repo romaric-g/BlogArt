@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Blog;
-
 class Langue {
 
-    private $NumLang;
-    private $Lib1Lang;
-    private $Lib2Lang;
-    private $NumPays;
+    public $NumLang;
+    public $Lib1Lang;
+    public $Lib2Lang;
+    public $NumPays;
 
+    public $tuple;
     private $prepare;
 
     public function __construct(string $NumLang)
@@ -23,9 +22,8 @@ class Langue {
 
         if($result) {
             $tuple = $result->fetch();
-            $this->Lib1Lang = $tuple["Lib1Lang"];
-            $this->Lib2Lang = $tuple["Lib2Lang"];
-            $this->NumPays = $tuple["NumPays"];
+            $this->tuple = $tuple;
+            $this->extractSQLDataRow($tuple);
         }
     }
 
@@ -45,8 +43,28 @@ class Langue {
             throw $th;
         }        
     }
-    
 
+    public static function loadAll($connection)
+    {
+        $requete = "SELECT * FROM LANGUE INNER JOIN PAYS ON LANGUE.NumPays = PAYS.numPays";
+        $result = $connection->query($requete);
+
+        $langues = array();
+
+        while($langueRow = $result->fetch()) {
+            $langue = new Langue($langueRow["NumLang"]);
+            $langue->extractSQLDataRow($langueRow);
+            array_push($langues, $langue);
+        }
+        return $langues;
+    }
+
+    private function extractSQLDataRow($row)
+    {
+        $this->Lib1Lang = $row["Lib1Lang"];
+        $this->Lib2Lang = $row["Lib2Lang"];
+        $this->NumPays = $row["NumPays"];
+    }
 }
 
 ?>
