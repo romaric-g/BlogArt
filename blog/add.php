@@ -1,24 +1,13 @@
 <?php 
-include "verifText.php";
-include "connection.php";
-include "blog/get_langue.php";
-include "blog/insert_langue.php";
+include "./../verifText.php";
+include "./../connection.php";
 
-$Lib1Lang = "";
-$Lib2Lang = "";
-$numPays = "";
+require_once("./../class/Blog/Langue.php");
 
-$error = NULL;
-$success = NULL;
-
-function error() {
-    $error = "Une erreur c'est produite!";
-}
+$langue = NULL;
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $Submit = isset($_POST['Submit']) ? $_POST['Submit'] : '';
-    
     if(isset($_POST['id']) AND $_POST['id'] == 0) {
         if( ( isset($_POST['Lib1Langs'])) AND 
             ( isset($_POST['Lib2Langs'])) AND
@@ -28,17 +17,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $Lib2Lang = ctrlSaisies($_POST["Lib2Langs"]);
             $numPays = ctrlSaisies($_POST["TypPays"]);
 
-            $NumLang = getNextLangueID($numPays, $conn);
-
-            if($NumLang != NULL) {
-                if(createLangue($NumLang, $Lib1Lang, $Lib2Lang, $numPays, $conn)) {
-                    $success = "La langue " . $Lib1Lang . " a bien été crée";
-                }else{
-                    error();
-                }
-            }else{
-                error();
-            }
+            $langue = Langue::new($Lib1Lang, $Lib2Lang, $numPays, $conn);
         }
     }
 }
@@ -58,9 +37,9 @@ $countries = $conn->query($requete);
 <body>
     <div class="container">
         <h1>Ajoutez une langue</h1>
-        <?php if($error || $success) { ?>
-            <div class="alert alert-<?php echo ($error ? "danger" : "success")?>" role="alert">
-                <?php echo $error ? $error :  $success; ?>
+        <?php if($langue && ($langue->error || $langue->success)) { ?>
+            <div class="alert alert-<?php echo ($langue->error ? "danger" : "success")?>" role="alert">
+                <?php echo $langue->error ? $langue->error : $langue->success; ?>
             </div>
         <?php } ?>
         <form method="post" action="add.php">

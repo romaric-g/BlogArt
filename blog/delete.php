@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include "verifText.php";
-include "connection.php";
+include "./../verifText.php";
+include "./../connection.php";
 
 if($_SERVER["REQUEST_METHOD"] == "GET") {
     if(isset($_GET["id"])) {

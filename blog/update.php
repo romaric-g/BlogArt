@@ -1,8 +1,8 @@
 <?php 
-include "verifText.php";
-include "connection.php";
-include "blog/get_langue.php";
-include "blog/insert_langue.php";
+include "./../verifText.php";
+include "./../connection.php";
+include "functions/get_langue.php";
+include "functions/insert_langue.php";
 
 $Lib1Lang = "";
 $Lib2Lang = "";
