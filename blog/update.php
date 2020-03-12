@@ -1,8 +1,6 @@
 <?php 
 include "./../verifText.php";
 include "./../connection.php";
-include "./../functions/get_langue.php";
-include "./../functions/insert_langue.php";
 
 require_once("./../class/Blog/Langue.php");
 
@@ -17,7 +15,6 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
 }else if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST["id"])) {
         $NumLang = $_POST["NumLang"];
-        //UPDATE langue SET Lib1Lang='All',Lib2Lang='Langue All',NumPays='BULG' WHERE NumLang = 'ALLE01'
         $Lib1Lang = ctrlSaisies($_POST["Lib1Langs"]);
         $Lib2Lang = ctrlSaisies($_POST["Lib2Langs"]);
         $numPays = ctrlSaisies($_POST["TypPays"]);
@@ -27,22 +24,8 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
         $langue->Lib2Lang = $Lib2Lang;
         $langue->numPays = $numPays;
         $langue->updateDataToSQL($conn);
-        /*
-        try {
-            $stmt = $conn->prepare("UPDATE langue SET Lib1Lang='$Lib1Lang',Lib2Lang='$Lib2Lang',NumPays='$numPays' WHERE NumLang = '$NumLang'");
-            $stmt->bindParam(':NumLang', $NumLang);
-            $stmt->bindParam(':Lib1Lang', $Lib1Lang);
-            $stmt->bindParam(':Lib2Lang', $Lib2Lang);
-            $stmt->bindParam(':NumPays', $numPays);
-            $stmt->execute();
-            $success = "La valeur de $Lib1Lang a bien été modifée";
-        } catch (\Throwable $th) {
-            error();
-        }*/
     }
 }
-
-var_dump($langue);
 
 $requete = "SELECT * FROM `pays` WHERE 1";
 $countries = $conn->query($requete);
