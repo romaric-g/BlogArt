@@ -22,7 +22,6 @@ class Langue {
 
         if($result) {
             $tuple = $result->fetch();
-            $this->tuple = $tuple;
             $this->extractSQLDataRow($tuple);
         }
     }
@@ -59,11 +58,12 @@ class Langue {
         return $langues;
     }
 
-    private function extractSQLDataRow($row)
+    private function extractSQLDataRow($tuple)
     {
-        $this->Lib1Lang = $row["Lib1Lang"];
-        $this->Lib2Lang = $row["Lib2Lang"];
-        $this->NumPays = $row["NumPays"];
+        $this->Lib1Lang = $tuple["Lib1Lang"];
+        $this->Lib2Lang = $tuple["Lib2Lang"];
+        $this->NumPays = $tuple["NumPays"];
+        $this->tuple = $tuple;
     }
 }
 
