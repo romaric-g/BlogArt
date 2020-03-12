@@ -1,6 +1,6 @@
 <?php 
 
-class User {
+class Comment {
 
     public function __construct()
     {
@@ -8,4 +8,5 @@ class User {
     }
 
 }
+
 ?>
