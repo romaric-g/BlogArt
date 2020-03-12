@@ -36,7 +36,7 @@ class Langue {
 
     public function loadDataFromSQL($connection)
     {
-        $requete = "SELECT * FROM LANGUE INNER JOIN PAYS ON LANGUE.NumPays = PAYS.numPays WHERE NumLang = '{$this->NumLang}'";
+        $requete = "SELECT * FROM LANGUE WHERE NumLang = '{$this->NumLang}'";
         $result = $connection->query($requete);
 
         if($result) {
@@ -48,15 +48,11 @@ class Langue {
     public function updateDataToSQL($connection)
     {
         try {
-            $stmt = $connection->prepare("UPDATE langue SET Lib1Lang=':NumLang',Lib2Lang=':Lib1Lang',NumPays=':Lib2Lang' WHERE NumLang = ':NumPays'");
-            $stmt->bindParam(':NumLang', $this->NumLang);
-            $stmt->bindParam(':Lib1Lang', $this->Lib1Lang);
-            $stmt->bindParam(':Lib2Lang', $this->Lib2Lang);
-            $stmt->bindParam(':NumPays', $this->numPays);
+            $stmt = $connection->prepare("UPDATE langue SET Lib1Lang='$this->Lib1Lang',Lib2Lang='$this->Lib2Lang',NumPays='$this->numPays' WHERE NumLang = '$this->NumLang'");
             $stmt->execute();
             $this->success = "La valeur de $this->Lib1Lang a bien été modifée";
         } catch (\Throwable $th) {
-            error();
+            $this->error = "Erreur";
         }
     }
 

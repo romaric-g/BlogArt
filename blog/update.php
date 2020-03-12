@@ -1,32 +1,18 @@
 <?php 
 include "./../verifText.php";
 include "./../connection.php";
-include "functions/get_langue.php";
-include "functions/insert_langue.php";
+include "./../functions/get_langue.php";
+include "./../functions/insert_langue.php";
 
-$Lib1Lang = "";
-$Lib2Lang = "";
-$numPays = "";
+require_once("./../class/Blog/Langue.php");
 
-$error = NULL;
-$success = NULL;
-
-function error() {
-    $error = "Une erreur c'est produite!";
-}
+$langue = NULL;
 
 if($_SERVER["REQUEST_METHOD"] == "GET") {
     if(isset($_GET["id"])) {
         $NumLang = ctrlSaisies($_GET["id"]);
-        $result = $conn->query("SELECT * FROM `langue` WHERE `NumLang` = '$NumLang'");
-        
-        if($result) {
-            $tuple = $result->fetch();
-
-            $Lib1Lang = $tuple["Lib1Lang"];
-            $Lib2Lang = $tuple["Lib2Lang"];
-            $numPays = $tuple["NumPays"];
-        }
+        $langue = new Langue($NumLang);
+        $langue->loadDataFromSQL($conn);
     }
 }else if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST["id"])) {
@@ -36,6 +22,12 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
         $Lib2Lang = ctrlSaisies($_POST["Lib2Langs"]);
         $numPays = ctrlSaisies($_POST["TypPays"]);
 
+        $langue = new Langue($NumLang);
+        $langue->Lib1Lang = $Lib1Lang;
+        $langue->Lib2Lang = $Lib2Lang;
+        $langue->numPays = $numPays;
+        $langue->updateDataToSQL($conn);
+        /*
         try {
             $stmt = $conn->prepare("UPDATE langue SET Lib1Lang='$Lib1Lang',Lib2Lang='$Lib2Lang',NumPays='$numPays' WHERE NumLang = '$NumLang'");
             $stmt->bindParam(':NumLang', $NumLang);
@@ -46,9 +38,11 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
             $success = "La valeur de $Lib1Lang a bien été modifée";
         } catch (\Throwable $th) {
             error();
-        }
+        }*/
     }
 }
+
+var_dump($langue);
 
 $requete = "SELECT * FROM `pays` WHERE 1";
 $countries = $conn->query($requete);
@@ -65,20 +59,20 @@ $countries = $conn->query($requete);
 <body>
     <div class="container">
         <h1>Modifier une langue</h1>
-        <?php if($error || $success) { ?>
-            <div class="alert alert-<?php echo ($error ? "danger" : "success")?>" role="alert">
-                <?php echo $error ? $error :  $success; ?>
+        <?php if($langue && ($langue->error || $langue->success)) { ?>
+            <div class="alert alert-<?php echo ($langue->error ? "danger" : "success")?>" role="alert">
+                <?php echo $langue->error ? $langue->error :  $langue->success; ?>
             </div>
         <?php } ?>
         <form method="post" action="update.php">
-            <input type="hidden" id="NumLang" name="NumLang" value="<?php echo $NumLang?>">
+            <input type="hidden" id="NumLang" name="NumLang" value="<?php echo $langue->NumLang?>">
             <div class="form-group">
                 <label for="Lib1Lang">Libellé court</label>
-                <input type="text" class="form-control" id="Lib1Langs" name="Lib1Langs" maxlength="25" placeholder="Libellé court" autofocus="autofocus" value="<?php echo $Lib1Lang ?>">
+                <input type="text" class="form-control" id="Lib1Langs" name="Lib1Langs" maxlength="25" placeholder="Libellé court" autofocus="autofocus" value="<?php echo $langue->Lib1Lang ?>">
             </div>
             <div class="form-group">
                 <label for="Lib2Lang">Libellé long</label>
-                <input type="text" class="form-control" id="Lib2Langs" name="Lib2Langs" maxlength="25" placeholder="Libellé long" value="<?php echo $Lib2Lang ?>">
+                <input type="text" class="form-control" id="Lib2Langs" name="Lib2Langs" maxlength="25" placeholder="Libellé long" value="<?php echo $langue->Lib2Lang ?>">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -88,7 +82,7 @@ $countries = $conn->query($requete);
                     <?php 
                     while($country = $countries->fetch()){ 
                         echo '<option value="' . $country["numPays"] . '"' . 
-                        ' ' . ($country["numPays"] == "$numPays" ? 'selected' : '') . 
+                        ' ' . ($country["numPays"] == "$langue->NumPays" ? 'selected' : '') . 
                         ' >' . $country['frPays']. '</option>';
                     }
                     ?>
