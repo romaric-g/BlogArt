@@ -1,49 +1,73 @@
 <?php
 
-require "./../Connection.php";
+require_once("Crud.php");
+require_once("../verifText.php");
 
+class Article extends Crud{
 
-var_dump($conn);    
+    const VALUES = array("DtCreA","LibTitrA","LibChapoA","LibAccrochA","Parag1A","LibSsTitr1","Parag2A","LibSsTitr2","Parag3A","LibConclA","UrlPhotA",
+                         "Likes","NumAngl","NumThem","NumLang"); 
+    const TABLE = "ARTICLE";
+    const PRIMARY = "NumArt";
 
-class Article {
-
-    private $NumArt;
-
-    private $DtCreA;
-    private $LibTitrA;
-    private $LibChapoA;
-    private $LibAccrochA;
-    private $Parag1A;
-    private $LibSsTitr1;
-    private $Parag2A;
-    private $LibSsTitr2;
-    private $Parag3A;
-    private $LibConclA;
-    private $UrlPhotA;
-    private $Likes;
-
-    private $NumAngl;
-    private $NumThem;
-
-    private $comments = array();
-
-    public function __construct(string $NumArt)
+    public function __construct($primaryKeyValue)
     {
-        $this->NumArt = $NumArt;
+        parent::__construct(self::TABLE, self::PRIMARY, self::VALUES, $primaryKeyValue);
     }
 
-    public function load($conn)
+    public static function loadAll($connection)
     {
-        $request = "SELECT * FROM `ARTICLE` WHERE `NumArt` = '$this->NumArt'";
-        $response = $conn->query($request);
-        if($response) {
-            $row = $response->fetch();
+        $requete = "SELECT * FROM ". self::TABLE;
+        $result = $connection->query($requete);
+        $elements = array();
+        while($row = $result->fetch()) {
+            $element = new self($row[self::PRIMARY]);
+
+            $element->extractSQLDataRow($row);
+            array_push($elements, $element);
         }
-        
+        return $elements;
+    }
+
+    public static function new($postVar, $conn) : self
+    {   
+        $NumLang = self::getNextID($conn);
+        $langue = NULL;
+
+        $values = array();
+        foreach(self::VALUES as $value) {
+            if(isset($postVar[$value])){
+                $values[$value] = ctrlSaisies($postVar[$value]);
+            }else{
+                $values[$value] = NULL;
+            }
+        }
+
+        if($NumLang != NULL) {
+            $langue = new self($NumLang);
+            $langue->values = $values;
+            $langue->create($conn);
+        }else{
+            $NumLang->error = "Impossible de créer l'Article";
+        }
+        return $langue;
+    }
+
+    public static function getNextID($conn)
+    {  
+        $requete = "SELECT MAX(NumArt) AS NumArt FROM ARTICLE";
+        $result = $conn->query($requete);
+
+        if($result) {
+            $tuple = $result->fetch();
+            $NumArt = $tuple["NumArt"];
+            if(is_null($NumArt)) {
+                $NumArt = 0;
+            }
+            $NumArt++;
+            return  (($NumArt < 10 ? '0' : '') . $NumArt);
+        }
     }
 }
-
-$article = new Article("09");
-$article->load($conn);
 
 ?>
