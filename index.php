@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <a href="blog/" class="btn btn-success">Langues</a>
+        <a href="langue/" class="btn btn-success">Langues</a>
     </div>
 </body>
 </html>
