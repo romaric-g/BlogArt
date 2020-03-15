@@ -30,8 +30,10 @@ function active($link) {
                     <div class="nav nav-pills nav-fill flex-column">
                         <a class="nav-item nav-link <?= active("ARTICLE") ?>" href="<?= getLink("/article") ?>">Articles</a>
                         <a class="nav-item nav-link <?= active("COMMENT") ?>" href="<?= getLink("/comment") ?>">Commentaires</a>
-                        <a class="nav-item nav-link <?= active("KEYWORD") ?>" href="<?= getLink("/keyword") ?>">Mots clés</a>
                         <a class="nav-item nav-link <?= active("LANGUE") ?>" href="<?= getLink("/langue") ?>">Langues</a>
+                        <a class="nav-item nav-link <?= active("THEME") ?>" href="<?= getLink("/theme") ?>">Thématiques</a>
+                        <a class="nav-item nav-link <?= active("KEYWORD") ?>" href="<?= getLink("/keyword") ?>">Mots clés</a>
+                        <a class="nav-item nav-link <?= active("ANGLE") ?>" href="<?= getLink("/angle") ?>">Angles</a>
                     </div>
                 </div>
             </nav>

@@ -37,13 +37,10 @@ abstract class Crud {
         $valuesBindJoined .= rtrim((":" . join(", :", $this->valuesName)), ":");
         $request = "INSERT INTO $this->tableName ($valuesJoined) VALUES ($valuesBindJoined)";
 
-        var_dump($request);
-
         $prepare = $connection->prepare($request);
         $prepare->bindParam((":".$this->primaryKeyName), $this->primaryKeyValue);
         foreach($this->values as $key => $value) {
-            var_dump($key, $this->values[$key]);
-            $prepare->bindParam(":". $key, $this->values[$key]);
+            $prepare->bindParam(":". $key, ($this->values[$key]));
         }
 
         try {
@@ -102,7 +99,7 @@ abstract class Crud {
         $values = "";
 
         foreach($this->valuesName as $value) {
-            $values .= $value . "='" . $this->values[$value] . "',";
+            $values .= $value . "='" . addslashes($this->values[$value]) . "',";//Add slashes à verifier
         }
         $values = rtrim($values, ",");
         $request = "UPDATE $this->tableName SET $values WHERE $this->primaryKeyName = '{$this->primaryKeyValue}'";

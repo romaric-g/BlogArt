@@ -27,16 +27,9 @@ if($keyword == NULL){
 $requete = "SELECT * FROM `langue` WHERE 1";
 $langues = $conn->query($requete);
 
+$HEADER = array("active" => "KEYWORD");
+include "./../common/header.php";
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
-<body>
     <div class="container">
         <h1>Modifier un mot clé</h1>
         <?php if($keyword && ($keyword->error || $keyword->success)) { ?>
@@ -64,5 +57,6 @@ $langues = $conn->query($requete);
             <a href="index.php" class="btn btn-primary">Retour</a>
         </form>
     </div>
-</body>
-</html>
+<?php
+include "./../common/footer.php";
+?>

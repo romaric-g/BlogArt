@@ -10,7 +10,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if(isset($_POST['id']) AND $_POST['id'] == 0) {
         $_POST['DtCreC'] = date("Y-m-d H:i:s");
-        var_dump($_POST);
         if( Comment::paramsAllSet($_POST) ) {
             $comment = Comment::new($_POST, $conn);
         }
@@ -34,7 +33,7 @@ include "./../common/header.php";
            <div class="form-group">
                 <label for="PseudoAuteur">Pseudo</label>
                 <input type="text" class="form-control" id="PseudoAuteur" name="PseudoAuteur" maxlength="25" placeholder="Pseudo" autofocus="autofocus" >
-            </div> 
+            </div>
             <div class="form-group">
                 <label for="EmailAuteur">Email</label>
                 <input type="email" class="form-control" id="EmailAuteur" name="EmailAuteur" placeholder="Email">
