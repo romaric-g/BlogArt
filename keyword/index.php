@@ -3,21 +3,28 @@ session_start();
 
 require_once("./../class/Utils/ctrlSaisies.php");
 require_once("./../class/Utils/connection.php");
-require_once("./../class/Blog/Article.php");
+require_once("./../class/Blog/KeyWord.php");
+
+$WHERE = "";
+
+if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["lang"])) {
+    $pays = ctrlSaisies($_GET["lang"]);
+    $WHERE = "NumPays = '$pays'";
+}
+
+$elmts = KeyWord::loadAll($conn, array(new Join("LANGUE", "NumLang", "NumLang")), $WHERE);
 
 $success = isset($_SESSION["success"]) ? $_SESSION["success"] : NULL;
 $error = isset($_SESSION["error"]) ? $_SESSION["error"] : NULL;
 
 unset($_SESSION["success"]);
-unset($_SESSION["error"]);
+unset($_SESSION["error"]);  
 
-$articles = Article::loadAll($conn);
-
-$HEADER = array("active" => "ARTICLE");
+$HEADER = array("active" => "KEYWORD");
 include "./../common/header.php";
 ?>
 <div class="container">
-    <h1>Liste des Articles</h1>
+    <h1>Liste des Mots clés</h1>
     <?php if($error || $success) { ?>
             <div class="alert alert-<?php echo ($error ? "danger" : "success")?>" role="alert">
                 <?php echo $error ? $error :  $success; ?>
@@ -26,22 +33,19 @@ include "./../common/header.php";
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Titre</th>
-                <th scope="col">Date</th>
-                <th scope="col">Like</th>
+                <th scope="col">Mot Clé</th>
+                <th scope="col">Langue</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach($articles as $article){ ?>
+            <?php foreach($elmts as $elmt){ ?>
                 <tr>
-                    <td><?= $article->values["LibTitrA"] ?></td>
-                    <td><?= $article->values["DtCreA"] ?></td>
-                    <td><?= $article->values["Likes"] ?></td>
+                    <td><?= $elmt->values["LibMoCle"] ?></td>
+                    <td><?= $elmt->tuple["Lib1Lang"] ?></td>
                     <td>
-                    <a href="show.php?id=<?= $article->primaryKeyValue ?>" class="btn btn-success">Afficher</a>
-                    <a href="update.php?id=<?= $article->primaryKeyValue ?>" class="btn btn-info">Update</a>
-                        <a href="delete.php?id=<?= $article->primaryKeyValue ?>" class="btn btn-danger">Supprimer</a>
+                        <a href="delete.php?id=<?= $elmt->primaryKeyValue ?>" class="btn btn-danger">Supprimer</a>
+                        <a href="update.php?id=<?= $elmt->primaryKeyValue ?>" class="btn btn-info">Update</a>
                     </td>
                 </tr>
             <?php } ?> 

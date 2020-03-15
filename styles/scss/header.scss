@@ -1,0 +1,38 @@
+nav {
+    padding: 0!important;
+    height: 100vh;
+    position: relative;
+   
+    .content {
+        position: fixed;
+        padding-top: 40px;
+        height: 100vh;
+        left: 0;
+        top: 0;
+        width: 16.666667%;
+        background-color: rgb(235, 163, 54);
+        
+    }
+
+    @media (max-width: 768px) {
+        height: unset;
+
+        .content {
+            padding: 20px 15px;
+            position: relative;
+            height: unset;
+            width: 100%;
+        }
+    }
+    
+
+    a {
+        color: white;
+
+        &:hover {
+            color: white;
+            text-decoration: underline;
+        }
+    }
+
+}

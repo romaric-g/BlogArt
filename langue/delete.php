@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include "./../verifText.php";
-include "./../connection.php";
+require_once("./../class/Utils/ctrlSaisies.php");
+require_once("./../class/Utils/connection.php");
 
 if($_SERVER["REQUEST_METHOD"] == "GET") {
     if(isset($_GET["id"])) {

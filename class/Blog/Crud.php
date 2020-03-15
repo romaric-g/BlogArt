@@ -1,9 +1,14 @@
 <?php
+
+require_once( __DIR__ . "/../Utils/ctrlSaisies.php");
+require_once("Join.php");
+
 abstract class Crud {
 
     const VALUES = array(); 
     const TABLE = "";
     const PRIMARY = "";
+
 
     public $tableName;
     public $primaryKeyName;
@@ -17,11 +22,11 @@ abstract class Crud {
     public $success = NULL;
     public $error = NULL;
 
-    public function __construct(string $tableName, $primaryKeyName, $valuesName, $primaryKeyValue)
+    public function __construct($primaryKeyValue)
     {
-        $this->tableName = $tableName;
-        $this->primaryKeyName = $primaryKeyName;
-        $this->valuesName = $valuesName;
+        $this->tableName = static::TABLE;
+        $this->primaryKeyName = static::PRIMARY;
+        $this->valuesName = static::VALUES;
         $this->primaryKeyValue = $primaryKeyValue;
     }
 
@@ -32,9 +37,12 @@ abstract class Crud {
         $valuesBindJoined .= rtrim((":" . join(", :", $this->valuesName)), ":");
         $request = "INSERT INTO $this->tableName ($valuesJoined) VALUES ($valuesBindJoined)";
 
+        var_dump($request);
+
         $prepare = $connection->prepare($request);
         $prepare->bindParam((":".$this->primaryKeyName), $this->primaryKeyValue);
         foreach($this->values as $key => $value) {
+            var_dump($key, $this->values[$key]);
             $prepare->bindParam(":". $key, $this->values[$key]);
         }
 
@@ -48,15 +56,45 @@ abstract class Crud {
         }        
     }
 
-    public function loadDataFromSQL($connection)
+    public function loadDataFromSQL($connection, $joins = array())
     {
-        $requete = "SELECT * FROM $this->tableName WHERE $this->primaryKeyName = '{$this->primaryKeyValue}'";
+        $requete = "SELECT * FROM $this->tableName ";
+        foreach($joins as $join){
+            $requete .= $join->getJoinLine($this->tableName) . " ";
+        }
+        $requete .= "WHERE $this->primaryKeyName = '{$this->primaryKeyValue}'";
         $result = $connection->query($requete);
 
         if($result) {
             $tuple = $result->fetch();
             $this->extractSQLDataRow($tuple);
         }
+    }
+
+    
+    public static function loadAll($connection, $joins = array(), $whereAddition = "", $orderby = "")
+    {
+        $requete = "SELECT * FROM ". static::TABLE ." ";
+        foreach($joins as $join){
+            $requete .= $join->getJoinLine(static::TABLE) . " ";
+        }
+        if($whereAddition != ""){
+            $requete .= "AND " . $whereAddition . " ";
+        }
+        if($orderby != ""){
+            $requete .= $orderby;
+        }
+        $result = $connection->query($requete);
+
+        $langues = array();
+
+        while($langueRow = $result->fetch()) {
+            $langue = new static($langueRow[static::PRIMARY]);
+
+            $langue->extractSQLDataRow($langueRow);
+            array_push($langues, $langue);
+        }
+        return $langues;
     }
 
     public function updateDataToSQL($connection)
@@ -77,16 +115,40 @@ abstract class Crud {
         }
     }
 
-    public function changeData($postVar)
+    public function changeData($postVar, $setEmptyToNull = true)
     {
         foreach($this->valuesName as $value) {
-            if(isset($postVar[$value])){
+            if(isset($postVar[$value]) && !empty($postVar[$value]) ){
                 $this->values[$value] = ctrlSaisies($postVar[$value]);
-            }else{
+            }else if($setEmptyToNull) {
                 $this->values[$value] = NULL;
             }
         }
     }
+
+    public static function new($postVar, $conn) : self
+    {   
+        $NumLang = static::getNextID($postVar, $conn);
+        $langue = NULL;
+
+        $values = array();
+        foreach(static::VALUES as $value) {
+            if(isset($postVar[$value])){
+                $values[$value] = ctrlSaisies($postVar[$value]);
+            }else{
+                $values[$value] = NULL;
+            }
+        }
+
+        if($NumLang != NULL) {
+            $langue = new static($NumLang);
+            $langue->values = $values;
+            $langue->create($conn);
+        }
+        return $langue;
+    }
+
+    protected abstract static function getNextID($postVar, $conn);
 
     protected function extractSQLDataRow($tuple)
     {
@@ -96,17 +158,13 @@ abstract class Crud {
         $this->tuple = $tuple;
     }
 
-    public static function paramsAllSet($postParams) 
+    public static function paramsAllSet($postParams, $ignored = array()) 
     {
         $present = TRUE;
         foreach(static::VALUES as $params) {
-            echo "$params";
-            if(!isset($postParams[$params])){
+            if( !in_array($params, $ignored) && (!isset($postParams[$params]) || $postParams[$params] === "") ){
                 $present = FALSE;
                 break;
-                echo "NOT SET";
-            }else{
-                echo "SET";
             }
         }
         return $present;

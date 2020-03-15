@@ -3,15 +3,15 @@ session_start();
 
 require_once("./../class/Utils/ctrlSaisies.php");
 require_once("./../class/Utils/connection.php");
-require_once("./../class/Blog/Article.php");
+require_once("./../class/Blog/Comment.php");
 
 if($_SERVER["REQUEST_METHOD"] == "GET") {
     if(isset($_GET["id"])) {
         try {
-            $languageID = ctrlSaisies($_GET["id"]);
-            $request = "DELETE FROM " . Article::TABLE . " WHERE `" . Article::PRIMARY . "` = '$languageID'";
+            $commentID = ctrlSaisies($_GET["id"]);
+            $request = "DELETE FROM " . Comment::TABLE . " WHERE `" . Comment::PRIMARY . "` = '$commentID'";
             $req = $conn->exec($request);
-            $_SESSION["success"]="Un élement a bien été supprimé";
+            $_SESSION["success"]="Le commentaire a bien été supprimé";
         } catch (PDOException $error) {
             $_SESSION["error"]=$error;
         }

@@ -1,7 +1,6 @@
 <?php
 
 require_once("Crud.php");
-require_once("../verifText.php");
 
 class Langue extends Crud{
 
@@ -9,54 +8,9 @@ class Langue extends Crud{
     const TABLE = "LANGUE";
     const PRIMARY = "NumLang";
 
-    public function __construct($primaryKeyValue)
-    {
-        parent::__construct(self::TABLE, self::PRIMARY, self::VALUES, $primaryKeyValue);
-    }
-
-    public static function loadAll($connection)
-    {
-        $requete = "SELECT * FROM ". self::TABLE ." INNER JOIN PAYS ON LANGUE.NumPays = PAYS.numPays";
-        $result = $connection->query($requete);
-
-        $langues = array();
-
-        while($langueRow = $result->fetch()) {
-            $langue = new Langue($langueRow[self::PRIMARY]);
-
-            $langue->extractSQLDataRow($langueRow);
-            array_push($langues, $langue);
-        }
-        return $langues;
-    }
-
-    public static function new($postVar, $conn) : self
-    {   
-        $NumLang = self::getNextLangueID(ctrlSaisies($postVar["NumPays"]), $conn);
-        $langue = NULL;
-
-        $values = array();
-        foreach(self::VALUES as $value) {
-            if(isset($postVar[$value])){
-                $values[$value] = ctrlSaisies($postVar[$value]);
-            }else{
-                $values[$value] = NULL;
-            }
-        }
-
-        if($NumLang != NULL) {
-            $langue = new self($NumLang);
-            $langue->values = $values;
-            $langue->create($conn);
-        }else{
-            $NumLang->error = "Impossible de créer la langue";
-        }
-        return $langue;
-    }
-
-    public static function getNextLangueID($numPays, $conn) : string
+    protected static function getNextID($postVar, $conn) : string
     {  
-        $numPaysSelect = $numPays;
+        $numPaysSelect = ctrlSaisies($postVar["NumPays"]);
         $parmNumLang = $numPaysSelect . '%';
         $requete = "SELECT MAX(NumLang) AS NumLang FROM LANGUE WHERE NumLang LIKE '$parmNumLang';";
 
