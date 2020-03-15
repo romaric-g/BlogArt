@@ -1,6 +1,6 @@
 <?php
 
-require_once( __DIR__ . "\..\link.php" );
+require_once( __DIR__ . "/../link.php" );
 
 if(!isset($HEADER)){
     $HEADER = array();
