@@ -13,7 +13,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $_POST['Likes'] = 0;
         var_dump($_POST);
         if( Article::paramsAllSet($_POST) ) {
+            $keywords = $_POST["Keywords"];
+            unset($_POST["Keywords"]);
             $langue = Article::new($_POST, $conn);
+            $langue->setKeywordsFromString($keywords);
+            $langue->updateKeywords($conn);
         }
     }
 }
@@ -26,6 +30,9 @@ $angles = $conn->query($requete);
 
 $requete = "SELECT * FROM `thematique` WHERE 1";
 $thematiques = $conn->query($requete);
+
+$requete = "SELECT * FROM `motcle` WHERE 1";
+$keywords = $conn->query($requete);
 
 
 $HEADER = array("active" => "ARTICLE");
@@ -105,6 +112,29 @@ include "./../common/header.php";
                         <?php }?>
                     </select>
             </div>
+            <input type="hidden" name="Keywords" id="Keywords" >
+                            
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item list-group-item-dark d-flex justify-content-between align-items-center">Mots clés<span id="keywordCount" class="badge badge-light badge-pill">0</span></li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col">
+                            <select class="custom-select" id="keyWordSelect">
+                                <?php foreach($keywords as $keyword) { ?>
+                                    <option data-lang="<?= $keyword["NumLang"]?>" value="<?= $keyword["NumMoCle"] ?>"><?= $keyword["LibMoCle"] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                         <a href="#" class="btn btn-info" id="addKeyWordButton">Ajouter</a>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <ul class="list-group list-group-flush" id="keyWordList">
+              
+                    </ul>
+                </li>
+            </ul>
+            <script src="./../js/keyword.js"></script>
             <button name="id" type="submit" name="Submit" class="btn btn-success">Valider</button>
             <a href="index.php" class="btn btn-primary">Retour</a>
         </form>

@@ -2,6 +2,7 @@
 require_once("./../class/Utils/ctrlSaisies.php");
 require_once("./../class/Utils/connection.php");
 require_once("./../class/Blog/Article.php");
+require_once("./../class/Blog/KeyWord.php");
 
 $article = NULL;
 
@@ -15,7 +16,10 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
             new Join("LANGUE", "NumLang", "NumLang")
         );
         $article->loadDataFromSQL($conn, $joins);
+        $article->loadKeywords($conn);
     }
+}else{
+    header("Location: index.php");
 }
 
 $HEADER = array("active" => "ARTICLE");
@@ -34,6 +38,12 @@ include "./../common/header.php";
             <p><?= $article->values["Parag2A"]; ?></p>
             <p><?= $article->values["LibConclA"]; ?></p>
             <a href="" class="btn btn-success">Likes <?= $article->values["Likes"]; ?></a>
+            <div>
+                <?php foreach($article->keywords as $keyword) { ?>
+                    <span class="badge badge-dark"><?= $keyword->values["LibMoCle"]; ?></span>
+                    
+                <?php } ?>
+                </div>
             <table class="table">
                 <thead>
                     <tr>
