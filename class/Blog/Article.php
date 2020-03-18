@@ -9,6 +9,7 @@ class Article extends Crud{
                          "Likes","NumAngl","NumThem","NumLang"); 
     const TABLE = "ARTICLE";
     const PRIMARY = "NumArt";
+    const ERRORS = array();
 
     public $keywordsNum = array();
     public $keywords = array();
@@ -51,8 +52,8 @@ class Article extends Crud{
 
     public function setKeywordsFromString($keywordsString) 
     {
-        $this->keywordsNum = explode(",",$keywordsString);
-        var_dump($this->keywordsNum);
+        $keywordsNum = explode(",",$keywordsString);
+        $this->keywordsNum = isset($keywordsNum[0]) && !$keywordsNum[0] == "" ? $keywordsNum : array();
     }
 
 
@@ -66,17 +67,15 @@ class Article extends Crud{
         $removeKey = array();
 
         while($tuple = $result->fetch()) {
-            $key = $tuple["NumMotCle"];
-            if(in_array($key, $this->keywordsNum)) {
-                array_diff($addKey, [$key]);
+            $NumMoCle = $tuple["NumMoCle"];
+            if(in_array($NumMoCle, $this->keywordsNum)) {
+                if (($deleteKey = array_search($NumMoCle, $addKey)) !== false) {
+                    unset($addKey[$deleteKey]);
+                }
             }else{
-                array_push($removeKey, $key);
+                array_push($removeKey, $NumMoCle);
             }
         }
-        echo "ADD TO DB: ";
-        var_dump($addKey);
-        echo "REMOVE FROM DB: ";
-        var_dump($removeKey);
 
         foreach($addKey as $key) {
             $request = "INSERT INTO `motclearticle`(`NumArt`, `NumMoCle`) VALUES (:NumArt, :NumMoCle)";

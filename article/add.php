@@ -1,26 +1,46 @@
 <?php 
+session_start();
 
 require_once("./../class/Utils/ctrlSaisies.php");
 require_once("./../class/Utils/connection.php");
 require_once("./../class/Blog/Article.php");
 
+require_once("./../class/Forms/Input.php");
+require_once("./../class/Forms/TextArea.php");
+require_once("./../class/Forms/SelectInput.php");
+require_once("./../class/Forms/Alert.php");
+require_once("./../class/Forms/KeywordsInput.php");
+
 $langue = NULL;
+$feedbacks = NULL;
+$feedbackMessage = array();
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if(isset($_POST['id']) AND $_POST['id'] == 0) {
         $_POST['DtCreA'] = date("Y-m-d");
         $_POST['Likes'] = 0;
-        var_dump($_POST);
-        if( Article::paramsAllSet($_POST) ) {
+        $noset = Article::getParamsNoSet($_POST);
+        if( empty($noset) ) {
             $keywords = $_POST["Keywords"];
             unset($_POST["Keywords"]);
             $langue = Article::new($_POST, $conn);
             $langue->setKeywordsFromString($keywords);
             $langue->updateKeywords($conn);
+            $feedbackMessage["error"] = $langue->error;
+            $feedbackMessage["success"] = $langue->success;
+
+            if($feedbackMessage["success"]) {
+                $_SESSION["success"] = $feedbackMessage["success"];
+                header("Location: index.php");
+            }
+        }else{
+            $feedbacks = Article::getFeedbackMessages($noset);
+            $feedbackMessage["error"] = "Impossible de créer l'Article";
         }
     }
 }
+
 
 $requete = "SELECT * FROM `langue` WHERE 1";
 $langues = $conn->query($requete);
@@ -34,107 +54,32 @@ $thematiques = $conn->query($requete);
 $requete = "SELECT * FROM `motcle` WHERE 1";
 $keywords = $conn->query($requete);
 
-
 $HEADER = array("active" => "ARTICLE");
 include "./../common/header.php";
 ?>
     <div class="container">
         <h1>Créer un nouvelle article</h1>
-        <?php if($langue && ($langue->error || $langue->success)) { ?>
-            <div class="alert alert-<?php echo ($langue->error ? "danger" : "success")?>" role="alert">
-                <?php echo $langue->error ? $langue->error : $langue->success; ?>
-            </div>
-        <?php } ?>
+        <?= (new Alert($feedbackMessage))->HTML() ?>
         <form method="post" action="add.php">
-           <div class="form-group">
-                <label for="LibTitrA">Titre de l'Article</label>
-                <input type="text" class="form-control" id="LibTitrA" name="LibTitrA" maxlength="25" placeholder="Titre de l'Article" autofocus="autofocus" >
-            </div> 
-            <div class="form-group">
-                <label for="LibChapoA">Chapeau de l'Article</label>
-                <textarea class="form-control" id="LibChapoA" name="LibChapoA" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="LibAccrochA">Phrase d'accroche</label>
-                <input type="text" class="form-control" id="LibAccrochA" name="LibAccrochA" maxlength="25" placeholder="Phrase d'accroche" autofocus="autofocus" >
-            </div>
-            <div class="form-group">
-                <label for="Parag1A">Paragraphe 1</label>
-                <textarea class="form-control" id="Parag1A" name="Parag1A" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="LibSsTitr1">LibSsTitr1</label>
-                <textarea class="form-control" id="LibSsTitr1" name="LibSsTitr1" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="Parag2A">Paragraphe 2</label>
-                <textarea class="form-control" id="Parag2A" name="Parag2A" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="LibSsTitr2">LibSsTitr2</label>
-                <textarea class="form-control" id="LibSsTitr2" name="LibSsTitr2" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="Parag3A">Paragraphe 3</label>
-                <textarea class="form-control" id="Parag3A" name="Parag3A" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="LibConclA">LibConclA</label>
-                <textarea class="form-control" id="LibConclA" name="LibConclA" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="UrlPhotA">Lien de la photo</label>
-                <input type="text" class="form-control" id="UrlPhotA" name="UrlPhotA" maxlength="25" placeholder="Lien de la photo" autofocus="autofocus" >
-            </div>
+            <?= (new Input("LibTitrA", "Titre de l'Article"))->max(25)->first()->feedback($feedbacks, $_POST)->HTML(); ?>
+            <?= (new TextArea("LibChapoA", "Chapeau de l'Article"))->row(3)->feedback($feedbacks, $_POST)->HTML(); ?>
+            <?= (new Input("LibAccrochA", "Phrase d'accroche"))->feedback($feedbacks, $_POST)->HTML(); ?>
+            <?= (new TextArea("Parag1A", "Paragraphe 1"))->row(3)->feedback($feedbacks, $_POST)->HTML(); ?>
+            <?= (new TextArea("LibSsTitr1", "LibSsTitr1"))->row(3)->feedback($feedbacks, $_POST)->HTML(); ?>
+            <?= (new TextArea("Parag2A", "Paragraphe 2"))->row(3)->feedback($feedbacks, $_POST)->HTML(); ?>
+            <?= (new TextArea("LibSsTitr2", "LibSsTitr2"))->row(3)->feedback($feedbacks, $_POST)->HTML(); ?>
+            <?= (new TextArea("Parag3A", "Paragraphe 3"))->row(3)->feedback($feedbacks, $_POST)->HTML(); ?>
+            <?= (new TextArea("LibConclA", "Conclusion"))->row(3)->feedback($feedbacks, $_POST)->HTML(); ?>
+            <?= (new TextArea("UrlPhotA", "Lien de la photo"))->feedback($feedbacks, $_POST)->HTML(); ?>
+
             <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="NumLang">Langue</label>
-                    </div>
-                    <select class="custom-select" name="NumLang" id="NumLang">
-                        <?php while($langue = $langues->fetch()){ ?>
-                            <option value="<?=$langue["NumLang"]?>" <?= ($langue["NumPays"] == "FRAN" ? 'selected' : '')?>><?= $langue['Lib1Lang'] ?></option>
-                        <?php }?>
-                    </select>
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="NumThem">Théme</label>
-                    </div>
-                    <select class="custom-select" name="NumThem" id="NumThem">
-                        <?php while($thematique = $thematiques->fetch()){ ?>
-                            <option value="<?=$thematique["NumThem"]?>"><?= $thematique['LibThem'] ?></option>
-                        <?php }?>
-                    </select>
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="NumAngl">Angle</label>
-                    </div>
-                    <select class="custom-select" name="NumAngl" id="NumAngl">
-                        <?php while($angle = $angles->fetch()){ ?>
-                            <option value="<?=$angle["NumAngl"]?>"><?= $angle['LibAngl'] ?></option>
-                        <?php }?>
-                    </select>
+                    <?= (new SelectInput("NumLang","Langue"))->set($langues, "NumLang","Lib1Lang")->select('FRAN01')->HTML() ?>
+                    <?= (new SelectInput("NumThem","Thématique"))->set($thematiques, "NumThem","LibThem")->HTML() ?>
+                    <?= (new SelectInput("NumAngl","Angle"))->set($angles, "NumAngl","LibAngl")->HTML() ?>
             </div>
-            <input type="hidden" name="Keywords" id="Keywords" >
-                            
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item list-group-item-dark d-flex justify-content-between align-items-center">Mots clés<span id="keywordCount" class="badge badge-light badge-pill">0</span></li>
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col">
-                            <select class="custom-select" id="keyWordSelect">
-                                <?php foreach($keywords as $keyword) { ?>
-                                    <option data-lang="<?= $keyword["NumLang"]?>" value="<?= $keyword["NumMoCle"] ?>"><?= $keyword["LibMoCle"] ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                         <a href="#" class="btn btn-info" id="addKeyWordButton">Ajouter</a>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <ul class="list-group list-group-flush" id="keyWordList">
-              
-                    </ul>
-                </li>
-            </ul>
-            <script src="./../js/keyword.js"></script>
+            
+            <?php  (new KeywordsInput($keywords))->print() ?>
+
             <button name="id" type="submit" name="Submit" class="btn btn-success">Valider</button>
             <a href="index.php" class="btn btn-primary">Retour</a>
         </form>

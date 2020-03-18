@@ -8,7 +8,7 @@ abstract class Crud {
     const VALUES = array(); 
     const TABLE = "";
     const PRIMARY = "";
-
+    const ERRORS = array();
 
     public $tableName;
     public $primaryKeyName;
@@ -165,6 +165,46 @@ abstract class Crud {
             }
         }
         return $present;
+    }
+
+    public static function getParamsNoSet($postParams, $ignored = array()) 
+    {
+        $noset = array();
+        foreach(static::VALUES as $params) {
+            if( !in_array($params, $ignored) && (!isset($postParams[$params]) || $postParams[$params] === "") ){
+                array_push($noset, $params);
+            }
+        }
+        return $noset;
+    }
+
+    public static function getWrongInputMessage($param, $type = NULL) : string
+    {
+        $messages = static::ERRORS;
+        $message = "champ invalide";
+        if($type != NULL && isset($messages[$type])) {
+            $messages = $messages[$type];
+        }
+        if(isset($messages[$param])){
+            $message = $messages[$param];
+        }
+        return $message;
+    }
+
+    public static function getFeedbackMessages($noset) {
+        $feedbacks = array();
+        foreach(static::VALUES as $value) {
+            if(in_array($value, $noset)) {
+                $feedbacks[$value]["message"] = Article::getWrongInputMessage($value);
+                $feedbacks[$value]["type"] = "error";
+            }else{
+                $feedbacks[$value]["message"] = "parametre valide";
+                $feedbacks[$value]["type"] = "success";
+            }
+
+        }
+        return $feedbacks;
+
     }
 }
 ?>

@@ -26,7 +26,20 @@ function saveAllOptions() {
     }
 }
 
-saveAllOptions();
+function saveAllSets(lang) {
+    var child = list.lastElementChild;  
+    while (child) {
+        console.log(keywords)
+        if(!keywords[lang])options[lang] = new Array();
+        keywords[lang].push({
+            value: child.dataset.value,
+            lib: child.dataset.lib
+        })
+        list.removeChild(child); 
+        child = list.lastElementChild;
+    }
+}
+
 
 document.addEventListener('click', function (event) {
     if(event.target != null) {
@@ -140,9 +153,13 @@ function getSerialiedKeyword() {
 }
 
 function updateLangValue() {
-    selectLang = numLang.options[numLang.selectedIndex].value;
+    selectLang = getSelectedLangValue();
     if(!keywords[selectLang])keywords[selectLang] = new Array();
     updateOptions();
+}
+
+function getSelectedLangValue() {
+    return numLang.options[numLang.selectedIndex].value;
 }
 
 function getKeywordArray() {
@@ -152,4 +169,8 @@ function getOptionsArray() {
     return options[selectLang];
 }
 
+saveAllOptions();
 updateLangValue();
+saveAllSets(selectLang);
+updateList();
+updateOptions();
