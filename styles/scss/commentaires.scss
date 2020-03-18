@@ -1,0 +1,176 @@
+body{
+    background-color: #2B2B2B;
+}
+h1{
+    font-family: 'Bebas Neue', cursive;
+    color: #FFEED3;
+    margin-left: 400px;
+    padding-top: 60px;
+    font-size: 64px;
+}
+header{
+position: absolute;
+width: 314px;
+height: 100%;
+left: 0px;
+background-color:#FFEED3 ;
+
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+.img1{
+    position: absolute;
+width: 163px;
+height: 169px;
+left: 65px;
+top: 30px;
+border-radius: 121.5px;
+}
+
+nav.menu-nav ul li.btn{
+    color:#2B2B2B;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 36px;
+   text-align: left;
+
+}
+ul.admin-panel-links{
+    li{
+        display: block !important;
+       
+    }
+    li:hover{
+       transform: translate(50px, 0px); 
+    }
+    li:hover a{
+        color: #E2A539;
+        
+    }
+    li:visited a{
+        color: blue;
+    }
+    padding-top: 250px;
+}
+
+#com{
+    transform: translate(50px, 0px);
+    color: #E2A539;
+}
+.rectangle{
+position: absolute;
+width: 4px;
+height: 25px;
+left: 80px;
+top: 337px;
+background: #E2A539;
+}
+.bob{
+    border-radius: 50% 50%;
+    margin-left: 400px;
+    margin-top: 50px;
+}
+.grosavis{
+    position: absolute;
+width: 248px;
+height: 70px;
+left: 263px;
+top: 170px;
+
+font-family: 'Bebas Neue', cursive;
+font-style: normal;
+font-weight: normal;
+font-size: 36px;
+line-height: 43px;
+padding-left: 330px;
+margin-top: 50px;
+
+color: #FFFFFF;
+
+}
+.avis{
+    position: absolute;
+
+left: 263px;
+top: 215px;
+
+font-family: 'Montserrat', sans-serif;
+font-size: 21px;
+line-height: 26px;
+padding-left: 330px;
+color: #FFFFFF;
+margin-top: 50px;
+}
+.grosavisjustine{
+    position: absolute;
+    width: 248px;
+    height: 70px;
+    left: 263px;
+    top: 170px;
+    
+    font-family: 'Bebas Neue', cursive;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 43px;
+    padding-left: 330px;
+    margin-top: 260px;  
+    color: #FFFFFF;
+}
+.avisjustine{
+    position: absolute;
+
+left: 263px;
+top: 215px;
+
+font-family: 'Montserrat', sans-serif;
+font-size: 21px;
+line-height: 26px;
+padding-left: 330px;
+color: #FFFFFF;
+margin-top: 260px;
+
+}
+
+.justine{
+    border-radius: 50% 50%;
+    margin-left: 400px;
+    margin-top: 50px;
+}
+
+.grosavissami{
+    position: absolute;
+    width: 248px;
+    height: 70px;
+    left: 263px;
+    top: 170px;
+    
+    font-family: 'Bebas Neue', cursive;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 43px;
+    padding-left: 330px;
+    margin-top: 450px;  
+    color: #FFFFFF;
+}
+.avissami{
+    position: absolute;
+
+left: 263px;
+top: 215px;
+
+font-family: 'Montserrat', sans-serif;
+font-size: 21px;
+line-height: 26px;
+padding-left: 330px;
+color: #FFFFFF;
+margin-top: 450px;
+
+}
+
+.sami{
+    border-radius: 50% 50%;
+    margin-left: 400px;
+    margin-top: 50px;
+}
