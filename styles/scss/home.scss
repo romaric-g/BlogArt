@@ -1,0 +1,88 @@
+header {
+    position: relative;
+    background-image: url("../../assets/images/home.jpg");
+    background-position: center;
+    background-size: cover;
+
+    .row {
+        height: 100%;
+        min-height: 30vw;
+        width: 100%;
+    }
+
+    .header-left {
+        background-color: #FFEED3;;
+        position: relative;
+        clip-path: url(#svgPath);
+        min-height: 100vh;
+
+        .content {
+            text-align: center;
+            svg {
+                margin-top: 40px;
+                margin-right: 180px;
+                margin-left: 20px;
+                width: 243px;
+            }
+        }
+    }
+
+    .header-right {
+        display: flex;
+        flex-direction: column;
+        nav {
+            height: 140px;
+            padding: 0 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-end;
+            .btn {
+                text-transform: uppercase;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 1.4em;
+                border-radius: 10px;
+                margin: 0 5px;
+                padding: 2px 22px;
+            }
+    
+            .btn-top-main {
+                background-color: #FFEED3;
+                color: #2B2B2B;
+                transform: translateY(0px);
+            }
+    
+            .btn-top-second {
+                background-color: unset;
+                color: #FFEED3;
+            }
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .bigtitle {
+                width: 100%;
+                margin: 0 40px;
+                color: #FFEED3;
+                text-transform: uppercase;
+                font-size: 8em;
+
+                span {
+                    display: block;
+                    width: 100%;
+                    line-height: 1em;
+
+                    &:first-child {text-align: left;}
+                    &:last-child {text-align: right;}
+                }
+            }
+        }
+        
+    }
+}
