@@ -1,0 +1,72 @@
+body {
+  background-color: #2b2b2b;
+}
+
+.title {
+  text-align: center;
+  color: #FFEED3;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 3.3em;
+}
+
+.stitre {
+  text-align: left;
+  color: #FFEED3;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 2.4em;
+  padding-left: 20px;
+}
+
+.logo {
+  width: 200px;
+  transition: 0.2s ease;
+  transition-property: transform;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.stitre:before {
+  content: "";
+  height: 28px;
+  width: 5px;
+  position: absolute;
+  top: 8px;
+  left: 0px;
+  background-color: #E2A539;
+}
+
+.div3 {
+  position: relative;
+}
+
+.chapo {
+  text-align: justify;
+  color: #FFFFFF;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.3em;
+  font-weight: 400;
+}
+
+.text {
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.3em;
+  text-align: justify;
+}
+
+.div {
+  margin: auto;
+  width: 800px;
+  height: auto;
+}
+
+.div2 {
+  margin-top: 50px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=temoignage.css.map */
