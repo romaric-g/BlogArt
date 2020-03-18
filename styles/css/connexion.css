@@ -1,0 +1,182 @@
+header {
+  position: relative;
+  background: #2B2B2B;
+}
+header .row {
+  height: 100%;
+  min-height: 30vw;
+  width: 100%;
+}
+header .header-left {
+  background-color: #FFEED3;
+  position: relative;
+  clip-path: url(#svgPath);
+  min-height: 100vh;
+}
+header .header-left .content {
+  text-align: center;
+}
+header .header-left .content svg {
+  margin-top: 40px;
+  margin-right: 180px;
+  margin-left: 20px;
+  width: 243px;
+}
+header .header-right {
+  display: flex;
+  flex-direction: column;
+}
+header .header-right nav {
+  height: 140px;
+  padding: 0 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+header .header-right nav .btn {
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.4em;
+  border-radius: 10px;
+  margin: 0 5px;
+  padding: 2px 22px;
+}
+header .header-right nav .btn-top-main {
+  background-color: #FFEED3;
+  color: #2B2B2B;
+  transform: translateY(0px);
+}
+header .header-right nav .btn-top-second {
+  background-color: unset;
+  color: #FFEED3;
+}
+header .header-right .content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+header .header-right .content .title {
+  width: 100%;
+  margin: 0 40px;
+  color: #FFEED3;
+  text-transform: uppercase;
+  font-size: 4em;
+  text-align: center;
+}
+header .header-right .forms-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+header .header-right .form-surname {
+  border: 2px solid #FFEED3;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background: #2B2B2B;
+  flex: 1;
+  color: #FFEED3;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  padding: 15px;
+  margin: 10px;
+}
+header .header-right .form-name {
+  border: 2px solid #FFEED3;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background: #2B2B2B;
+  flex: 1;
+  color: #FFEED3;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  padding: 15px;
+  margin: 10px;
+}
+header .header-right .form-mail {
+  border: 2px solid #FFEED3;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background: #2B2B2B;
+  color: #FFEED3;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  padding: 15px;
+  margin: 10px;
+}
+header .header-right .placeholder {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFEED3;
+  opacity: 0.5;
+}
+header .header-right .checkboxalign {
+  text-align: center;
+}
+header .header-right .form-check {
+  margin: 10px;
+}
+header .header-right .form-check-text {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFEED3;
+}
+header .header-right .button {
+  text-align: center;
+}
+header .header-right .btn-inscription {
+  background: #FFEED3;
+  border-radius: 10px;
+  font-family: Bebas Neue;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #2B2B2B;
+}
+header .header-right .end {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #FFEED3;
+}
+header .header-right .connexion {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-decoration: underline;
+  color: #FFEED3;
+  justify-content: center;
+}
+header .header-right .alignconnexion {
+  text-align: center;
+}
+
+/*# sourceMappingURL=connexion.css.map */
