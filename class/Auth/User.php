@@ -107,11 +107,15 @@ class User {
         return substr($prenom, 0, 10) . ($timestamp . $rand);
     }
 
+    public static function emailIsUsed($email, $conn) : bool
+    {
+        $result = $conn->query("SELECT * FROM USER WHERE Email = '$email'");
+        return $result->rowCount();
+    }
 
     public static function new($email, $firstname, $lastname, $pass, $conn) {
         $user = NULL;
-        $result = $conn->query("SELECT * FROM USER WHERE Email = '$email'");
-        if(!$result->rowCount()) {
+        if(!self::emailIsUsed($email, $conn)) {
             $find = false;
             $try = 10;
             while(!$find && $try) {

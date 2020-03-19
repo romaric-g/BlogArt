@@ -42,8 +42,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         $i++;
     }
-    if( !isset($registerError["email"]) && !preg_match(" /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ", $_POST["email"])) { 
-        $registerError["email"] = "Adresse email invalide";
+    if( !isset($registerError["email"]) ) { 
+
+        if(!preg_match(" /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ", $_POST["email"])) {
+            $registerError["email"] = "Adresse email invalide";
+        }else if(User::emailIsUsed($_POST["email"], $conn)) {
+            $registerError["email"] = "Adresse email déjà utilisée";
+        }
+
+        
     }
     if( !isset($requiredParams["password"]) && !isset($requiredParams["passwordconfirm"]) && $_POST["password"] != $_POST["passwordconfirm"] ) {
         $registerError["passwordconfirm"] = "Les mots de passe ne corresponde pas";
