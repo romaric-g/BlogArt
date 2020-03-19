@@ -1,44 +1,67 @@
 <?php 
 
 require_once("./class/Auth/User.php");
-require_once("./class/Utils/connexion.php");
-require_once("./class/Utils/ctrlSaisis.php");
+require_once("./class/Utils/connection.php");
+require_once("./class/Utils/ctrlSaisies.php");
 
 $registerError = array();
+
+function printFeedback($name) {
+    global $registerError;
+    if(!empty($registerError)) {
+        $set = isset($registerError[$name])
+?>
+        <div class="<?= $set ? "invalid" : "valid"; ?>-feedback"><?= $set ? $registerError[$name] : "saisie valide" ?></div>
+<?php
+    }
+}
+function getFeedbackClass($name) {
+    global $registerError;
+    if(!empty($registerError)) {
+        return " is-" . (isset($registerError[$name]) ? "invalid" : "valid");
+    }
+}
+function getSet($name) {
+    return ctrlSaisies(isset($_POST[$name]) ? $_POST[$name] : "");
+}
+
+
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $requiredParams = array("email","firstname","lastname","password","passwordconfirm");
-
-    foreach($requiredParams as $params){
-        if(!isset($_POST[$params])) $registerError[$params] = "Ce champ est obligatoire";
+    $maxLength = array(50,30,30,15,15);
+    $i = 0;
+    foreach($requiredParams as $param){
+        if(!isset($_POST[$param]) || empty($_POST[$param])) {
+            $registerError[$param] = "Ce champ est obligatoire";
+        }else{
+            if( strlen($_POST[$param]) > $maxLength[$i]){
+                $registerError[$param] = "Champ limité à ". $maxLength[$i] . " caractères";
+            }
+        }
+        $i++;
     }
-
-    if( isset($_POST["email"])
-        && !preg_match(" /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ", $_POST["email"]))
-    { 
+    if( !isset($registerError["email"]) && !preg_match(" /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ", $_POST["email"])) { 
         $registerError["email"] = "Adresse email invalide";
     }
-
-
-
-    if (!$resultat)
-    {
-        echo 'Mauvais identifiant ou mot de passe !';
+    if( !isset($requiredParams["password"]) && !isset($requiredParams["passwordconfirm"]) && $_POST["password"] != $_POST["passwordconfirm"] ) {
+        $registerError["passwordconfirm"] = "Les mots de passe ne corresponde pas";
     }
-    else
-    {
-        if ($isPasswordCorrect) {
-            session_start();
-            $_SESSION['id'] = $resultat['id'];
-            $_SESSION['pseudo'] = $pseudo;
-            echo 'Vous êtes connecté !';
-        }
-        else {
-            echo 'Mauvais identifiant ou mot de passe !';
+    if(!isset($_POST["conditions"])) {
+        $registerError["conditions"] = "Vous devez accepter nos conditions";
+    }
+
+    if(empty($registerError)) {
+        try {
+            $user = User::new($_POST["email"],$_POST["firstname"],$_POST["lastname"],$_POST["password"],$conn);
+        } catch (\Exception $ex) {
+         
         }
     }
 }
+
+
 
 ?>
 <!DOCTYPE html>
@@ -77,41 +100,53 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="container content">
                     <div class="form-box">
                             <h1 class="title">Inscrivez-Vous</h1>
-                            <form>
+                            <form method="POST" action="">
                                 <div class="form-group">
                                     <div class="form-row">
                                         <div class="col">
-                                            <label for="fisrtname">First name</label>
-                                            <input type="text" class="form-control" name="fisrtname" placeholder="First name">
+                                            <label for="firstname">First name</label>
+                                            <input type="text" class="form-control<?= getFeedbackClass("firstname") ?>" name="firstname" placeholder="First name" value="<?= getSet('firstname') ?>">
+                                            <?php printFeedback("firstname"); ?>
                                         </div>
                                         <div class="col">
                                             <label for="lastname">Last name</label>
-                                            <input type="text" class="form-control" name="lastname" placeholder="Last name">
+                                            <input type="text" class="form-control <?= getFeedbackClass("lastname") ?>" name="lastname" placeholder="Last name" value="<?= getSet('lastname') ?>">
+                                            <?php printFeedback("lastname"); ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                    <input type="email" class="form-control <?= getFeedbackClass("email") ?>" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="<?= getSet('email') ?>">
+                                    <?php printFeedback("email"); ?>
                                 </div>
                                 <div class="form-group">
                                     <div class="form-row">
                                         <div class="col">
-                                            <label for="pass">Password</label>
-                                            <input type="password" class="form-control" name="pass" placeholder="Password">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control<?= getFeedbackClass("password") ?>" name="password" placeholder="Password" value="<?= getSet('password') ?>">
+                                            <?php printFeedback("password"); ?>
                                         </div>
                                         <div class="col">
-                                            <label for="passconfirm">Repeat Password</label>
-                                            <input type="password" class="form-control" name="passconfirm" placeholder="Repeat Password">
+                                            <label for="passwordconfirm">Repeat Password</label>
+                                            <input type="password" class="form-control<?= getFeedbackClass("passwordconfirm") ?>" name="passwordconfirm" placeholder="Repeat Password" value="<?= getSet('passwordconfirm') ?>">
+                                            <?php printFeedback("passwordconfirm"); ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                                        <input class="form-check-input is-invalid" type="checkbox" name="conditions" id="gridCheck">
+                                        
                                         <label class="form-check-label" for="gridCheck">
                                             J'ai lu et j'accepte les Conditions Générales d'Utilisation et la Politique de Protection des Données Personnelles.
                                         </label>
+                                        <?php 
+                                            if(isset($registerError["conditions"])) {
+                                        ?>
+                                            <div class="invalid-feedback"><?= $registerError["conditions"] ?></div>
+                                        <?php } ?>
+
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-inscription">S'inscrire</button>
