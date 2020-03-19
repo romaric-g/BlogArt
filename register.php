@@ -1,3 +1,46 @@
+<?php 
+
+require_once("./class/Auth/User.php");
+require_once("./class/Utils/connexion.php");
+require_once("./class/Utils/ctrlSaisis.php");
+
+$registerError = array();
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $requiredParams = array("email","firstname","lastname","password","passwordconfirm");
+
+    foreach($requiredParams as $params){
+        if(!isset($_POST[$params])) $registerError[$params] = "Ce champ est obligatoire";
+    }
+
+    if( isset($_POST["email"])
+        && !preg_match(" /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ", $_POST["email"]))
+    { 
+        $registerError["email"] = "Adresse email invalide";
+    }
+
+
+
+    if (!$resultat)
+    {
+        echo 'Mauvais identifiant ou mot de passe !';
+    }
+    else
+    {
+        if ($isPasswordCorrect) {
+            session_start();
+            $_SESSION['id'] = $resultat['id'];
+            $_SESSION['pseudo'] = $pseudo;
+            echo 'Vous êtes connecté !';
+        }
+        else {
+            echo 'Mauvais identifiant ou mot de passe !';
+        }
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -55,11 +98,11 @@
                                     <div class="form-row">
                                         <div class="col">
                                             <label for="pass">Password</label>
-                                            <input type="text" class="form-control" name="pass" placeholder="Password">
+                                            <input type="password" class="form-control" name="pass" placeholder="Password">
                                         </div>
                                         <div class="col">
                                             <label for="passconfirm">Repeat Password</label>
-                                            <input type="text" class="form-control" name="passconfirm" placeholder="Repeat Password">
+                                            <input type="password" class="form-control" name="passconfirm" placeholder="Repeat Password">
                                         </div>
                                     </div>
                                 </div>

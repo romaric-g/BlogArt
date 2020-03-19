@@ -34,7 +34,7 @@
                 <div class="container content">
                     <div class="form-box">
                             <h1 class="title">Connectez-Vous</h1>
-                            <form>
+                            <form method="POST" action="">
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
