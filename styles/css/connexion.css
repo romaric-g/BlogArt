@@ -67,17 +67,21 @@ header .header-right .content .form-box {
 }
 header .header-right .content form {
   padding: 60px 0;
+  /*.form-control {
+      border: 2px solid #FFEED3;
+      box-sizing: border-box;
+      border-radius: 10px;
+      background: #2B2B2B;
+      color: #FFEED3;
+      font-family: Montserrat;
+      font-style: normal;
+      padding: 25px;
+      font-size: 1.2em;
+  }*/
 }
-header .header-right .content form .form-control {
-  border: 2px solid #FFEED3;
-  box-sizing: border-box;
-  border-radius: 10px;
-  background: #2B2B2B;
+header .header-right .content form label {
   color: #FFEED3;
-  font-family: Montserrat;
-  font-style: normal;
-  padding: 25px;
-  font-size: 1.2em;
+  margin-bottom: 2px;
 }
 header .header-right .content form .form-check {
   margin-top: 30px;
