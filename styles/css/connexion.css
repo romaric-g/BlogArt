@@ -2,11 +2,6 @@ header {
   position: relative;
   background: #2B2B2B;
 }
-header .row {
-  height: 100%;
-  min-height: 30vw;
-  width: 100%;
-}
 header .header-left {
   background-color: #FFEED3;
   position: relative;
@@ -61,49 +56,19 @@ header .header-right .content {
   flex-direction: column;
 }
 header .header-right .content .title {
-  width: 100%;
-  margin: 0 40px;
   color: #FFEED3;
   text-transform: uppercase;
   font-size: 4em;
   text-align: center;
 }
-header .header-right .forms-name {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+header .header-right .content .form-box {
+  max-width: 550px;
+  margin: 0 auto 0 0;
 }
-header .header-right .form-surname {
-  border: 2px solid #FFEED3;
-  box-sizing: border-box;
-  border-radius: 10px;
-  background: #2B2B2B;
-  flex: 1;
-  color: #FFEED3;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 22px;
-  padding: 15px;
-  margin: 10px;
+header .header-right .content form {
+  padding: 60px 0;
 }
-header .header-right .form-name {
-  border: 2px solid #FFEED3;
-  box-sizing: border-box;
-  border-radius: 10px;
-  background: #2B2B2B;
-  flex: 1;
-  color: #FFEED3;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 22px;
-  padding: 15px;
-  margin: 10px;
-}
-header .header-right .form-mail {
+header .header-right .content form .form-control {
   border: 2px solid #FFEED3;
   box-sizing: border-box;
   border-radius: 10px;
@@ -111,28 +76,14 @@ header .header-right .form-mail {
   color: #FFEED3;
   font-family: Montserrat;
   font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 22px;
-  padding: 15px;
-  margin: 10px;
+  padding: 25px;
+  font-size: 1.2em;
 }
-header .header-right .placeholder {
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 22px;
-  color: #FFEED3;
-  opacity: 0.5;
+header .header-right .content form .form-check {
+  margin-top: 30px;
+  padding-left: 2rem;
 }
-header .header-right .checkboxalign {
-  text-align: center;
-}
-header .header-right .form-check {
-  margin: 10px;
-}
-header .header-right .form-check-text {
+header .header-right .content form .form-check .form-check-label {
   font-family: Montserrat;
   font-style: normal;
   font-weight: normal;
@@ -140,43 +91,27 @@ header .header-right .form-check-text {
   line-height: 22px;
   color: #FFEED3;
 }
-header .header-right .button {
-  text-align: center;
+header .header-right .content form .form-check .form-check-input {
+  height: 20px;
+  width: 20px;
+  margin-left: -2rem;
 }
-header .header-right .btn-inscription {
+header .header-right .content form .btn {
+  display: block;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.6em;
+  border-radius: 10px;
+  padding: 7px 60px;
   background: #FFEED3;
-  border-radius: 10px;
-  font-family: Bebas Neue;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 29px;
-  display: flex;
-  align-items: center;
   text-align: center;
-  color: #2B2B2B;
+  margin: 20px auto 7px auto;
 }
-header .header-right .end {
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 22px;
-  text-align: center;
+header .header-right .content form .already-accound {
   color: #FFEED3;
-}
-header .header-right .connexion {
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 22px;
-  text-decoration: underline;
-  color: #FFEED3;
-  justify-content: center;
-}
-header .header-right .alignconnexion {
   text-align: center;
+  font-family: "Montserrat", sans-serif;
 }
 
 /*# sourceMappingURL=connexion.css.map */

@@ -2,13 +2,6 @@ header {
     position: relative;
     background: #2B2B2B;
 
-    .row {
-        height: 100%;
-        min-height: 30vw;
-        width: 100%;
-
-    }
-
     .header-left {
         background-color: #FFEED3;;
         position: relative;
@@ -66,139 +59,73 @@ header {
             justify-content: center;
             flex-direction: column;
 
-
-
             .title {
-                width: 100%;
-                margin: 0 40px;
                 color: #FFEED3;
                 text-transform: uppercase;
                 font-size: 4em;
                 text-align: center;
             }
-        }
-        .forms-name{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
 
-        }
-        .form-surname {
-            border: 2px solid #FFEED3;
-            box-sizing: border-box;
-            border-radius: 10px;
-            
-            background: #2B2B2B;
-            flex: 1;
-            color: #FFEED3;
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 18px;
-            line-height: 22px;
-            padding: 15px;
-            margin: 10px
+            .form-box {
+                max-width: 550px;
+                margin: 0 auto 0 0;
+            }
+     
+            form {
+                padding: 60px 0;
+     
+                
+                .form-control {
+                    border: 2px solid #FFEED3;
+                    box-sizing: border-box;
+                    border-radius: 10px;
+                    background: #2B2B2B;
+                    color: #FFEED3;
+                    font-family: Montserrat;
+                    font-style: normal;
+                    padding: 25px;
+                    font-size: 1.2em;
+                }
 
-        }
-        .form-name {
-            border: 2px solid #FFEED3;
-            box-sizing: border-box;
-            border-radius: 10px;
-            
-            background: #2B2B2B;
-            flex: 1;
-            color: #FFEED3;
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 18px;
-            line-height: 22px;
-            padding: 15px;
-             margin: 10px
+                .form-check {
+                    margin-top: 30px;
+                    padding-left: 2rem;
+                    .form-check-label {
+                        font-family: Montserrat;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 18px;
+                        line-height: 22px;
+                        color: #FFEED3;
+                    }
 
-        }
+                    .form-check-input {
+                        height: 20px;
+                        width: 20px;
+                        margin-left: -2rem;
+                    }
+                }
+                .btn {
+                    display: block;
+                    text-transform: uppercase;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 1.6em;
+                    border-radius: 10px;
+                    padding: 7px 60px;
+                    background: #FFEED3;
+                    text-align: center;
+                    margin: 20px auto 7px auto;
+                }
 
-        .form-mail {
-            border: 2px solid #FFEED3;
-            box-sizing: border-box;
-            border-radius: 10px;
-            background: #2B2B2B;
-            color: #FFEED3;
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 18px;
-            line-height: 22px;
-            padding: 15px;
-            margin: 10px
-        }
-
-        .placeholder {
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 18px;
-            line-height: 22px;
-            color: #FFEED3;
-            opacity: 0.5;
-
-        }
-        .checkboxalign {
-        text-align: center;
-        }
-
-
-        .form-check{
-       margin: 10px;
-        }
-        .form-check-text{
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 18px;
-            line-height: 22px;
-            color: #FFEED3;
-        }
+                .already-accound {
+                    color: #FFEED3;
+                    text-align: center;
+                    font-family: 'Montserrat', sans-serif;
+                }
         
-        .button{
-        text-align: center;
-        }
-        .btn-inscription{
-            background: #FFEED3;
-            border-radius: 10px;
-            font-family: Bebas Neue;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 24px;
-            line-height: 29px;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: #2B2B2B;
-        }
-        .end {
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 18px;
-        line-height: 22px;
-        text-align: center;
-        color: #FFEED3;
+            }
         }
 
-        .connexion {
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 18px;
-        line-height: 22px;
-        text-decoration: underline;
-        color: #FFEED3;
-        justify-content: center;
-        
-        }
-        .alignconnexion{
-        text-align: center;
-        }
     }
 }
