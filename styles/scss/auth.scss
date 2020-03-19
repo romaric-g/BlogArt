@@ -67,12 +67,13 @@ header {
             }
 
             .form-box {
-                max-width: 550px;
+                width: 550px;
+                max-width: 100%;
                 margin: 0 auto 0 0;
             }
      
             form {
-                padding: 60px 0;
+                padding: 40px 0;
      
                 label {
                     color: #FFEED3;
@@ -89,6 +90,10 @@ header {
                     padding: 25px;
                     font-size: 1.2em;
                 }*/
+
+                .form-control {
+                    font-family: Montserrat;
+                }
 
                 .form-check {
                     margin-top: 30px;
@@ -119,6 +124,10 @@ header {
                     background: #FFEED3;
                     text-align: center;
                     margin: 20px auto 7px auto;
+
+                    &.btn-login {
+                        margin-top: 60px!important;
+                    }
                 }
 
                 .already-accound {

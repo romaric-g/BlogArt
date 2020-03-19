@@ -6,7 +6,7 @@
     <title>La pression bordelaise</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/css/common.css">
-    <link rel="stylesheet" href="styles/css/connexion.css">
+    <link rel="stylesheet" href="styles/css/auth.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -38,16 +38,31 @@
                                 <div class="form-group">
                                     <div class="form-row">
                                         <div class="col">
-                                        <input type="text" class="form-control" placeholder="First name">
+                                            <label for="fisrtname">First name</label>
+                                            <input type="text" class="form-control" name="fisrtname" placeholder="First name">
                                         </div>
                                         <div class="col">
-                                        <input type="text" class="form-control" placeholder="Last name">
+                                            <label for="lastname">Last name</label>
+                                            <input type="text" class="form-control" name="lastname" placeholder="Last name">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                </div> 
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <label for="pass">Password</label>
+                                            <input type="text" class="form-control" name="pass" placeholder="Password">
+                                        </div>
+                                        <div class="col">
+                                            <label for="passconfirm">Repeat Password</label>
+                                            <input type="text" class="form-control" name="passconfirm" placeholder="Repeat Password">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="gridCheck">
@@ -57,7 +72,7 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-inscription">S'inscrire</button>
-                                <p class="already-accound">Vous avez déjà un compte ? <br><a href="">Connectez-vous</a></p>
+                                <p class="already-accound">Vous avez déjà un compte ? <br><a href="login">Connectez-vous</a></p>
                             </form>
                         </div>
                 </div>
