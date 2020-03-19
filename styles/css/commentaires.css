@@ -19,7 +19,7 @@ header {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.img1 {
+.logo {
   position: absolute;
   width: 163px;
   height: 169px;
@@ -65,7 +65,7 @@ ul.admin-panel-links li:visited a {
   background: #E2A539;
 }
 
-.bob {
+.lea {
   border-radius: 50% 50%;
   margin-left: 400px;
   margin-top: 50px;
@@ -83,7 +83,7 @@ ul.admin-panel-links li:visited a {
   font-size: 36px;
   line-height: 43px;
   padding-left: 330px;
-  margin-top: 50px;
+  margin-top: 40px;
   color: #FFFFFF;
 }
 
@@ -96,7 +96,8 @@ ul.admin-panel-links li:visited a {
   line-height: 26px;
   padding-left: 330px;
   color: #FFFFFF;
-  margin-top: 50px;
+  margin-top: 40px;
+  text-align: justify;
 }
 
 .grosavisjustine {
@@ -111,7 +112,7 @@ ul.admin-panel-links li:visited a {
   font-size: 36px;
   line-height: 43px;
   padding-left: 330px;
-  margin-top: 260px;
+  margin-top: 210px;
   color: #FFFFFF;
 }
 
@@ -124,7 +125,8 @@ ul.admin-panel-links li:visited a {
   line-height: 26px;
   padding-left: 330px;
   color: #FFFFFF;
-  margin-top: 260px;
+  margin-top: 210px;
+  text-align: justify;
 }
 
 .justine {
@@ -133,7 +135,7 @@ ul.admin-panel-links li:visited a {
   margin-top: 50px;
 }
 
-.grosavissami {
+.grosavispatrick {
   position: absolute;
   width: 248px;
   height: 70px;
@@ -145,11 +147,11 @@ ul.admin-panel-links li:visited a {
   font-size: 36px;
   line-height: 43px;
   padding-left: 330px;
-  margin-top: 450px;
+  margin-top: 380px;
   color: #FFFFFF;
 }
 
-.avissami {
+.avispatrick {
   position: absolute;
   left: 263px;
   top: 215px;
@@ -158,13 +160,80 @@ ul.admin-panel-links li:visited a {
   line-height: 26px;
   padding-left: 330px;
   color: #FFFFFF;
-  margin-top: 450px;
+  margin-top: 380px;
+  text-align: justify;
 }
 
-.sami {
+.patrick {
   border-radius: 50% 50%;
   margin-left: 400px;
   margin-top: 50px;
+}
+
+.grosavismaxime {
+  position: absolute;
+  width: 248px;
+  height: 70px;
+  left: 263px;
+  top: 170px;
+  font-family: "Bebas Neue", cursive;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 43px;
+  padding-left: 330px;
+  margin-top: 550px;
+  color: #FFFFFF;
+}
+
+.avismaxime {
+  position: absolute;
+  left: 263px;
+  top: 215px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 21px;
+  line-height: 26px;
+  padding-left: 330px;
+  color: #FFFFFF;
+  margin-top: 550px;
+}
+
+.maxime {
+  border-radius: 50% 50%;
+  margin-left: 400px;
+  margin-top: 50px;
+}
+
+.poubelle {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 700px;
+  top: 220px;
+}
+
+.poubelle2 {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 700px;
+  top: 390px;
+}
+
+.poubelle3 {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 700px;
+  top: 560px;
+}
+
+.poubelle4 {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 700px;
+  top: 730px;
 }
 
 /*# sourceMappingURL=commentaires.css.map */
