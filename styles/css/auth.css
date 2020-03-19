@@ -126,3 +126,20 @@ header .header-right .content form .already-accound {
 }
 
 /*# sourceMappingURL=auth.css.map */
+
+
+
+
+.logo:hover {
+  cursor: pointer;
+}
+
+.anim {
+  transition: 0.3s ease;
+  transition-property: transform;
+}
+
+.anim:hover {
+  transform: scale(1.05);
+}
+

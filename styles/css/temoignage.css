@@ -18,21 +18,29 @@ body {
 }
 
 .logo {
+<<<<<<< HEAD
   width: 200px;
   transition: 0.2s ease;
   transition-property: transform;
 }
 
 .logo:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   cursor: pointer;
+=======
+  position: absolute;
+  width: 163px;
+  height: 169px;
+  left: 65px;
+  top: 30px;
+  border-radius: 121.5px;
+>>>>>>> a0d9c157f282a3128778d38ad753c0117bb21097
 }
 
 .stitre:before {
   content: "";
   height: 28px;
   width: 5px;
-  position: absolute;
   top: 8px;
   left: 0px;
   background-color: #E2A539;
@@ -67,6 +75,55 @@ body {
   margin-top: 50px;
   font-size: 1.2em;
   font-weight: bold;
+}
+
+nav.menu-nav ul li.btn {
+  color: #2B2B2B;
+  font-family: "Bebas Neue", cursive;
+  font-size: 36px;
+  text-align: left;
+}
+
+ul.admin-panel-links {
+  padding-top: 50px;
+}
+ul.admin-panel-links li {
+  display: block !important;
+  padding: 10px;
+}
+ul.admin-panel-links li:hover {
+  transform: translate(50px, 0px);
+}
+ul.admin-panel-links li:hover a {
+  color: #E2A539;
+}
+ul.admin-panel-links li:visited a {
+  color: blue;
+}
+
+#article-nav {
+  transform: translate(50px, 0px);
+  color: #E2A539;
+}
+
+.rectangle {
+  position: absolute;
+  width: 4px;
+  height: 25px;
+  left: 130px;
+  top: 272px;
+  background: #E2A539;
+}
+
+header {
+  position: absolute;
+  width: 314px;
+  height: 1895px;
+  left: 0px;
+  background-color: #FFEED3;
+  top: 0px;
+  bottom: 0px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 /*# sourceMappingURL=temoignage.css.map */
