@@ -168,7 +168,7 @@ class User {
     }
     public static function emailIsUsed($email, $conn) : bool
     {
-        return self::getUserRowForEmail($email, $conn);
+        return self::getUserRowForEmail($email, $conn) ? true : false;
     }
 
     public static function new($email, $firstname, $lastname, $pass, $conn) {
