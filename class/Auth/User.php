@@ -20,6 +20,10 @@ class User {
         $this->setPseudo($pseudo);
     }
 
+    /**
+     * CONNECTION
+     */
+
     public function connect($email, $pass) {
         if( $this->email == $email && $this->pass == $pass ) {
             if(isset($_SESSION)) {
@@ -31,12 +35,26 @@ class User {
             throw new AuthException("Email ou mot de passe incorrect");
         }
     }
+    public static function connectFromEmail($email, $pass, $conn) : self {
+        $user = self::loadUserFromEmail($email, $conn);
+        $user->connect($email, $pass);
+        return $user;
+    }
+
+    /**
+     * DECONNEXION
+     */
+
     public static function loggout() {
         unset($_SESSION[self::LOGGED]);
     }
     public function isLogged() : bool{
         return isset($_SESSION) && isset($_SESSION[self::LOGGED]) === $this->pseudo;
     }
+
+    /**
+     * RECUPERATION SESSION
+     */
     public static function getLoggedUser($conn = NULL) {
         if(isset($_SESSION[self::LOGGED]) && !empty($_SESSION[self::LOGGED])) {
             $user = new User($_SESSION[self::LOGGED]);
@@ -64,7 +82,9 @@ class User {
     }
 
     public function load($conn) {
-        $row = $this->find($conn);
+        $this->loadFromRow( $this->find($conn) );
+    }
+    private function loadFromRow($row) {
         if($row != NULL) {
             $pseudo = $row["Login"];
             $this->setPseudo($pseudo);
@@ -132,10 +152,23 @@ class User {
         return substr($prenom, 0, 10) . ($timestamp . $rand);
     }
 
+    public static function getUserRowForEmail($email, $conn) {
+        $res = $conn->query("SELECT * FROM USER WHERE Email = '$email'");
+        return $res->rowCount() ? $res->fetch() : NULL;
+    }
+    public static function loadUserFromEmail($email, $conn) : self {
+        $userRow = self::getUserRowForEmail($email, $conn);
+        if($userRow) {
+            $user = new self($userRow["Login"]);
+            $user->loadFromRow($userRow);
+            return $user;
+        }else{
+            throw new AuthException("Aucun compte associé à cette adresse email");
+        }
+    }
     public static function emailIsUsed($email, $conn) : bool
     {
-        $result = $conn->query("SELECT * FROM USER WHERE Email = '$email'");
-        return $result->rowCount();
+        return self::getUserRowForEmail($email, $conn) ? true : false;
     }
 
     public static function new($email, $firstname, $lastname, $pass, $conn) {
