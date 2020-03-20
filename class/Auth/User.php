@@ -1,5 +1,7 @@
 <?php
 
+require_once("AuthException.php");
+
 class User {
 
     public const LOGGED = "LOGGED";
@@ -18,8 +20,31 @@ class User {
         $this->setPseudo($pseudo);
     }
 
-    public function isLogged($session) : bool{
-        return isset($session) && $session[self::LOGGED] === $this->pseudo;
+    public function connect($email, $pass) {
+        if( $this->email == $email && $this->pass == $pass ) {
+            if(isset($_SESSION)) {
+                $_SESSION[self::LOGGED] = $this->pseudo;
+            }else{
+                throw new AuthException("Session désactivé");
+            }
+        }else{
+            throw new AuthException("Email ou mot de passe incorrect");
+        }
+    }
+    public static function loggout() {
+        unset($_SESSION[self::LOGGED]);
+    }
+    public function isLogged() : bool{
+        return isset($_SESSION) && isset($_SESSION[self::LOGGED]) === $this->pseudo;
+    }
+    public static function getLoggedUser($conn = NULL) {
+        if(isset($_SESSION[self::LOGGED]) && !empty($_SESSION[self::LOGGED])) {
+            $user = new User($_SESSION[self::LOGGED]);
+            if($conn)$user->load($conn);
+            return $user;
+        }else{
+            return NULL;
+        }
     }
 
     public function exist($conn) : bool {

@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+require_once("./class/Auth/User.php");
+require_once("./class/Utils/connection.php");
+require_once("./class/Utils/ctrlSaisies.php");
+
+$user = User::getLoggedUser($conn);
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -26,10 +36,7 @@
                 </div>
             </div>
             <div class="header-right col-md-7">
-                <nav>
-                    <a href="login" class="btn btn-top-second">Se connecter</a>
-                    <a href="register" class="btn btn-top-main">S'inscrire</a>
-                </nav>
+                <?php include("common/nav.php") ?>
                 <div class="content">
                     <h1 class="bigtitle">
                         <span>La pression</span>

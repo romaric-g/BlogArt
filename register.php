@@ -1,8 +1,11 @@
 <?php 
+session_start();
 
 require_once("./class/Auth/User.php");
 require_once("./class/Utils/connection.php");
 require_once("./class/Utils/ctrlSaisies.php");
+
+$user = User::getLoggedUser();
 
 $registerError = array();
 
@@ -25,49 +28,50 @@ function getSet($name) {
     return ctrlSaisies(isset($_POST[$name]) ? $_POST[$name] : "");
 }
 
+if(!$user) {
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
 
-
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $requiredParams = array("email","firstname","lastname","password","passwordconfirm");
-    $maxLength = array(50,30,30,15,15);
-    $i = 0;
-    foreach($requiredParams as $param){
-        if(!isset($_POST[$param]) || empty($_POST[$param])) {
-            $registerError[$param] = "Ce champ est obligatoire";
-        }else{
-            if( strlen($_POST[$param]) > $maxLength[$i]){
-                $registerError[$param] = "Champ limité à ". $maxLength[$i] . " caractères";
+        $requiredParams = array("email","firstname","lastname","password","passwordconfirm");
+        $maxLength = array(50,30,30,15,15);
+        $i = 0;
+        foreach($requiredParams as $param){
+            if(!isset($_POST[$param]) || empty($_POST[$param])) {
+                $registerError[$param] = "Ce champ est obligatoire";
+            }else{
+                if( strlen($_POST[$param]) > $maxLength[$i]){
+                    $registerError[$param] = "Champ limité à ". $maxLength[$i] . " caractères";
+                }
             }
+            $i++;
         }
-        $i++;
-    }
-    if( !isset($registerError["email"]) ) { 
+        if( !isset($registerError["email"]) ) { 
 
-        if(!preg_match(" /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ", $_POST["email"])) {
-            $registerError["email"] = "Adresse email invalide";
-        }else if(User::emailIsUsed($_POST["email"], $conn)) {
-            $registerError["email"] = "Adresse email déjà utilisée";
+            if(!preg_match(" /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ", $_POST["email"])) {
+                $registerError["email"] = "Adresse email invalide";
+            }else if(User::emailIsUsed($_POST["email"], $conn)) {
+                $registerError["email"] = "Adresse email déjà utilisée";
+            }
+
+            
+        }
+        if( !isset($requiredParams["password"]) && !isset($requiredParams["passwordconfirm"]) && $_POST["password"] != $_POST["passwordconfirm"] ) {
+            $registerError["passwordconfirm"] = "Les mots de passe ne corresponde pas";
+        }
+        if(!isset($_POST["conditions"])) {
+            $registerError["conditions"] = "Vous devez accepter nos conditions";
         }
 
-        
-    }
-    if( !isset($requiredParams["password"]) && !isset($requiredParams["passwordconfirm"]) && $_POST["password"] != $_POST["passwordconfirm"] ) {
-        $registerError["passwordconfirm"] = "Les mots de passe ne corresponde pas";
-    }
-    if(!isset($_POST["conditions"])) {
-        $registerError["conditions"] = "Vous devez accepter nos conditions";
-    }
-
-    if(empty($registerError)) {
-        try {
-            $user = User::new($_POST["email"],$_POST["firstname"],$_POST["lastname"],$_POST["password"],$conn);
-        } catch (\Exception $ex) {
-         
+        if(empty($registerError)) {
+            try {
+                $user = User::new($_POST["email"],$_POST["firstname"],$_POST["lastname"],$_POST["password"],$conn);
+                $user->connect($_POST["email"],$_POST["password"]);
+            } catch (\Exception $ex) {}
         }
     }
 }
-
+if($user) {
+    header("Location: index");
+}
 
 
 ?>
@@ -100,10 +104,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
             <div class="header-right col-md-7">
-                <nav>
-                    <a href="#" class="btn btn-top-second">Se connecter</a>
-                    <a href="#" class="btn btn-top-main">S'inscrire</a>
-                </nav>
+                <?php include("common/nav.php") ?>
                 <div class="container content">
                     <div class="form-box">
                             <h1 class="title">Inscrivez-Vous</h1>
