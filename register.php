@@ -70,7 +70,7 @@ if(!$user) {
     }
 }
 if($user) {
-    header("Location: index");
+    header("Location: index.php");
 }
 
 
