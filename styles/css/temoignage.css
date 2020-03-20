@@ -15,3 +15,122 @@ body::before {
   border-bottom: 2px solid black;
   content: 'Error: expected "{".\a    \2577 \a 38 \2502  >>>>>>> a0d9c157f282a3128778d38ad753c0117bb21097\d\a    \2502                                                  ^\a    \2575 \a   scss\\temoignage.scss 38:49  root stylesheet';
 }
+<<<<<<< HEAD
+
+.title {
+  text-align: center;
+  color: #FFEED3;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 3.3em;
+}
+
+.stitre {
+  text-align: left;
+  color: #FFEED3;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 2.4em;
+  padding-left: 20px;
+}
+
+.logo {
+  position: absolute;
+  width: 163px;
+  height: 169px;
+  left: 65px;
+  top: 30px;
+  border-radius: 121.5px;
+}
+
+.stitre:before {
+  content: "";
+  height: 28px;
+  width: 5px;
+  top: 8px;
+  left: 0px;
+  background-color: #E2A539;
+}
+
+.div3 {
+  position: relative;
+}
+
+.chapo {
+  text-align: justify;
+  color: #FFFFFF;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.3em;
+  font-weight: 400;
+}
+
+.text {
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.3em;
+  text-align: justify;
+}
+
+.div {
+  margin: auto;
+  width: 800px;
+  height: auto;
+}
+
+.div2 {
+  margin-top: 50px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+nav.menu-nav ul li.btn {
+  color: #2B2B2B;
+  font-family: "Bebas Neue", cursive;
+  font-size: 36px;
+  text-align: left;
+}
+
+ul.admin-panel-links {
+  padding-top: 50px;
+}
+ul.admin-panel-links li {
+  display: block !important;
+  padding: 15px;
+}
+ul.admin-panel-links li:hover {
+  transform: translate(50px, 0px);
+}
+ul.admin-panel-links li:hover a {
+  color: #E2A539;
+}
+ul.admin-panel-links li:visited a {
+  color: blue;
+}
+
+#article-nav {
+  transform: translate(50px, 0px);
+  color: #E2A539;
+}
+
+header {
+  position: absolute;
+  position: fixed;
+  width: 314px;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  bottom: 100%;
+  background-color: #FFEED3;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.rectangle {
+  position: absolute;
+  width: 4px;
+  height: 25px;
+  left: 150px;
+  top: 288px;
+  background: #E2A539;
+}
+
+/*# sourceMappingURL=temoignage.css.map */
+=======
+>>>>>>> 772ab8d44c88e2590b346c8863edcd860ea126a5
