@@ -24,6 +24,10 @@ section.articles article.article {
   margin-top: 30px;
   margin-bottom: 30px;
 }
+section.articles article.article > * {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 section.articles article.article .article-illu img {
   height: 100%;
   width: 100%;

@@ -1,6 +1,6 @@
 <?php
 
-require_once( __DIR__ . "/../link.php" );
+require_once( __DIR__ . "/../../link.php" );
 
 if(!isset($HEADER)){
     $HEADER = array();
@@ -28,12 +28,12 @@ function active($link) {
             <nav class="col-md-2">
                 <div class="content">
                     <div class="nav nav-pills nav-fill flex-column">
-                        <a class="nav-item nav-link <?= active("ARTICLE") ?>" href="<?= getLink("/article") ?>">Articles</a>
-                        <a class="nav-item nav-link <?= active("COMMENT") ?>" href="<?= getLink("/comment") ?>">Commentaires</a>
-                        <a class="nav-item nav-link <?= active("LANGUE") ?>" href="<?= getLink("/langue") ?>">Langues</a>
-                        <a class="nav-item nav-link <?= active("THEME") ?>" href="<?= getLink("/theme") ?>">Thématiques</a>
-                        <a class="nav-item nav-link <?= active("KEYWORD") ?>" href="<?= getLink("/keyword") ?>">Mots clés</a>
-                        <a class="nav-item nav-link <?= active("ANGLE") ?>" href="<?= getLink("/angle") ?>">Angles</a>
+                        <a class="nav-item nav-link <?= active("ARTICLE") ?>" href="<?= getLink("/CRUD/article") ?>">Articles</a>
+                        <a class="nav-item nav-link <?= active("COMMENT") ?>" href="<?= getLink("/CRUD/comment") ?>">Commentaires</a>
+                        <a class="nav-item nav-link <?= active("LANGUE") ?>" href="<?= getLink("/CRUD/langue") ?>">Langues</a>
+                        <a class="nav-item nav-link <?= active("THEME") ?>" href="<?= getLink("/CRUD/theme") ?>">Thématiques</a>
+                        <a class="nav-item nav-link <?= active("KEYWORD") ?>" href="<?= getLink("/CRUD/keyword") ?>">Mots clés</a>
+                        <a class="nav-item nav-link <?= active("ANGLE") ?>" href="<?= getLink("/CRUD/angle") ?>">Angles</a>
                     </div>
                 </div>
             </nav>

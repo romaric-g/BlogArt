@@ -9,7 +9,7 @@ require_once("./class/Blog/Article.php");
 require_once("./common/home.php");
 
 $user = User::getLoggedUser($conn);
-$articles = Article::loadAll($conn);
+$articles = Article::loadAll($conn, array(), "", "ORDER BY DtCreA DESC");
 
 ?>
 <!DOCTYPE html>
@@ -23,6 +23,7 @@ $articles = Article::loadAll($conn);
     <link rel="stylesheet" href="styles/css/home.css">
     <link rel="stylesheet" href="styles/css/index.css">
 </head>
+<p style="margin: 0">Les CRUDs ont été déplacés <a href="CRUD/">ici</a></p>
 <body>
     <?php HOME__() ?>
                 <?php include("common/nav.php") ?>
@@ -36,13 +37,7 @@ $articles = Article::loadAll($conn);
     <main>
         <section class="articles container">
             <div style="position: absolute; height: 0;">
-                <svg>
-                    <defs>
-                        <clipPath id="courbe" clipPathUnits="objectBoundingBox">
-                            <path d="M0,1 V0 C0.376,0.473,0.594,0.495,1,0 V1"/></svg>
-                        </clipPath>
-                    </defs>
-                </svg>
+                <svg><defs><clipPath id="courbe" clipPathUnits="objectBoundingBox"><path d="M0,1 V0 C0.376,0.473,0.594,0.495,1,0 V1"/></svg></clipPath></defs></svg>
             </div>
             <h2 class="section-title">Nos derniers articles</h2>
             <?php foreach( $articles as $article ) {?>
@@ -55,8 +50,8 @@ $articles = Article::loadAll($conn);
                             <p><?= $article->values["LibTitrA"] ?></p>
                         </div>
                         <div class="text">
-                            <p><?= $article->values["LibAccrochA"] ?></p>
-                            <a href="article/show?id=<?= $article->primaryKeyValue ?>" class="btn btn-read">Lire</a>
+                            <p><?= $article->values["LibChapoA"] ?></p>
+                            <a href="article.php?id=<?= $article->primaryKeyValue ?>" class="btn btn-read">Lire</a>
                         </div>
                     </div>
                 </article>

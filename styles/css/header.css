@@ -1,34 +1,39 @@
-nav {
-  padding: 0 !important;
-  height: 100vh;
-  position: relative;
+header {
+  height: 130px;
+  width: 100%;
+  background: #FFEED3;
+  clip-path: url(#topbar);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
-nav .content {
-  position: fixed;
-  padding-top: 40px;
-  height: 100vh;
-  left: 0;
-  top: 0;
-  width: 16.666667%;
-  background-color: #eba336;
+header .container {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
 }
-@media (max-width: 768px) {
-  nav {
-    height: unset;
-  }
-  nav .content {
-    padding: 20px 15px;
-    position: relative;
-    height: unset;
-    width: 100%;
-  }
+header .container svg {
+  display: block;
+  height: 90px;
 }
-nav a {
-  color: white;
+header .container .btn {
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.4em;
+  border-radius: 10px;
+  margin: 0 5px;
+  padding: 2px 22px;
 }
-nav a:hover {
-  color: white;
-  text-decoration: underline;
+header .container .btn-top-main {
+  background-color: #2B2B2B;
+  color: #FFEED3;
+  transform: translateY(0px);
+}
+header .container .btn-top-second {
+  background-color: unset;
+  color: #2B2B2B;
 }
 
 /*# sourceMappingURL=header.css.map */

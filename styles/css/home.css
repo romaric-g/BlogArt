@@ -7,7 +7,6 @@ header {
 header .row {
   height: 100%;
   min-height: 30vw;
-  width: 100%;
 }
 header .header-left {
   background-color: #FFEED3;
