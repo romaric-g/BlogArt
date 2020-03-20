@@ -1,7 +1,6 @@
 main {
   position: relative;
   background-color: #2B2B2B;
-  padding: 70px 0;
 }
 main:before {
   content: "";
@@ -13,55 +12,16 @@ main:before {
   right: 0;
   clip-path: url(#courbe);
 }
-
-section.articles .section-title {
-  color: #FFEED3;
-  font-size: 3.2em;
+main .showmore {
   text-align: center;
-  margin-bottom: 4rem;
 }
-section.articles article.article {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-section.articles article.article > * {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-section.articles article.article .article-illu img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-section.articles article.article .article-content .title {
-  position: relative;
-  padding-left: 20px;
-  color: #FFEED3;
-  font-size: 1.4em;
-}
-section.articles article.article .article-content .title:before {
-  content: "";
-  position: absolute;
-  display: block;
-  left: 0;
-  height: 100%;
-  width: 4px;
-  background: #E2A539;
-}
-section.articles article.article .article-content .text {
-  text-align: right;
-}
-section.articles article.article .article-content .text p {
-  font-family: Montserrat;
-  color: white;
-  font-size: 1.1em;
-  text-align: justify;
-}
-section.articles article.article .article-content .text .btn {
+main .showmore .btn.btn-show {
+  text-align: center;
   background: #FFEED3;
   border-radius: 10px;
   color: #2B2B2B;
   padding: 4px 45px;
+  font-size: 1.4em;
 }
 
 /*# sourceMappingURL=index.css.map */

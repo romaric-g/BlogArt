@@ -9,7 +9,7 @@ require_once("./class/Blog/Article.php");
 require_once("./common/home.php");
 
 $user = User::getLoggedUser($conn);
-$articles = Article::loadAll($conn, array(), "", "ORDER BY DtCreA DESC LIMIT 5");
+$articles = Article::loadAll($conn, array(), "", "ORDER BY DtCreA DESC");
 
 ?>
 <!DOCTYPE html>
@@ -20,27 +20,14 @@ $articles = Article::loadAll($conn, array(), "", "ORDER BY DtCreA DESC LIMIT 5")
     <title>La pression bordelaise</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/css/common.css">
-    <link rel="stylesheet" href="styles/css/home.css">
-    <link rel="stylesheet" href="styles/css/index.css">
+    <link rel="stylesheet" href="styles/css/header.css">
     <link rel="stylesheet" href="styles/css/articles.css">
 </head>
-<p style="margin: 0; color: white">Les CRUDs ont été déplacés <a href="CRUD/">ici</a></p>
 <body>
-    <?php HOME__() ?>
-                <?php include("common/nav.php") ?>
-                <div class="container content">
-                    <h1 class="bigtitle">
-                        <span>La pression</span>
-                        <span>Bordelaise</span>
-                    </h1>
-                </div>
-    <?php __HOME() ?>
+    <?php include("common/header.php"); ?>
     <main>
         <section class="articles container">
-            <div style="position: absolute; height: 0;">
-                <svg><defs><clipPath id="courbe" clipPathUnits="objectBoundingBox"><path d="M0,1 V0 C0.376,0.473,0.594,0.495,1,0 V1"/></svg></clipPath></defs></svg>
-            </div>
-            <h2 class="section-title">Nos derniers articles</h2>
+            <h2 class="section-title">Nos Articles</h2>
             <?php foreach( $articles as $article ) {?>
                 <article class="article row">
                     <div class="article-illu col-md-6">
@@ -57,9 +44,6 @@ $articles = Article::loadAll($conn, array(), "", "ORDER BY DtCreA DESC LIMIT 5")
                     </div>
                 </article>
             <?php }?>
-            <div class="showmore">
-                <a href="articles" class="btn btn-show">Tous nos articles</a>
-            </div>
         </section>
     </main>
 </body>
