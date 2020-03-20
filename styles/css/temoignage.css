@@ -1,21 +1,14 @@
-/* Error: expected "{".
- *    ,
- * 38 | >>>>>>> a0d9c157f282a3128778d38ad753c0117bb21097
- *    |                                                 ^
- *    '
- *   scss\temoignage.scss 38:49  root stylesheet */
 
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+body {
+  /*font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
       "Droid Sans Mono", monospace, monospace;
   white-space: pre;
-  display: block;
+  display: block;*/
   padding: 1em;
+  background-color: #2B2B2B;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: 'Error: expected "{".\a    \2577 \a 38 \2502  >>>>>>> a0d9c157f282a3128778d38ad753c0117bb21097\d\a    \2502                                                  ^\a    \2575 \a   scss\\temoignage.scss 38:49  root stylesheet';
 }
-<<<<<<< HEAD
 
 .title {
   text-align: center;
@@ -81,6 +74,145 @@ body::before {
   font-weight: bold;
 }
 
+
+h1 {
+  font-family: "Bebas Neue", cursive;
+  color: #FFEED3;
+  padding-top: 60px;
+  font-size: 64px;
+}
+
+
+body.comments .row.row-comments {
+  display: flex;
+  flex-direction: row;
+}
+body.comments .row.row-comments header {
+  position: relative;
+  width: 300px;
+  height: 100vh;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+body.comments .row.row-comments header .fixed-header {
+  background-color: #FFEED3;
+  position: fixed;
+  width: 300px;
+  height: 100vh;
+}
+body.comments .row.row-comments header .logo {
+  position: absolute;
+  width: 163px;
+  height: 169px;
+  left: 65px;
+  top: 30px;
+  border-radius: 121.5px;
+}
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links {
+  padding-top: 250px;
+}
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn {
+  position: relative;
+  padding: 0;
+  margin: 2px 0;
+  color: #2B2B2B;
+  font-family: "Bebas Neue", cursive;
+  font-size: 36px;
+  text-align: left;
+  display: block !important;
+  transform: translateX(0);
+  transition: 0.2s all;
+}
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn:hover {
+  transform: translateX(25px);
+}
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn:hover a {
+  color: #E2A539;
+}
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn.btn-active {
+  transform: translateX(39px);
+}
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn.btn-active::before {
+  content: "";
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 5px;
+  left: -20px;
+  background-color: #E2A539;
+}
+body.comments .row.row-comments main {
+  flex: 1;
+}
+body.comments .row.row-comments main .comment {
+  display: flex;
+  color: white;
+}
+body.comments .row.row-comments main .comment .profil {
+  width: 180px;
+  text-align: center;
+}
+body.comments .row.row-comments main .comment .profil .image-box {
+  background-color: rosybrown;
+  height: 150px;
+  width: 150px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+}
+body.comments .row.row-comments main .comment .profil .image-box img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+body.comments .row.row-comments main .comment .profil .name {
+  font-family: Bebas Neue;
+}
+body.comments .row.row-comments main .comment .comment-content {
+  flex: 1;
+}
+body.comments .row.row-comments main .comment .comment-content .comment-title {
+  display: flex;
+  align-items: center;
+}
+body.comments .row.row-comments main .comment .comment-content .comment-title h2 {
+  margin: 0;
+  margin-top: 3px;
+  font-family: Bebas Neue;
+}
+body.comments .row.row-comments main .comment .comment-content .comment-title .icons {
+  margin: 0 20px;
+}
+body.comments .row.row-comments main .comment .comment-content p {
+  font-family: Montserrat;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 nav.menu-nav ul li.btn {
   color: #2B2B2B;
   font-family: "Bebas Neue", cursive;
@@ -129,8 +261,5 @@ header {
   left: 150px;
   top: 288px;
   background: #E2A539;
-}
+}*/
 
-/*# sourceMappingURL=temoignage.css.map */
-=======
->>>>>>> 772ab8d44c88e2590b346c8863edcd860ea126a5
