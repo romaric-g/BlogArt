@@ -98,9 +98,9 @@ class User {
 
     private function create($conn) {
         $request = "INSERT INTO `user`(`Login`, `Pass`, `LastName`, `FirstName`, `EMail`) VALUES (:Login, :Pass, :LastName, :FirstName, :EMail)";
-
+        $DBPseudoFormat = $this->getDBPseudoFormat();
         $prepare = $conn->prepare($request);
-        $prepare->bindParam(":Login", $this->pseudo);
+        $prepare->bindParam(":Login", $DBPseudoFormat);
         $prepare->bindParam(":Pass", $this->pass);
         $prepare->bindParam(":LastName", $this->lastname);
         $prepare->bindParam(":FirstName", $this->firstname);
@@ -133,7 +133,10 @@ class User {
         return ($this->admin) ? "*" : "" . $this->pseudo;
     }
     private function find($conn) {
-        $likeSearch = '%' . $this->pseudo;
+        return self::findUserRowFromLogin($this->pseudo, $conn);
+    }
+    private function findUserRowFromLogin($login, $conn) {
+        $likeSearch = '%' . $login;
         $request = "SELECT * FROM USER WHERE LOGIN LIKE '$likeSearch'";
         $result = $conn->query($request);
         while($row = $result->fetch()){
@@ -179,8 +182,7 @@ class User {
             while(!$find && $try) {
                 $try--;
                 $Login = self::getRandomID($firstname);
-                $result = $conn->query("SELECT * FROM USER WHERE Login = '$Login'");
-                $find  = !$result->rowCount();
+                $find  = !self::findUserRowFromLogin($Login, $conn);
                 if($find) {
                     $user = new User($Login);
                     //$user->pass = password_hash($pass, PASSWORD_DEFAULT);

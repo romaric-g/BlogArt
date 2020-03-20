@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 body {
   /*font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -8,6 +9,10 @@ body {
   background-color: #2B2B2B;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
+=======
+body {
+  background-color: #2b2b2b;
+>>>>>>> aad9d0cb842af787186978e2a56df7b6972a418e
 }
 
 .title {
@@ -263,3 +268,7 @@ header {
   background: #E2A539;
 }*/
 
+<<<<<<< HEAD
+=======
+/*# sourceMappingURL=temoignage.css.map */
+>>>>>>> aad9d0cb842af787186978e2a56df7b6972a418e
