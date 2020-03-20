@@ -5,21 +5,27 @@ body {
 h1 {
   font-family: "Bebas Neue", cursive;
   color: #FFEED3;
-  margin-left: 400px;
   padding-top: 60px;
   font-size: 64px;
 }
 
-header {
-  position: absolute;
-  width: 314px;
-  height: 100%;
-  left: 0px;
-  background-color: #FFEED3;
+body.comments .row.row-comments {
+  display: flex;
+  flex-direction: row;
+}
+body.comments .row.row-comments header {
+  position: relative;
+  width: 300px;
+  height: 100vh;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-
-.logo {
+body.comments .row.row-comments header .fixed-header {
+  background-color: #FFEED3;
+  position: fixed;
+  width: 300px;
+  height: 100vh;
+}
+body.comments .row.row-comments header .logo {
   position: absolute;
   width: 163px;
   height: 169px;
@@ -27,213 +33,83 @@ header {
   top: 30px;
   border-radius: 121.5px;
 }
-
-nav.menu-nav ul li.btn {
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links {
+  padding-top: 250px;
+}
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn {
+  position: relative;
+  padding: 0;
+  margin: 2px 0;
   color: #2B2B2B;
   font-family: "Bebas Neue", cursive;
   font-size: 36px;
   text-align: left;
-}
-
-ul.admin-panel-links {
-  padding-top: 250px;
-}
-ul.admin-panel-links li {
   display: block !important;
+  transform: translateX(0);
+  transition: 0.2s all;
 }
-ul.admin-panel-links li:hover {
-  transform: translate(50px, 0px);
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn:hover {
+  transform: translateX(25px);
 }
-ul.admin-panel-links li:hover a {
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn:hover a {
   color: #E2A539;
 }
-ul.admin-panel-links li:visited a {
-  color: blue;
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn.btn-active {
+  transform: translateX(39px);
 }
-
-#com {
-  transform: translate(50px, 0px);
-  color: #E2A539;
-}
-
-.rectangle {
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn.btn-active::before {
+  content: "";
   position: absolute;
-  width: 4px;
-  height: 25px;
-  left: 80px;
-  top: 337px;
-  background: #E2A539;
+  display: block;
+  height: 100%;
+  width: 5px;
+  left: -20px;
+  background-color: #E2A539;
 }
-
-.lea {
-  border-radius: 50% 50%;
-  margin-left: 400px;
-  margin-top: 50px;
+body.comments .row.row-comments main {
+  flex: 1;
 }
-
-.grosavis {
-  position: absolute;
-  width: 248px;
-  height: 70px;
-  left: 263px;
-  top: 170px;
-  font-family: "Bebas Neue", cursive;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 36px;
-  line-height: 43px;
-  padding-left: 330px;
-  margin-top: 40px;
-  color: #FFFFFF;
+body.comments .row.row-comments main .comment {
+  display: flex;
+  color: white;
 }
-
-.avis {
-  position: absolute;
-  left: 263px;
-  top: 215px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 21px;
-  line-height: 26px;
-  padding-left: 330px;
-  color: #FFFFFF;
-  margin-top: 40px;
-  text-align: justify;
+body.comments .row.row-comments main .comment .profil {
+  width: 180px;
+  text-align: center;
 }
-
-.grosavisjustine {
-  position: absolute;
-  width: 248px;
-  height: 70px;
-  left: 263px;
-  top: 170px;
-  font-family: "Bebas Neue", cursive;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 36px;
-  line-height: 43px;
-  padding-left: 330px;
-  margin-top: 210px;
-  color: #FFFFFF;
+body.comments .row.row-comments main .comment .profil .image-box {
+  background-color: rosybrown;
+  height: 150px;
+  width: 150px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
 }
-
-.avisjustine {
-  position: absolute;
-  left: 263px;
-  top: 215px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 21px;
-  line-height: 26px;
-  padding-left: 330px;
-  color: #FFFFFF;
-  margin-top: 210px;
-  text-align: justify;
+body.comments .row.row-comments main .comment .profil .image-box img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
-
-.justine {
-  border-radius: 50% 50%;
-  margin-left: 400px;
-  margin-top: 50px;
+body.comments .row.row-comments main .comment .profil .name {
+  font-family: Bebas Neue;
 }
-
-.grosavispatrick {
-  position: absolute;
-  width: 248px;
-  height: 70px;
-  left: 263px;
-  top: 170px;
-  font-family: "Bebas Neue", cursive;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 36px;
-  line-height: 43px;
-  padding-left: 330px;
-  margin-top: 380px;
-  color: #FFFFFF;
+body.comments .row.row-comments main .comment .comment-content {
+  flex: 1;
 }
-
-.avispatrick {
-  position: absolute;
-  left: 263px;
-  top: 215px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 21px;
-  line-height: 26px;
-  padding-left: 330px;
-  color: #FFFFFF;
-  margin-top: 380px;
-  text-align: justify;
+body.comments .row.row-comments main .comment .comment-content .comment-title {
+  display: flex;
+  align-items: center;
 }
-
-.patrick {
-  border-radius: 50% 50%;
-  margin-left: 400px;
-  margin-top: 50px;
+body.comments .row.row-comments main .comment .comment-content .comment-title h2 {
+  margin: 0;
+  margin-top: 3px;
+  font-family: Bebas Neue;
 }
-
-.grosavismaxime {
-  position: absolute;
-  width: 248px;
-  height: 70px;
-  left: 263px;
-  top: 170px;
-  font-family: "Bebas Neue", cursive;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 36px;
-  line-height: 43px;
-  padding-left: 330px;
-  margin-top: 550px;
-  color: #FFFFFF;
+body.comments .row.row-comments main .comment .comment-content .comment-title .icons {
+  margin: 0 20px;
 }
-
-.avismaxime {
-  position: absolute;
-  left: 263px;
-  top: 215px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 21px;
-  line-height: 26px;
-  padding-left: 330px;
-  color: #FFFFFF;
-  margin-top: 550px;
-}
-
-.maxime {
-  border-radius: 50% 50%;
-  margin-left: 400px;
-  margin-top: 50px;
-}
-
-.poubelle {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  left: 700px;
-  top: 220px;
-}
-
-.poubelle2 {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  left: 700px;
-  top: 390px;
-}
-
-.poubelle3 {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  left: 700px;
-  top: 560px;
-}
-
-.poubelle4 {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  left: 700px;
-  top: 730px;
+body.comments .row.row-comments main .comment .comment-content p {
+  font-family: Montserrat;
 }
 
 /*# sourceMappingURL=commentaires.css.map */

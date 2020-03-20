@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+require_once("./class/Auth/User.php");
+require_once("./class/Utils/connection.php");
+require_once("./class/Utils/ctrlSaisies.php");
+
+$user = User::getLoggedUser($conn);
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,8 +16,7 @@
     <title>La pression bordelaise</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/css/common.css">
-    <link rel="stylesheet" href="styles/css/auth.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/css/home.css">
 </head>
 <body>
     <div style="position: absolute; height: 0;">
@@ -19,7 +28,7 @@
             </defs>
         </svg>
     </div>
-    <header class="container-fluid">
+    <header>
         <div class="row justify-content-end">
             <div class="header-left col-md-5">
                 <div class="content">
@@ -27,27 +36,12 @@
                 </div>
             </div>
             <div class="header-right col-md-7">
-                <nav>
-                    <a href="#" class="btn btn-top-second">Se connecter</a>
-                    <a href="#" class="btn btn-top-main">S'inscrire</a>
-                </nav>
-                <div class="container content">
-                    <div class="form-box">
-                            <h1 class="title">Connectez-Vous</h1>
-                            <form>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="pass">Mot de passe</label>
-                                    <input type="password" class="form-control" name="pass" placeholder="Enter email">
-                                </div>
-                                <div class="form-group">
-                                <button type="submit" class="btn btn-login">Se connecter</button>
-                                <p class="already-accound">Vous n'avez pas encore compte ? <br><a href="register">Inscrivez-vous</a></p>
-                            </form>
-                        </div>
+                <?php include("common/nav.php") ?>
+                <div class="content">
+                    <h1 class="bigtitle">
+                        <span>La pression</span>
+                        <span>Bordelaise</span>
+                    </h1>
                 </div>
             </div>
         </div>
