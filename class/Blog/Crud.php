@@ -76,7 +76,7 @@ abstract class Crud {
             $requete .= $join->getJoinLine(static::TABLE) . " ";
         }
         if($whereAddition != ""){
-            $requete .= "AND " . $whereAddition . " ";
+            $requete .= "WHERE " . $whereAddition . " ";
         }
         if($orderby != ""){
             $requete .= $orderby;

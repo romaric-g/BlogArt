@@ -1,0 +1,15 @@
+{
+    "title": {
+        "full": "The Bordeaux pressure",
+        "start": "The Bordeaux",
+        "end": "pressure"
+    },
+    "auth": {
+        "startbutton": "Become a member"
+    },
+    "article": {
+        "newtitle": "Nos derniers articles",
+        "read": "Lire",
+        "allarticles": "Tout nos articles"
+    }
+}

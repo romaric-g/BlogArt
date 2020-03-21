@@ -5,10 +5,18 @@ require_once("./class/Auth/User.php");
 require_once("./class/Utils/connection.php");
 require_once("./class/Utils/ctrlSaisies.php");
 
+/* COMPOSANTS */
 require_once("./common/home.php");
+require_once("./common/nav.php");
+
+/* LANGUAGE SYSTEM */
+require_once("./lang/language.php");
 
 
+$LANG = $_SESSION["LANG"];
+$LANGUAGE = Language::INIT($LANG, "./");
 $user = User::getLoggedUser();
+
 $error = NULL;
 if(!$user) {
     if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -35,11 +43,12 @@ if($user) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/css/common.css">
     <link rel="stylesheet" href="styles/css/auth.css">
+    <link rel="stylesheet" href="styles/css/nav.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
     <?php HOME__() ?>
-                <?php include("common/nav.php") ?>
+                <?php NAV($LANG, $user, $LANGUAGE, "./", $conn) ?>
                 <div class="container content">
                     <div class="form-box">
                             <h1 class="title">Connectez-Vous</h1>

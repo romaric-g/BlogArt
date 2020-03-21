@@ -1,0 +1,111 @@
+nav {
+    padding: 15px 0;
+    .head {
+        font-size: 1.1em;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        & > * {
+            margin: 0 5px;
+        }
+
+        .search {
+            height: 80%;
+            svg {
+                height: 100%;
+
+                path {
+                    fill: #FFEED3;
+                }
+            }
+        }
+
+        .lang {
+            position: relative;
+            display: flex;
+            height: 20px;
+            cursor: pointer;
+
+            svg {
+                height: 100%;
+                transform: rotate(0deg);
+                transition: all .2s;
+            }
+
+            &.grow {
+                ul {
+                    max-width: 200px;
+                    padding-left: 10px;
+                    li {
+                        width: 25px;
+                    }
+                }
+
+                svg {
+                    transform: rotate(-90deg);
+                }
+            }
+            ul {
+                box-sizing: content-box;
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+                padding: 0;
+                margin: 0;
+                max-width: 15px;
+                overflow: hidden;
+                transition: all .4s;
+
+                li {
+                    display: block;
+                    flex-shrink: 0;
+                    width: 15px;
+                    transform: translateY(0px);
+                    transition: all .2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+
+                    &:hover {
+                        transform: translateY(-4px);
+                    }
+                    a {
+                        display: block;
+                        color: #FFEED3;
+                        font-size: 1em;
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        .btn {
+            background-color: #FFEED3;
+            color: #000;
+            padding: 1px 10px;
+        }
+    }
+
+    ul.links {
+        padding: 0;
+        margin: 20px 0;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: flex-end;
+        list-style: none;
+        li {
+            a.btn {
+                padding: 0;
+                margin-left: 30px;
+                font-size: 1.6em;
+                line-height: 1em;
+                color: #FFEED3;
+
+
+                &:hover {
+                    color: #FFEED3;
+                }
+            }
+        }
+    }
+}

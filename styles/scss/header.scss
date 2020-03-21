@@ -15,25 +15,5 @@ header {
             display: block;
             height: 90px;
         }
-        .btn {
-            text-transform: uppercase;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 1.4em;
-            border-radius: 10px;
-            margin: 0 5px;
-            padding: 2px 22px;
-        }
-
-        .btn-top-main {
-            background-color: #2B2B2B;
-            color: #FFEED3;
-            transform: translateY(0px);
-        }
-
-        .btn-top-second {
-            background-color: unset;
-            color: #2B2B2B
-        }
     }
 }

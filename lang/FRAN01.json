@@ -1,0 +1,15 @@
+{
+    "title": {
+        "full": "La Pression bordelaise",
+        "start": "La Pression",
+        "end": "bordelaise"
+    },
+    "auth": {
+        "startbutton": "Devenez membre"
+    },
+    "article": {
+        "newtitle": "Nos derniers articles",
+        "read": "Lire",
+        "allarticles": "Tout nos articles"
+    }
+}
