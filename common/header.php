@@ -1,3 +1,10 @@
+<?php 
+
+require_once("nav.php");
+
+function PAGEHEADER($langSelectedID, $user, $language, $rootPath, $conn) { 
+    
+?>
 <header>
         <div style="position: absolute; height: 0; z-index: -1"><svg><defs><clipPath id="topbar" clipPathUnits="objectBoundingBox"><path d="M0,0 H1 V0.88 C0.622,1,0.404,1,0,0.887"/></svg></clipPath></defs></svg></div>
         <div class="container">
@@ -7,6 +14,7 @@
             </svg>
 
             </a>
-            <?php require("nav.php") ?>
+            <?php NAV($langSelectedID, $user, $language, $rootPath, $conn); ?>
         </div>    
 </header>
+<?php } ?>

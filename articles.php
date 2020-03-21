@@ -6,7 +6,13 @@ require_once("./class/Utils/connection.php");
 require_once("./class/Utils/ctrlSaisies.php");
 require_once("./class/Blog/Article.php");
 
-require_once("./common/home.php");
+require_once("./common/header.php");
+
+/* LANGUAGE SYSTEM */
+require_once("./lang/language.php");
+
+$LANG = $_SESSION["LANG"];
+$LANGUAGE = Language::INIT($LANG, "./");
 
 $user = User::getLoggedUser($conn);
 $articles = Article::loadAll($conn, array(), "", "ORDER BY DtCreA DESC");
@@ -21,10 +27,12 @@ $articles = Article::loadAll($conn, array(), "", "ORDER BY DtCreA DESC");
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/css/common.css">
     <link rel="stylesheet" href="styles/css/header.css">
+    <link rel="stylesheet" href="styles/css/nav.css">
+    <link rel="stylesheet" href="styles/css/nav_dark.css">
     <link rel="stylesheet" href="styles/css/articles.css">
 </head>
 <body>
-    <?php include("common/header.php"); ?>
+    <?php PAGEHEADER($LANG, $user, $LANGUAGE, "./", $conn) ?>
     <main>
         <section class="articles container">
             <h2 class="section-title">Nos Articles</h2>

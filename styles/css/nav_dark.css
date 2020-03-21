@@ -1,0 +1,18 @@
+nav .head svg path {
+  fill: #000;
+}
+nav .head .lang ul li a {
+  color: #000;
+}
+nav .head .btn {
+  background-color: #000;
+  color: #FFEED3;
+}
+nav ul.links li a.btn {
+  color: #000;
+}
+nav ul.links li a.btn:hover {
+  color: #000;
+}
+
+/*# sourceMappingURL=nav_dark.css.map */

@@ -1,0 +1,25 @@
+nav {
+  
+    .head {
+        svg path {
+            fill: #000;
+        }
+
+        .lang ul li a {
+            color: #000;
+        }
+
+        .btn {
+            background-color: #000;
+            color: #FFEED3;
+        }
+    }
+
+    ul.links li a.btn {
+        color: #000;
+        &:hover {
+            color: #000;
+        }
+
+    }
+}
