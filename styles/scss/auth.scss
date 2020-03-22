@@ -31,19 +31,34 @@ header {
             flex-direction: column;
 
             .title {
+                display: inline-block;
+                position: relative;
                 color: #FFEED3;
                 text-transform: uppercase;
                 font-size: 4em;
+                line-height: 1em;
                 text-align: center;
+ 
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: -4px;
+                    height: 4px;
+                    left: 0;
+                    right: 0;
+                    background-color: #E2A539;
+                }
             }
 
             .form-box {
+                text-align: center;
                 width: 550px;
                 max-width: 100%;
                 margin: 0 auto 0 0;
             }
      
             form {
+                text-align: left;
                 padding: 40px 0;
      
                 label {
@@ -105,6 +120,7 @@ header {
                     color: #FFEED3;
                     text-align: center;
                     font-family: 'Montserrat', sans-serif;
+
                 }
         
             }

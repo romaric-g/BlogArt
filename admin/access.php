@@ -8,7 +8,7 @@ require_once("../class/Utils/ctrlSaisies.php");
 $user = User::getLoggedUser($conn);
 
 if(!$user || !$user->isAdmin()) {
-    //header("Location: ../index.php");
+    header("Location: ../index.php");
     exit();
 }
 

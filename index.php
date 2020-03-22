@@ -33,7 +33,7 @@ $articles = Article::loadAll($conn, array(), "NumLang = '$LANG'", "ORDER BY DtCr
     <link rel="stylesheet" href="styles/css/index.css">
     <link rel="stylesheet" href="styles/css/articles.css">
 </head>
-<p style="margin: 0; color: white">Les CRUDs ont été déplacés <a href="CRUD/">ici</a></p>
+<!-- <p style="margin: 0; color: white">Les CRUDs ont été déplacés <a href="CRUD/">ici</a></p> -->
 <body>
     <?php HOME__() ?>
                 <?php NAV($LANG, $USER, $LANGUAGE, "./", $conn) ?>
@@ -49,7 +49,7 @@ $articles = Article::loadAll($conn, array(), "NumLang = '$LANG'", "ORDER BY DtCr
             <div style="position: absolute; height: 0;">
                 <svg><defs><clipPath id="courbe" clipPathUnits="objectBoundingBox"><path d="M0,1 V0 C0.376,0.473,0.594,0.495,1,0 V1"/></svg></clipPath></defs></svg>
             </div>
-            <h2 class="section-title"><?= $LANGUAGE->for("article","newtitle") ?></h2>
+            <h2 class="c"><?= $LANGUAGE->for("article","newtitle") ?></h2>
             <?php foreach( $articles as $article ) {?>
                 <article class="article row">
                     <div class="article-illu col-md-6">

@@ -7,35 +7,28 @@ nav .head {
   justify-content: flex-end;
   align-items: center;
 }
-nav .head > * {
-  margin: 0 5px;
-}
-nav .head .search {
-  height: 80%;
-}
-nav .head .search svg {
-  height: 100%;
-}
-nav .head .search svg path {
-  fill: #FFEED3;
-}
 nav .head .lang {
+  margin: 0 10px;
   position: relative;
   display: flex;
-  height: 20px;
+  align-items: center;
+  height: 100%;
   cursor: pointer;
 }
 nav .head .lang svg {
-  height: 100%;
+  height: 20px;
   transform: rotate(0deg);
   transition: all 0.2s;
+}
+nav .head .lang svg path {
+  fill: #E2A539;
 }
 nav .head .lang.grow ul {
   max-width: 200px;
   padding-left: 10px;
 }
 nav .head .lang.grow ul li {
-  width: 25px;
+  width: 20px;
 }
 nav .head .lang.grow svg {
   transform: rotate(-90deg);
@@ -63,35 +56,68 @@ nav .head .lang ul li:hover {
 }
 nav .head .lang ul li a {
   display: block;
-  color: #FFEED3;
+  color: #FFF;
   font-size: 1em;
 }
 nav .head .lang ul li a:hover {
   text-decoration: none;
 }
-nav .head .btn {
-  background-color: #FFEED3;
-  color: #000;
-  padding: 1px 10px;
+nav .head .btn-member {
+  height: 100%;
+  position: relative;
+  padding: 0 14px;
+  font-size: 1em;
+}
+nav .head .btn-member a {
+  display: block;
+  transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transform: translateY(0);
+  color: #FFF;
+  text-decoration: none;
+}
+nav .head .btn-member:hover a {
+  transform: translateY(-4px);
+}
+nav .head .btn-member::before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  right: 0;
+  top: -2px;
+  bottom: 1px;
+  background-color: #E2A539;
+  transition: all 0.4s;
 }
 nav ul.links {
+  position: relative;
   padding: 0;
-  margin: 20px 0;
+  margin: 10px 0;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: flex-end;
   list-style: none;
+  overflow: hidden;
+}
+nav ul.links span {
+  content: "";
+  position: absolute;
+  height: 2px;
+  bottom: -4px;
+  background-color: #E2A539;
+  transition: all 0.2s;
+}
+nav ul.links li {
+  padding-left: 25px;
 }
 nav ul.links li a.btn {
   padding: 0;
-  margin-left: 30px;
-  font-size: 1.6em;
+  font-size: 1.5em;
   line-height: 1em;
-  color: #FFEED3;
+  color: #FFF;
 }
 nav ul.links li a.btn:hover {
-  color: #FFEED3;
+  color: #FFF;
 }
 
 /*# sourceMappingURL=nav.css.map */

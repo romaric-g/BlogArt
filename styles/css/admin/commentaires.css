@@ -45,25 +45,28 @@ body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn 
   font-size: 36px;
   text-align: left;
   display: block !important;
-  transform: translateX(0);
-  transition: 0.2s all;
 }
-body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn:hover {
-  transform: translateX(25px);
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn a {
+  display: block;
+  line-height: 1em;
+  color: #000;
 }
-body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn:hover a {
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn a:hover {
+  text-decoration: none;
+}
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn:not(.btn-active):hover a {
   color: #E2A539;
 }
 body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn.btn-active {
-  transform: translateX(39px);
+  transform: translateX(10px);
 }
 body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn.btn-active::before {
   content: "";
   position: absolute;
   display: block;
   height: 100%;
-  width: 5px;
-  left: -20px;
+  width: 4px;
+  left: -10px;
   background-color: #E2A539;
 }
 body.comments .row.row-comments main {

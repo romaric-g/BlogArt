@@ -5,12 +5,26 @@ body {
 
 section.articles {
     padding: 70px 0;
+    text-align: center;
     
     .section-title {
+        position: relative;
+        display: inline-block;
         color: #FFEED3;
         font-size: 3.2em;
+        line-height: 1em;
         text-align: center;
         margin-bottom: 4rem;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: -4px;
+            height: 4px;
+            left: 0;
+            right: 0;
+            background-color: #E2A539;
+        }
     }
     
 
@@ -36,6 +50,7 @@ section.articles {
 
     article.article .article-content {
         .title {
+            text-align: left;
             position: relative;
             padding-left: 20px;
             color: #FFEED3;
@@ -62,7 +77,7 @@ section.articles {
             }
             .btn {
                 background: #FFEED3;
-                border-radius: 10px;
+                border-radius: 4px;
                 color: #2B2B2B;
                 padding: 4px 45px;
               

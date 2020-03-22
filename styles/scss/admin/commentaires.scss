@@ -48,43 +48,40 @@ body.comments {
                     font-size: 36px;
                     text-align: left;
                     display: block !important;
-                    transform: translateX(0); 
-                    transition: 0.2s all;
+                    a {
+                        display: block;
+                        line-height: 1em;
+                        color: #000;
 
-                    &:hover{
-                        transform: translateX(25px); 
+                        &:hover {
+                            text-decoration: none;
+                        }
                     }
 
-                    &:hover a{
+                    // &:hover{
+                    //     transform: translateX(10px); 
+                    // }
+
+                    &:not(.btn-active):hover a{
                         color: #E2A539;
                         
                     }
 
                     &.btn-active {
-                        transform: translateX(39px);
+                        transform: translateX(10px);
                         &::before {
                             content: "";
                             position: absolute;
                             display: block;
                             height: 100%;
-                            width: 5px;
-                            left: -20px;
+                            width: 4px;
+                            left: -10px;
                             background-color: #E2A539;
                         }
                     }
                 }
 
             }
-        
-
-            // .rectangle{
-            // position: absolute;
-            // width: 4px;
-            // height: 25px;
-            // left: 80px;
-            // top: 337px;
-            // background: #E2A539;
-            // }
         }
 
         main {

@@ -4,9 +4,8 @@ nav .head svg path {
 nav .head .lang ul li a {
   color: #000;
 }
-nav .head .btn {
-  background-color: #000;
-  color: #FFEED3;
+nav .head .btn-member a {
+  color: #000;
 }
 nav ul.links li a.btn {
   color: #000;

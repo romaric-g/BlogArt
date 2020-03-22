@@ -5,11 +5,15 @@
         "end": "bordelaise"
     },
     "auth": {
-        "startbutton": "Devenez membre"
+        "startbutton": "Espace membre",
+        "profil": "Profil"
     },
     "article": {
         "newtitle": "Nos derniers articles",
         "read": "Lire",
-        "allarticles": "Tout nos articles"
+        "allarticles": "Tout nos articles",
+        "comments": {
+
+        }
     }
 }

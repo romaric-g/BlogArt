@@ -5,7 +5,8 @@
         "end": "pressure"
     },
     "auth": {
-        "startbutton": "Become a member"
+        "startbutton": "Become a member",
+        "profil": "Profile"
     },
     "article": {
         "newtitle": "Nos derniers articles",

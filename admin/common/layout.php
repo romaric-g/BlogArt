@@ -1,5 +1,6 @@
 <?php
-function LAYOUT__(){
+function LAYOUT__($select = "articles"){
+
 ?>
 <body class="container-fluid comments">
     <div class="row row-comments">
@@ -10,11 +11,11 @@ function LAYOUT__(){
                  </div>
                  <nav class="menu-nav">
                      <ul class="admin-panel-links">
-                         <li class="btn">
-                           <a>Articles</a>  
+                         <li class="btn <?= $select == "articles" ? 'btn-active' : '' ?>">
+                           <a href="articles.php">Articles</a>  
                          </li>
-                         <li class="btn btn-active">   
-                             <a>Commentaires</a>
+                         <li class="btn <?= $select == "comments" ? 'btn-active' : '' ?>">   
+                             <a href="comments.php">Commentaires</a>
                          </li>
                          <li class="btn">
                              <a>Mots clés</a>

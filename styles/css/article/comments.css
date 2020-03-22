@@ -1,0 +1,67 @@
+section.section-comments {
+  text-align: center;
+}
+section.section-comments .title {
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  line-height: 1em;
+}
+section.section-comments .title::before {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  height: 4px;
+  left: 0;
+  right: 0;
+  background-color: #E2A539;
+}
+section.section-comments .comments {
+  margin: 40px 0;
+}
+section.section-comments .comment {
+  display: flex;
+  margin: 7px 0;
+  flex-direction: row;
+}
+section.section-comments .comment .photo {
+  width: 160px;
+  height: 160px;
+  overflow: hidden;
+  margin: 0 10px;
+}
+section.section-comments .comment .photo img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+section.section-comments .comment .comment-texts {
+  flex: 1;
+}
+section.section-comments .comment .comment-texts .comment-title-section {
+  text-align: left;
+  color: #FFEED3;
+  margin-bottom: 20px;
+}
+section.section-comments .comment .comment-texts .comment-title-section .comment-title {
+  margin: 0;
+  line-height: 1em;
+}
+section.section-comments .comment .comment-texts .comment-title-section span {
+  display: block;
+  font-family: Montserrat;
+  position: relative;
+  padding-left: 8px;
+  font-size: 0.8em;
+  line-height: 1em;
+}
+section.section-comments .comment .comment-texts .comment-title-section span::before {
+  content: "";
+  position: absolute;
+  background-color: #E2A539;
+  height: 100%;
+  width: 2px;
+  left: 0;
+}
+
+/*# sourceMappingURL=comments.css.map */

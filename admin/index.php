@@ -1,1 +1,1 @@
-<?php header("Location: comment.php"); ?>
+<?php header("Location: articles.php"); ?>

@@ -38,5 +38,32 @@ body .article p {
   font-size: 1.1em;
   font-weight: 400;
 }
+body .article .like-button {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  font-size: 1.5em;
+  position: relative;
+  width: 80px;
+  margin: 0 0 0 auto;
+  text-align: center;
+  color: white;
+}
+body .article .like-button svg {
+  height: 1em;
+}
+body .article .like-button span.count {
+  display: inline-block;
+  margin: 0 auto;
+}
+body .article .like-button::after {
+  content: "";
+  position: relative;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 2px;
+  background-color: #E2A539;
+}
 
 /*# sourceMappingURL=article.css.map */

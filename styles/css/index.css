@@ -18,7 +18,7 @@ main .showmore {
 main .showmore .btn.btn-show {
   text-align: center;
   background: #FFEED3;
-  border-radius: 10px;
+  border-radius: 4px;
   color: #2B2B2B;
   padding: 4px 45px;
   font-size: 1.4em;
