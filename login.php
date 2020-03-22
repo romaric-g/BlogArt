@@ -45,6 +45,8 @@ if($user) {
     <link rel="stylesheet" href="styles/css/auth.css">
     <link rel="stylesheet" href="styles/css/nav.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script src="https://code.createjs.com/1.0.0/tweenjs.min.js"></script>
 </head>
 <body>
     <?php HOME__() ?>

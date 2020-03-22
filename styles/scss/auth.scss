@@ -7,14 +7,38 @@ header {
         position: relative;
         clip-path: url(#svgPath);
         min-height: 100vh;
+        overflow: hidden;
+
+        canvas {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            width: 100%;
+            min-width: 300px;
+            min-height: 100%;
+            z-index: -1;
+        }
 
         .content {
-            text-align: center;
             svg {
                 margin-top: 40px;
-                margin-right: 180px;
-                margin-left: 20px;
-                width: 243px;
+                margin-left: 30px;
+                width: 230px;
+            }
+
+            
+            @media screen and (max-width: 992px) {
+                svg {
+                    width: 180px;
+                    margin-left: 10px;
+                }
+            }
+            @media screen and (max-width: 768px) {
+                svg {
+                    width: 120px;
+                    margin-left: 0;
+                }
             }
         }
     }
