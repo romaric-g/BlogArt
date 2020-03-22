@@ -49,7 +49,7 @@ $articles = Article::loadAll($conn, array(), "NumLang = '$LANG'", "ORDER BY DtCr
             <div style="position: absolute; height: 0;">
                 <svg><defs><clipPath id="courbe" clipPathUnits="objectBoundingBox"><path d="M0,1 V0 C0.376,0.473,0.594,0.495,1,0 V1"/></svg></clipPath></defs></svg>
             </div>
-            <h2 class="c"><?= $LANGUAGE->for("article","newtitle") ?></h2>
+            <h2 class="section-title"><?= $LANGUAGE->for("article","newtitle") ?></h2>
             <?php foreach( $articles as $article ) {?>
                 <article class="article row">
                     <div class="article-illu col-md-6">
