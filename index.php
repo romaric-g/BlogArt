@@ -32,6 +32,8 @@ $articles = Article::loadAll($conn, array(), "NumLang = '$LANG'", "ORDER BY DtCr
     <link rel="stylesheet" href="styles/css/home.css">
     <link rel="stylesheet" href="styles/css/index.css">
     <link rel="stylesheet" href="styles/css/articles.css">
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script src="https://code.createjs.com/1.0.0/tweenjs.min.js"></script>
 </head>
 <!-- <p style="margin: 0; color: white">Les CRUDs ont été déplacés <a href="CRUD/">ici</a></p> -->
 <body>
@@ -51,8 +53,8 @@ $articles = Article::loadAll($conn, array(), "NumLang = '$LANG'", "ORDER BY DtCr
             </div>
             <h2 class="section-title"><?= $LANGUAGE->for("article","newtitle") ?></h2>
             <?php foreach( $articles as $article ) {?>
-                <article class="article row">
-                    <div class="article-illu col-md-6">
+                <article class="article row justify-content-center">
+                    <div class="article-illu col-md-4">
                         <img src="<?= $article->values["UrlPhotA"] ?>" alt="">
                     </div>
                     <div class="article-content col-md-6">
@@ -61,6 +63,8 @@ $articles = Article::loadAll($conn, array(), "NumLang = '$LANG'", "ORDER BY DtCr
                         </div>
                         <div class="text">
                             <p><?= $article->values["LibChapoA"] ?></p>
+                        </div>
+                        <div class="link">
                             <a href="article.php?id=<?= $article->primaryKeyValue ?>" class="btn btn-read"><?= $LANGUAGE->for("article","read") ?></a>
                         </div>
                     </div>

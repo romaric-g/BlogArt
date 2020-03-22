@@ -14,14 +14,32 @@ header .header-left {
   clip-path: url(#svgPath);
   min-height: 100vh;
 }
-header .header-left .content {
-  text-align: center;
+header .header-left canvas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  min-width: 300px;
+  min-height: 100%;
+  z-index: -1;
 }
 header .header-left .content svg {
   margin-top: 40px;
-  margin-right: 180px;
-  margin-left: 20px;
-  width: 243px;
+  margin-left: 30px;
+  width: 230px;
+}
+@media screen and (max-width: 992px) {
+  header .header-left .content svg {
+    width: 180px;
+    margin-left: 10px;
+  }
+}
+@media screen and (max-width: 768px) {
+  header .header-left .content svg {
+    width: 120px;
+    margin-left: 0;
+  }
 }
 header .header-right {
   display: flex;
@@ -35,10 +53,11 @@ header .header-right .content {
 }
 header .header-right .content .bigtitle {
   width: 100%;
-  margin: 0 40px;
+  margin: 0 auto;
+  max-width: 700px;
   color: #FFEED3;
   text-transform: uppercase;
-  font-size: 8em;
+  font-size: 7.5em;
 }
 header .header-right .content .bigtitle span {
   display: block;

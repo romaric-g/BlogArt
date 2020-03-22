@@ -9,8 +9,11 @@
         "profil": "Profile"
     },
     "article": {
-        "newtitle": "Nos derniers articles",
-        "read": "Lire",
-        "allarticles": "Tout nos articles"
+        "newtitle": "Our last articles",
+        "read": "Read",
+        "allarticles": "All articles",
+        "comments": {
+            "title": "Send a comment"
+        }
     }
 }

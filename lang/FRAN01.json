@@ -11,9 +11,9 @@
     "article": {
         "newtitle": "Nos derniers articles",
         "read": "Lire",
-        "allarticles": "Tout nos articles",
+        "allarticles": "Tous nos articles",
         "comments": {
-
+            "title": "Laisser un commentaire"
         }
     }
 }

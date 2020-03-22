@@ -6,6 +6,9 @@ section.articles {
   padding: 70px 0;
   text-align: center;
 }
+section.articles p {
+  margin: 0;
+}
 section.articles .section-title {
   position: relative;
   display: inline-block;
@@ -37,12 +40,17 @@ section.articles article.article .article-illu img {
   width: 100%;
   object-fit: cover;
 }
+section.articles article.article .article-content {
+  display: flex;
+  flex-direction: column;
+}
 section.articles article.article .article-content .title {
   text-align: left;
   position: relative;
-  padding-left: 20px;
+  padding-left: 14px;
   color: #FFEED3;
-  font-size: 1.4em;
+  font-size: 1.75rem;
+  line-height: 1em;
 }
 section.articles article.article .article-content .title:before {
   content: "";
@@ -54,6 +62,8 @@ section.articles article.article .article-content .title:before {
   background: #E2A539;
 }
 section.articles article.article .article-content .text {
+  margin: 10px 0;
+  flex: 1;
   text-align: right;
 }
 section.articles article.article .article-content .text p {
@@ -62,7 +72,10 @@ section.articles article.article .article-content .text p {
   font-size: 1.1em;
   text-align: justify;
 }
-section.articles article.article .article-content .text .btn {
+section.articles article.article .article-content .link {
+  text-align: right;
+}
+section.articles article.article .article-content .link .btn {
   background: #FFEED3;
   border-radius: 4px;
   color: #2B2B2B;

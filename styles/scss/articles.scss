@@ -6,6 +6,10 @@ body {
 section.articles {
     padding: 70px 0;
     text-align: center;
+
+    p {
+        margin: 0;
+    }
     
     .section-title {
         position: relative;
@@ -32,6 +36,7 @@ section.articles {
         margin-top: 30px;
         margin-bottom: 30px;
 
+
         & > * {
             margin-top: 5px;
             margin-bottom: 5px;
@@ -49,13 +54,17 @@ section.articles {
     }
 
     article.article .article-content {
+        display: flex;
+        flex-direction: column; 
         .title {
             text-align: left;
             position: relative;
-            padding-left: 20px;
+            padding-left: 14px;
             color: #FFEED3;
-            font-size: 1.4em;
+            font-size: 1.75rem;
+            line-height: 1em;
 
+ 
             &:before {
                 content: "";
                 position: absolute;
@@ -68,6 +77,8 @@ section.articles {
         }
 
         .text {
+            margin: 10px 0;
+            flex: 1;
             text-align: right;
             p {
                 font-family: Montserrat;
@@ -75,6 +86,9 @@ section.articles {
                 font-size: 1.1em;
                 text-align: justify;
             }
+        }
+        .link {
+            text-align: right;
             .btn {
                 background: #FFEED3;
                 border-radius: 4px;

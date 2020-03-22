@@ -88,7 +88,7 @@ $size = 40;
                     </div>
             </section>
             <section class="section-comments">
-                <h2 class="title">Laisser un commentaire</h2>
+                <h2 class="title"><?= $LANGUAGE->for("article","comments","title") ?></h2>
                 <div class="comments row justify-content-center">
                     <?php foreach($comments as $comment) { 
                         $email = $comment->values["EmailAuteur"];
