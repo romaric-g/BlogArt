@@ -16,7 +16,7 @@ function HOME__(){
                 <canvas id="bubbles" width="400px" height="1200"></canvas>
                 <script>
                     var stage = new createjs.Stage("bubbles");
-                    var bubbles = 10;
+                    var bubbles = 25;
 
                     const probNewBubble = 10;
                     const bubbleColor = "#FFE0A9";
@@ -47,13 +47,19 @@ function HOME__(){
 
                     function handle() {
                         if(bubbles) {
+                            console.log("HANDLE");
                             let bubble = getBubble();
                             stage.addChild(bubble);
                             stage.update();
                             createjs.Tween.get(bubble, { loop: false })
-                            .to({ y: -100}, bubble._bubble[1], createjs.Ease.getPowInOut(4))
+                            .to({ y: -100}, bubble._bubble[1], createjs.Ease.getPowOut(4))
                             bubbles--;
                             
+                        }
+                        for (const child of stage.children) {
+                            if(child.y < -50) {
+                                stage.removeChild(child);
+                            }
                         }
                     }
                     
