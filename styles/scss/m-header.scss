@@ -1,12 +1,15 @@
-@media screen and (max-width: 576px) {
-    header .header-left {
-        min-height: 0;
-        max-height: 100px;
-        width: 100%;
+@media screen and (max-width: 767px) {    
+    header {
+        height: unset;
+        overflow: hidden;
         clip-path: url(#topbar);
         background-color: #FFEED3;
+    }
+    .header {
+        height: unset;
+        min-height: 0;
+        max-height: 100px;
         transition: max-height .4s;
-
         .head {
             *:hover {
                 transform: translateY(0)!important;  
@@ -40,6 +43,7 @@
             min-height: unset;
             transition: all .4s;
 
+
             .btn-menu {
                 display: flex;
                 cursor: pointer;
@@ -71,14 +75,16 @@
                 svg {
                     margin: 0;
                     height: 70px;
-                    width: unset!important;
                     transform: translateY(0) scale(1);
                     transition: all .4s;
                 }
             }
 
-
             canvas {
+                position: absolute;
+                top: 0;
+                min-width: 100%;
+                z-index: -1;
                 transform: rotate(90deg) translateX(100%);
                 transform-origin: top right;
                 height: 100vw;

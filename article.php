@@ -53,10 +53,13 @@ $size = 40;
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/css/common.css">
     <link rel="stylesheet" href="styles/css/header.css">
+    <link rel="stylesheet" href="styles/css/m-header.css">
     <link rel="stylesheet" href="styles/css/nav.css">
     <link rel="stylesheet" href="styles/css/nav_dark.css">
     <link rel="stylesheet" href="styles/css/article.css">
     <link rel="stylesheet" href="styles/css/article/comments.css">
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script src="https://code.createjs.com/1.0.0/tweenjs.min.js"></script>
     <title>Document</title>
 </head>
 <body>

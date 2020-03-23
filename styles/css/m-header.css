@@ -1,29 +1,34 @@
-@media screen and (max-width: 576px) {
-  header .header-left {
-    min-height: 0;
-    max-height: 100px;
-    width: 100%;
+@media screen and (max-width: 767px) {
+  header {
+    height: unset;
+    overflow: hidden;
     clip-path: url(#topbar);
     background-color: #FFEED3;
+  }
+
+  .header {
+    height: unset;
+    min-height: 0;
+    max-height: 100px;
     transition: max-height 0.4s;
   }
-  header .header-left .head *:hover {
+  .header .head *:hover {
     transform: translateY(0) !important;
   }
-  header .header-left nav {
+  .header nav {
     position: relative;
     top: 0;
     margin: 0;
     padding: 10px 0 40px 0;
   }
-  header .header-left nav ul.links {
+  .header nav ul.links {
     flex-direction: column;
     align-items: flex-end;
   }
-  header .header-left nav a {
+  .header nav a {
     color: black !important;
   }
-  header .header-left .content {
+  .header .content {
     position: static;
     display: flex;
     align-items: center;
@@ -35,39 +40,42 @@
     min-height: unset;
     transition: all 0.4s;
   }
-  header .header-left .content .btn-menu {
+  .header .content .btn-menu {
     display: flex;
     cursor: pointer;
     font-size: 1.2em;
     line-height: 1em;
   }
-  header .header-left .content .btn-menu p {
+  .header .content .btn-menu p {
     margin: 0;
   }
-  header .header-left .content .btn-menu p a {
+  .header .content .btn-menu p a {
     color: black;
     text-decoration: none !important;
   }
-  header .header-left .content .btn-menu .icon {
+  .header .content .btn-menu .icon {
     display: flex;
     flex-direction: column;
     padding-left: 8px;
   }
-  header .header-left .content .btn-menu .icon span {
+  .header .content .btn-menu .icon span {
     display: inline-block;
     height: 2px;
     width: 25px;
     background-color: black;
     margin: 2px 0;
   }
-  header .header-left .content div.logo svg {
+  .header .content div.logo svg {
     margin: 0;
     height: 70px;
-    width: unset !important;
     transform: translateY(0) scale(1);
     transition: all 0.4s;
   }
-  header .header-left .content canvas {
+  .header .content canvas {
+    position: absolute;
+    top: 0;
+    min-width: 100%;
+    z-index: -1;
     transform: rotate(90deg) translateX(100%);
     transform-origin: top right;
     height: 100vw;
@@ -76,13 +84,13 @@
     right: 0;
     min-width: unset;
   }
-  header .header-left.open {
+  .header.open {
     max-height: 400px;
   }
-  header .header-left.open .content {
+  .header.open .content {
     height: 35px;
   }
-  header .header-left.open div.logo svg {
+  .header.open div.logo svg {
     transform: translateY(-60px) scale(0.5);
   }
 
@@ -93,4 +101,4 @@
   }
 }
 
-/*# sourceMappingURL=m-home.css.map */
+/*# sourceMappingURL=m-header.css.map */

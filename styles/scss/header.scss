@@ -1,19 +1,40 @@
-header {
-    height: 130px;
-    width: 100%;
-    background: #FFEED3;
-    clip-path: url(#topbar);
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-    .container {
-        height: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding-bottom: 10px;
-        svg {
-            display: block;
-            height: 90px;
+@media screen and (min-width: 768px) {    
+    header {
+        height: 120px;
+        width: 100%;
+        clip-path: url(#topbar);
+        background-color: #FFEED3;
+        overflow: hidden;
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            min-width: 100%;
+            z-index: -1;
+            transform: rotate(90deg) translateX(100%);
+            transform-origin: top right;
+            height: 100vw;
+            width: 75vw;
+            left: unset;
+            right: 0; 
+            min-width: unset;
+        }
+        div.logo {
+            svg {
+                margin: 0;
+                height: 85px;
+                transform: translateY(0) scale(1);
+                transition: all .4s;
+            }
+        }
+        .btn-menu {
+            display: none;
         }
     }
 }
