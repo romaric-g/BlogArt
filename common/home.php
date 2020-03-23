@@ -12,15 +12,15 @@ function HOME__(){
     </div>
     <header class="container-fluid">
         <div class="row justify-content-end">
-            <div class="header-left col-3 col-md-4">
-                <canvas id="bubbles" width="400px" height="1200"></canvas>
+            <div class="header-left col-12 col-sm-3 col-md-4">
+                <canvas id="bubbles" width="1500" height="2000"></canvas>
                 <script>
                     var stage = new createjs.Stage("bubbles");
                     var bubbles = 25;
 
                     const probNewBubble = 10;
                     const bubbleColor = "#FFE0A9";
-                    const bubblesProperties = [[10,10000],[20,11000],[40,15000]];
+                    const bubblesProperties = [[20,10000],[40,11000],[80,15000]];
 
                     function getBubble() {
                         let r = Math.floor(Math.random() * 100);
@@ -29,8 +29,8 @@ function HOME__(){
                         else if(r < 50)property = bubblesProperties[2];
                         let circle = new createjs.Shape();
                         circle.graphics.beginFill(bubbleColor).drawCircle(0, 0, property[0]);
-                        circle.x = Math.floor(Math.random() * 400);
-                        circle.y = 1300;
+                        circle.x = Math.floor(Math.random() * 1500);
+                        circle.y = 2100;
                         circle._bubble = property;
                         return circle;
                     }
