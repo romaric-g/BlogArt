@@ -1,0 +1,95 @@
+@media screen and (max-width: 576px) {
+  header .header-left {
+    min-height: 0;
+    max-height: 100px;
+    width: 100%;
+    clip-path: url(#topbar);
+    background-color: #FFEED3;
+    transition: max-height 0.4s;
+  }
+  header .header-left .head *:hover {
+    transform: translateY(0) !important;
+  }
+  header .header-left nav {
+    position: relative;
+    top: 0;
+    margin: 0;
+    padding: 10px 0 40px 0;
+  }
+  header .header-left nav ul.links {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  header .header-left nav a {
+    color: black !important;
+  }
+  header .header-left .content {
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    clip-path: none;
+    background-color: unset;
+    margin: 0;
+    height: 90px;
+    min-height: unset;
+    transition: all 0.4s;
+  }
+  header .header-left .content .btn-menu {
+    display: flex;
+    cursor: pointer;
+    font-size: 1.2em;
+    line-height: 1em;
+  }
+  header .header-left .content .btn-menu p {
+    margin: 0;
+  }
+  header .header-left .content .btn-menu p a {
+    color: black;
+    text-decoration: none !important;
+  }
+  header .header-left .content .btn-menu .icon {
+    display: flex;
+    flex-direction: column;
+    padding-left: 8px;
+  }
+  header .header-left .content .btn-menu .icon span {
+    display: inline-block;
+    height: 2px;
+    width: 25px;
+    background-color: black;
+    margin: 2px 0;
+  }
+  header .header-left .content div.logo svg {
+    margin: 0;
+    height: 70px;
+    transform: translateY(0) scale(1);
+    transition: all 0.4s;
+  }
+  header .header-left .content canvas {
+    transform: rotate(90deg) translateX(100%);
+    transform-origin: top right;
+    height: 100vw;
+    width: 75vw;
+    left: unset;
+    right: 0;
+    min-width: unset;
+  }
+  header .header-left.open {
+    max-height: 400px;
+  }
+  header .header-left.open .content {
+    height: 35px;
+  }
+  header .header-left.open div.logo svg {
+    transform: translateY(-60px) scale(0.5);
+  }
+
+  .header-right {
+    overflow: hidden;
+    min-height: 500px;
+    padding-bottom: 100px;
+  }
+}
+
+/*# sourceMappingURL=m-home.css.map */

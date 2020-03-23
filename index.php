@@ -30,6 +30,7 @@ $articles = Article::loadAll($conn, array(), "NumLang = '$LANG'", "ORDER BY DtCr
     <link rel="stylesheet" href="styles/css/common.css">
     <link rel="stylesheet" href="styles/css/nav.css">
     <link rel="stylesheet" href="styles/css/home.css">
+    <link rel="stylesheet" href="styles/css/m-home.css">
     <link rel="stylesheet" href="styles/css/index.css">
     <link rel="stylesheet" href="styles/css/articles.css">
     <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
@@ -37,8 +38,7 @@ $articles = Article::loadAll($conn, array(), "NumLang = '$LANG'", "ORDER BY DtCr
 </head>
 <!-- <p style="margin: 0; color: white">Les CRUDs ont été déplacés <a href="CRUD/">ici</a></p> -->
 <body>
-    <?php HOME__() ?>
-                <?php NAV($LANG, $USER, $LANGUAGE, "./", $conn) ?>
+    <?php HOME__($LANG, $USER, $LANGUAGE, "./", $conn) ?>
                 <div class="container content">
                     <h1 class="bigtitle">
                         <span><?= $LANGUAGE->for("title","start") ?></span>
@@ -48,7 +48,7 @@ $articles = Article::loadAll($conn, array(), "NumLang = '$LANG'", "ORDER BY DtCr
     <?php __HOME() ?>
     <main>
         <section class="articles container">
-            <div style="position: absolute; height: 0;">
+            <div style="position: absolute; height: 0; width: 0; overflow: hidden">
                 <svg><defs><clipPath id="courbe" clipPathUnits="objectBoundingBox"><path d="M0,1 V0 C0.376,0.473,0.594,0.495,1,0 V1"/></svg></clipPath></defs></svg>
             </div>
             <h2 class="section-title"><?= $LANGUAGE->for("article","newtitle") ?></h2>

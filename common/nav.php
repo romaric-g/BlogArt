@@ -48,6 +48,7 @@ function NAV($langSelectedID, $user, $language, $rootPath, $conn) {
                 </div>
            </div>
             <ul class="links" id="links">
+                <li><a href="<?= $rootPath ?>index.php" class="btn">Home</a></li>
                 <?php foreach($themes as $theme) { ?>
                     <li><a href="<?= $articlesFile ?>?id=<?= $theme->primaryKeyValue ?>" class="btn"><?= $theme->values["LibThem"] ?></a></li>
                 <?php } ?>

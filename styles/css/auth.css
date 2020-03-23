@@ -2,18 +2,37 @@ header {
   position: relative;
   background: #2B2B2B;
 }
+header .row {
+  height: 100%;
+  min-height: 30vw;
+}
 header .header-left {
+  position: static;
+}
+header .header-left nav {
+  position: absolute;
+  right: 15px;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  margin-left: 25%;
+}
+header .header-left .content {
+  position: relative;
   background-color: #FFEED3;
   position: relative;
   clip-path: url(#svgPath);
   min-height: 100vh;
+  height: 100%;
+  margin-left: -15px;
   overflow: hidden;
 }
-header .header-left canvas {
+header .header-left .content canvas {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
+  min-width: 100%;
   height: 100%;
   z-index: -1;
 }
@@ -30,11 +49,15 @@ header .header-left .content svg {
 }
 @media screen and (max-width: 768px) {
   header .header-left .content svg {
-    width: 120px;
+    width: 110px;
     margin-left: 0;
   }
 }
+header .header-left .btn-menu {
+  display: none;
+}
 header .header-right {
+  padding-top: 100px;
   display: flex;
   flex-direction: column;
 }
@@ -65,8 +88,8 @@ header .header-right .content .title::before {
 }
 header .header-right .content .form-box {
   text-align: center;
-  width: 550px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 550px;
   margin: 0 auto 0 0;
 }
 header .header-right .content form {
