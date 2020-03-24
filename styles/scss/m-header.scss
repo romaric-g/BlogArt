@@ -1,0 +1,117 @@
+@media screen and (max-width: 767px) {    
+    header {
+        height: unset;
+        overflow: hidden;
+        clip-path: url(#topbar);
+        background-color: #FFEED3;
+    }
+    .header {
+        height: unset;
+        min-height: 0;
+        max-height: 100px;
+        transition: max-height .4s;
+        .head {
+            *:hover {
+                transform: translateY(0)!important;  
+            }
+        }
+
+        nav {
+            position: relative;
+            top: 0;
+            margin: 0;
+            padding: 10px 0 40px 0;
+
+            ul.links {
+                flex-direction: column;
+                align-items: flex-end;
+            }
+            a { 
+                color: black!important;
+            }
+        }
+
+        .content  {
+            position: static;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            clip-path: none;
+            background-color: unset;
+            margin: 0;
+            height: 90px;
+            min-height: unset;
+            transition: all .4s;
+
+
+            .btn-menu {
+                display: flex;
+                cursor: pointer;
+                font-size: 1.2em;
+                line-height: 1em;
+                p {
+                    margin: 0;
+                    a {
+                        color: black;
+                        text-decoration: none!important;
+                    }
+                }
+
+                .icon {
+                    display: flex;
+                    flex-direction: column;
+                    padding-left: 8px;
+                    span {
+                        display: inline-block;
+                        height: 2px;
+                        width: 25px;
+                        background-color: black;
+                        margin: 2px 0;
+                    }
+                }
+            }
+            
+            div.logo {
+                svg {
+                    margin: 0;
+                    height: 70px;
+                    transform: translateY(0) scale(1);
+                    transition: all .4s;
+                }
+            }
+
+            canvas {
+                position: absolute;
+                top: 0;
+                min-width: 100%;
+                z-index: -1;
+                transform: rotate(90deg) translateX(100%);
+                transform-origin: top right;
+                height: 100vw;
+                width: 75vw;
+                left: unset;
+                right: 0; 
+                min-width: unset;
+            }
+        }
+
+        &.open {
+            max-height: 400px;
+
+            .content {
+                height: 35px;
+            }
+
+            div.logo svg {
+                transform: translateY(-60px) scale(0.5);
+            }
+        }
+
+    }
+
+    .header-right {
+        overflow: hidden;
+        min-height: 500px;
+        padding-bottom: 100px;
+    }
+}

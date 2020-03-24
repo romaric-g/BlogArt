@@ -9,13 +9,26 @@ header .row {
   min-height: 30vw;
 }
 header .header-left {
+  position: static;
+}
+header .header-left nav {
+  position: absolute;
+  right: 15px;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  margin-left: 25%;
+}
+header .header-left .content {
+  position: relative;
   background-color: #FFEED3;
   position: relative;
   clip-path: url(#svgPath);
   min-height: 100vh;
+  margin-left: -15px;
   overflow: hidden;
 }
-header .header-left canvas {
+header .header-left .content canvas {
   position: absolute;
   top: 0;
   right: 0;
@@ -41,7 +54,11 @@ header .header-left .content svg {
     margin-left: 0;
   }
 }
+header .header-left .btn-menu {
+  display: none;
+}
 header .header-right {
+  padding-top: 100px;
   display: flex;
   flex-direction: column;
 }
@@ -73,23 +90,6 @@ header .header-right .content .bigtitle span:last-child {
 @media screen and (max-width: 768px) {
   header .header-right .content .bigtitle {
     font-size: 5em;
-  }
-}
-@media screen and (max-width: 576px) {
-  header .header-left {
-    min-height: 0;
-    height: 100px;
-    width: 100%;
-    clip-path: none;
-  }
-  header .header-left .content {
-    display: flex;
-    align-items: center;
-    height: 100%;
-  }
-  header .header-left .content svg {
-    margin: 0;
-    height: 70px;
   }
 }
 

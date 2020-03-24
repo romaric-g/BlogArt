@@ -7,7 +7,6 @@ require_once("./class/Utils/ctrlSaisies.php");
 
 /* COMPOSANTS */
 require_once("./common/home.php");
-require_once("./common/nav.php");
 
 /* LANGUAGE SYSTEM */
 require_once("./lang/language.php");
@@ -44,13 +43,13 @@ if($user) {
     <link rel="stylesheet" href="styles/css/common.css">
     <link rel="stylesheet" href="styles/css/auth.css">
     <link rel="stylesheet" href="styles/css/nav.css">
+    <link rel="stylesheet" href="styles/css/m-home.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
     <script src="https://code.createjs.com/1.0.0/tweenjs.min.js"></script>
 </head>
 <body>
-    <?php HOME__() ?>
-                <?php NAV($LANG, $user, $LANGUAGE, "./", $conn) ?>
+    <?php HOME__($LANG, $user, $LANGUAGE, "./", $conn) ?>
                 <div class="container content">
                     <div class="form-box">
                             <h1 class="title">Connectez-Vous</h1>
