@@ -131,6 +131,7 @@ function getLI(content) {
     var newContent = document.createTextNode(content);
     li.appendChild(newContent);
     li.classList.add("list-group-item");
+    li.classList.add("list-group-item-light");
     li.classList.add("d-flex");
     li.classList.add("justify-content-between");
     li.classList.add("align-items-center");

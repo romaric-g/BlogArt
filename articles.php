@@ -14,8 +14,17 @@ require_once("./lang/language.php");
 $LANG = $_SESSION["LANG"];
 $LANGUAGE = Language::INIT($LANG, "./");
 
+$where = "";
+$themeName = "";
+
+if(isset($_GET["id"])) {
+    $themeID = $_GET["id"];
+    $where = "NumThem = '$themeID'";
+    $res = $conn->query("SELECT LibThem FROM THEMATIQUE WHERE NumThem = '$themeID'");
+    $themeName = ($res->fetch())["LibThem"];
+}
 $user = User::getLoggedUser($conn);
-$articles = Article::loadAll($conn, array(), "", "ORDER BY DtCreA DESC");
+$articles = Article::loadAll($conn, array(), $where, "ORDER BY DtCreA DESC");
 
 ?>
 <!DOCTYPE html>
@@ -38,7 +47,7 @@ $articles = Article::loadAll($conn, array(), "", "ORDER BY DtCreA DESC");
     <?php PAGEHEADER($LANG, $user, $LANGUAGE, "./", $conn) ?>
     <main>
         <section class="articles container">
-            <h2 class="section-title">Nos Articles</h2>
+            <h2 class="section-title">Nos Articles<span><?= $themeName; ?></span></h2>
             <?php foreach( $articles as $article ) {?>
                 <article class="article row">
                     <div class="article-illu col-md-6">

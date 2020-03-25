@@ -1,3 +1,7 @@
+*, table, td, tr, th {
+  color: white;
+}
+
 section.section-comments {
   text-align: center;
 }

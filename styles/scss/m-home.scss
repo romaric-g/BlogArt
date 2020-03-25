@@ -1,4 +1,4 @@
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 575px) {
     header .header-left {
         min-height: 0;
         max-height: 100px;
@@ -6,6 +6,7 @@
         clip-path: url(#topbar);
         background-color: #FFEED3;
         transition: max-height .4s;
+        overflow: hidden;
 
         .head {
             *:hover {

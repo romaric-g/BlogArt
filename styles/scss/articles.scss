@@ -30,6 +30,18 @@ section.articles {
             right: 0;
             background-color: #E2A539;
         }
+        span {
+            position: absolute;
+            font-size: 1.2rem;
+            line-height: 1em;
+            font-family: 'Montserrat';
+            top: 100%;
+            white-space: nowrap;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+        }
     }
     
 

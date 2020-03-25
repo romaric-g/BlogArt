@@ -21,17 +21,17 @@ class KeywordsInput {
         return "";
     }
 
-    public function print() {
-        $this->printKeywordInput();
+    public function print($root = "./") {
+        $this->printKeywordInput($root);
     }
 
 
-    public function printKeywordInput() { 
+    public function printKeywordInput($root = "./") { 
 ?>
         <input type="hidden" name="<?= $this->name ?>" id="<?= $this->name ?>" >
         <ul class="list-group list-group-flush">
                         <li class="list-group-item list-group-item-dark d-flex justify-content-between align-items-center"><?= $this->label ?><span id="keywordCount" class="badge badge-light badge-pill">0</span></li>
-                        <li class="list-group-item">
+                        <li class="list-group-item list-group-item-dark">
                             <div class="row">
                                 <div class="col">
                                     <select class="custom-select" id="keyWordSelect">
@@ -43,7 +43,7 @@ class KeywordsInput {
                                 <a href="#" class="btn btn-info" id="addKeyWordButton">Ajouter</a>
                             </div>
                         </li>
-                        <li class="list-group-item">
+                        <li class="list-group-item list-group-item-light">
                             <ul class="list-group list-group-flush" id="keyWordList">
                                 <?php foreach($this->keywordsSelect as $keyword) { ?>
                                     <li data-value="<?= $keyword->primaryKeyValue ?>" data-lib="<?= $keyword->values["LibMoCle"] ?>"></li>
@@ -51,7 +51,7 @@ class KeywordsInput {
                             </ul>
                         </li>
         </ul>
-        <script src="./../js/keyword.js"></script>
+        <script src="<?= $root ?>js/keyword.js"></script>
 <?php 
     }
 

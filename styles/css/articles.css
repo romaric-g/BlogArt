@@ -28,6 +28,18 @@ section.articles .section-title::before {
   right: 0;
   background-color: #E2A539;
 }
+section.articles .section-title span {
+  position: absolute;
+  font-size: 1.2rem;
+  line-height: 1em;
+  font-family: "Montserrat";
+  top: 100%;
+  white-space: nowrap;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
 section.articles article.article {
   margin-top: 30px;
   margin-bottom: 30px;
