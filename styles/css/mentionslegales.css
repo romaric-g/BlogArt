@@ -1,48 +1,53 @@
-body{
-    background-color: #2b2b2b;
-    line-height: 1.5;
+body {
+  background-color: #2b2b2b;
+  line-height: 1.5;
 }
 
-p{
-    color: white;
-    text-align: justify;
-    font-size: 1.1em;
-    margin-left: 150px;
-    margin-right: 150px;
-    font-family: "Montserrat", sans-serif;
-    margin-top: 0;
-    margin-bottom: 1rem;
+.subtitle {
+  text-align: left;
+  position: relative;
+  padding-left: 14px;
+  color: #FFEED3;
+  font-size: 1.75rem;
+  line-height: 1em;
+}
+.subtitle:before {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 0;
+  height: 100%;
+  width: 4px;
+  background: #E2A539;
 }
 
-h2{
-    color: #FFEED3;
-    text-align: center;
-    font-size: 3.1em;
-    font-family: "Bebas Neue", sans-serif;
+p {
+  color: white;
+  text-align: justify;
+  font-size: 1.1em;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
-h3{
-    color: #FFEED3;
-    text-align: justify;
-    font-size: 2.4em;
-    padding-top: 50px;
-    padding-bottom: 20px;
-    margin-left: 150px;
-    font-family: "Bebas Neue", sans-serif;
+h2 {
+  color: #FFEED3;
+  text-align: center;
+  font-size: 3.1em;
+  font-family: "Bebas Neue", sans-serif;
 }
 
-a{
-    color: #FFEED3;
-}
-a:hover{
-    color: white;
+h3 {
+  color: #FFEED3;
+  text-align: justify;
+  font-size: 2.4em;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  font-family: "Bebas Neue", sans-serif;
 }
 
-header{
-    height: 130px;
-    width: 100%;
-    background: #FFEED3;
-    clip-path: url(#topbar);
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-    font-family: "Bebas Neue", sans-serif;
+a {
+  color: #FFEED3;
 }
+
+/*# sourceMappingURL=mentionslegales.css.map */
