@@ -12,7 +12,7 @@ $error = isset($_SESSION["error"]) ? $_SESSION["error"] : NULL;
 unset($_SESSION["success"]);
 unset($_SESSION["error"]);
 
-$comments = Comment::loadAll($conn, array(new Join("ARTICLE","NumArt","NumArt")));
+$comments = Comment::loadRealComment($conn, array(new Join("ARTICLE","NumArt","NumArt")));
 $artSeparator = 0;
 
 ?>

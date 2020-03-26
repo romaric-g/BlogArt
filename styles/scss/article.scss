@@ -55,6 +55,12 @@ body {
             text-align: center;
             color: white;
 
+            &.active {
+                svg path {
+                    fill: #E2A539;
+                }
+            }
+
             svg {
                 height: 1em;
             }

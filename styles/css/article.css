@@ -49,6 +49,9 @@ body .article .like-button {
   text-align: center;
   color: white;
 }
+body .article .like-button.active svg path {
+  fill: #E2A539;
+}
 body .article .like-button svg {
   height: 1em;
 }

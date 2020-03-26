@@ -32,22 +32,18 @@ if(isset($_REQUEST["id"])) {
     $article->loadDataFromSQL($conn, $joins);
     $article->loadKeywords($conn);
 
-    $comments = Comment::loadAll($conn, array(), "NumArt = '$NumArt'");
+    $comments = Comment::loadRealComment($conn, array(), "NumArt = '$NumArt'");
 }else{
     header("Location: index.php");
 }
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST["LibCom"]) && $user) {
-        $_POST['DtCreC'] = date("Y-m-d H:i:s");
-        $_POST['PseudoAuteur'] = $user->firstname;
-        $_POST["EmailAuteur"] = $user->lastname;
-        $_POST["TitrCom"] = "COMMENT";
-        $_POST["NumArt"] = $NumArt;
-        $comment = Comment::new($_POST, $conn);
+        $comment = Comment::newRealComment($_POST, $user, $NumArt, $conn);
         header("Location: article?id=" . $NumArt);
     }
 }
 
+$likeActiveClass = Comment::hasFakeComToLike($user->getPseudo(), $NumArt, $conn) ? " active" : "";
 $default = "https://www.cierpgaud.fr/wp-content/uploads/2018/07/avatar.jpg";
 $size = 40;   
 
@@ -92,9 +88,32 @@ $size = 40;
                 
             <section class="concl">
                     <p class="text"><?= $article->values["LibConclA"]; ?></p>
-                    <div class="like-button">
-                        <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.8518 7.37981L13.6016 8.58333H14.8308H21.6667C22.306 8.58333 22.8333 9.11062 22.8333 9.75V11.9167C22.8333 12.0599 22.8076 12.1929 22.7554 12.3302L19.4908 19.9512L19.4907 19.9512L19.4869 19.9604C19.3138 20.3758 18.9035 20.6667 18.4167 20.6667H8.66667C8.02728 20.6667 7.5 20.1394 7.5 19.5V8.66667C7.5 8.34303 7.62757 8.05919 7.83652 7.85589L7.8417 7.85085L7.84681 7.84574L14.2714 1.4114L14.7087 1.84461C14.7091 1.84502 14.7096 1.84544 14.71 1.84585C14.8144 1.95093 14.8823 2.09639 14.8914 2.25032L14.8696 2.4836L13.8518 7.37981ZM3.33333 9.66667V20.6667H1V9.66667H3.33333Z" stroke="#FFEED3" stroke-width="2"/></svg>
-                        <span class="count"><?= $article->values["Likes"]; ?></span>
+                    
+                    <div class="like-button<?= $likeActiveClass ?>" id="like-btn">
+                            <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.8518 7.37981L13.6016 8.58333H14.8308H21.6667C22.306 8.58333 22.8333 9.11062 22.8333 9.75V11.9167C22.8333 12.0599 22.8076 12.1929 22.7554 12.3302L19.4908 19.9512L19.4907 19.9512L19.4869 19.9604C19.3138 20.3758 18.9035 20.6667 18.4167 20.6667H8.66667C8.02728 20.6667 7.5 20.1394 7.5 19.5V8.66667C7.5 8.34303 7.62757 8.05919 7.83652 7.85589L7.8417 7.85085L7.84681 7.84574L14.2714 1.4114L14.7087 1.84461C14.7091 1.84502 14.7096 1.84544 14.71 1.84585C14.8144 1.95093 14.8823 2.09639 14.8914 2.25032L14.8696 2.4836L13.8518 7.37981ZM3.33333 9.66667V20.6667H1V9.66667H3.33333Z" stroke="#FFEED3" stroke-width="2"/></svg>
+                            <span class="count" id="like-value"><?= $article->values["Likes"]; ?></span>
+                            <script>
+                                document.getElementById("like-btn").addEventListener("click", function (event) {
+                                    var xmlhttp = new XMLHttpRequest();
+                                    xmlhttp.onreadystatechange = function() {
+                                        if (this.readyState == 4 && this.status == 200) {
+                                            let res =  this.responseText.split(':');
+                                            document.getElementById("like-value").innerHTML = res[0];
+                                            newClass = res[1];
+                                            classList =  document.getElementById("like-btn").classList;
+                                            if(newClass == 1) {
+                                                classList.add("active");
+                                            }else {
+                                                classList.remove("active");
+                                            }
+                                        }
+                                    };
+                                    xmlhttp.open("GET", "like.php?id=" + <?= $NumArt ?>, true);
+                                    xmlhttp.send();
+                                    
+                                })
+                                
+                            </script>
                     </div>
             </section>
             <section class="section-comments" id="comments">
