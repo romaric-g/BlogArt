@@ -21,24 +21,31 @@ $user = User::getLoggedUser($conn);
 $comment = NULL;
 $article = NULL;
 
-if($_SERVER["REQUEST_METHOD"] == "GET") {
-    if(isset($_GET["id"])) {
-        $NumArt = ctrlSaisies($_GET["id"]);
-        $article = new Article($NumArt);
-        $joins = array(
-            new Join("THEMATIQUE", "NumThem", "NumThem"),
-            new Join("ANGLE", "NumAngl", "NumAngl"),
-            new Join("LANGUE", "NumLang", "NumLang")
-        );
-        $article->loadDataFromSQL($conn, $joins);
-        $article->loadKeywords($conn);
+if(isset($_REQUEST["id"])) {
+    $NumArt = ctrlSaisies($_REQUEST["id"]);
+    $article = new Article($NumArt);
+    $joins = array(
+        new Join("THEMATIQUE", "NumThem", "NumThem"),
+        new Join("ANGLE", "NumAngl", "NumAngl"),
+        new Join("LANGUE", "NumLang", "NumLang")
+    );
+    $article->loadDataFromSQL($conn, $joins);
+    $article->loadKeywords($conn);
 
-        $comments = Comment::loadAll($conn, array(), "NumArt = '$NumArt'");
-    }else{
-        header("Location: index.php");
-    }
+    $comments = Comment::loadAll($conn, array(), "NumArt = '$NumArt'");
 }else{
     header("Location: index.php");
+}
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(isset($_POST["LibCom"]) && $user) {
+        $_POST['DtCreC'] = date("Y-m-d H:i:s");
+        $_POST['PseudoAuteur'] = $user->firstname;
+        $_POST["EmailAuteur"] = $user->lastname;
+        $_POST["TitrCom"] = "COMMENT";
+        $_POST["NumArt"] = $NumArt;
+        $comment = Comment::new($_POST, $conn);
+        header("Location: article?id=" . $NumArt);
+    }
 }
 
 $default = "https://www.cierpgaud.fr/wp-content/uploads/2018/07/avatar.jpg";
@@ -90,8 +97,26 @@ $size = 40;
                         <span class="count"><?= $article->values["Likes"]; ?></span>
                     </div>
             </section>
-            <section class="section-comments">
+            <section class="section-comments" id="comments">
                 <h2 class="title"><?= $LANGUAGE->for("article","comments","title") ?></h2>
+                <div class="row justify-content-center">
+                    <?php if($user) { ?>
+                        <div class="comment-form col-md-10">
+                                <form method="POST" action="article.php#comments">
+                                    <input type="hidden" name="id" value="<?= $NumArt ?>">
+                                    <div class="form-group">
+                                        <label for="LibCom">Votre message</label>
+                                        <textarea type="text" class="form-control" name="LibCom" placeholder="Votre message" rows="5"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                                </form>
+                        </div>
+                    <?php } else { ?>
+                        <div class="alert alert-danger col-md-10">
+                            Vous devez être connecté pour envoyer des commentaires, <a href="login.php">connectez-vous</a>!
+                        </div>
+                    <?php } ?>
+                </div>
                 <div class="comments row justify-content-center">
                     <?php foreach($comments as $comment) { 
                         $email = $comment->values["EmailAuteur"];

@@ -20,6 +20,12 @@ section.section-comments .title::before {
   right: 0;
   background-color: #E2A539;
 }
+section.section-comments .comment-form {
+  text-align: left;
+}
+section.section-comments .comment-form textarea {
+  font-family: "Montserrat";
+}
 section.section-comments .comments {
   margin: 40px 0;
 }
@@ -32,7 +38,7 @@ section.section-comments .comment .photo {
   width: 160px;
   height: 160px;
   overflow: hidden;
-  margin: 0 10px;
+  margin-right: 10px;
 }
 section.section-comments .comment .photo img {
   object-fit: cover;

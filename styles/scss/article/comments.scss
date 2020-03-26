@@ -22,6 +22,14 @@ section.section-comments {
         }
     }
 
+    
+    .comment-form {
+        text-align: left;
+        textarea {
+            font-family: 'Montserrat';
+        }
+    }
+    
     .comments {
         margin: 40px 0;
     }
@@ -35,7 +43,7 @@ section.section-comments {
             width: 160px;
             height: 160px;
             overflow: hidden;
-            margin: 0 10px;
+            margin-right: 10px;
             img {
                 object-fit: cover;
                 height: 100%;
