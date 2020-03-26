@@ -52,6 +52,10 @@ body .article .like-button {
 body .article .like-button.active svg path {
   fill: #E2A539;
 }
+body .article .like-button.nologged {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 body .article .like-button svg {
   height: 1em;
 }

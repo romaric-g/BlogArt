@@ -61,6 +61,11 @@ body {
                 }
             }
 
+            &.nologged {
+                opacity: .4;
+                cursor: not-allowed;
+            }
+
             svg {
                 height: 1em;
             }
