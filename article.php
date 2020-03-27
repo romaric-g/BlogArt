@@ -61,6 +61,7 @@ $size = 40;
     <link rel="stylesheet" href="styles/css/nav_dark.css">
     <link rel="stylesheet" href="styles/css/article.css">
     <link rel="stylesheet" href="styles/css/article/comments.css">
+    <link rel="stylesheet" href="styles/css/footer.css">
     <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
     <script src="https://code.createjs.com/1.0.0/tweenjs.min.js"></script>
     <title>Document</title>
@@ -89,34 +90,43 @@ $size = 40;
             <section class="concl">
                     <p class="text"><?= $article->values["LibConclA"]; ?></p>
                     
-                    <div class="like-button<?= $likeActiveClass ?>" id="like-btn">
-                            <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.8518 7.37981L13.6016 8.58333H14.8308H21.6667C22.306 8.58333 22.8333 9.11062 22.8333 9.75V11.9167C22.8333 12.0599 22.8076 12.1929 22.7554 12.3302L19.4908 19.9512L19.4907 19.9512L19.4869 19.9604C19.3138 20.3758 18.9035 20.6667 18.4167 20.6667H8.66667C8.02728 20.6667 7.5 20.1394 7.5 19.5V8.66667C7.5 8.34303 7.62757 8.05919 7.83652 7.85589L7.8417 7.85085L7.84681 7.84574L14.2714 1.4114L14.7087 1.84461C14.7091 1.84502 14.7096 1.84544 14.71 1.84585C14.8144 1.95093 14.8823 2.09639 14.8914 2.25032L14.8696 2.4836L13.8518 7.37981ZM3.33333 9.66667V20.6667H1V9.66667H3.33333Z" stroke="#FFEED3" stroke-width="2"/></svg>
-                            <span class="count" id="like-value"><?= $article->values["Likes"]; ?></span>
-                            <?php if($user) { ?>
-                                <script>
-                                    document.getElementById("like-btn").addEventListener("click", function (event) {
-                                        var xmlhttp = new XMLHttpRequest();
-                                        xmlhttp.onreadystatechange = function() {
-                                            if (this.readyState == 4 && this.status == 200) {
-                                                let res =  this.responseText.split(':');
-                                                if(res.length > 1) {
-                                                    document.getElementById("like-value").innerHTML = res[0];
-                                                    newClass = res[1];
-                                                    classList =  document.getElementById("like-btn").classList;
-                                                    if(newClass == 1) {
-                                                        classList.add("active");
-                                                    }else {
-                                                        classList.remove("active");
+                    <div class="footer">
+                        <div class="keywords">
+                            <ul>
+                                <?php foreach($article->keywords as $keyword) { ?>
+                                    <li><?= $keyword->values["LibMoCle"]; ?></li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                        <div class="like-button<?= $likeActiveClass ?>" id="like-btn">
+                                <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.8518 7.37981L13.6016 8.58333H14.8308H21.6667C22.306 8.58333 22.8333 9.11062 22.8333 9.75V11.9167C22.8333 12.0599 22.8076 12.1929 22.7554 12.3302L19.4908 19.9512L19.4907 19.9512L19.4869 19.9604C19.3138 20.3758 18.9035 20.6667 18.4167 20.6667H8.66667C8.02728 20.6667 7.5 20.1394 7.5 19.5V8.66667C7.5 8.34303 7.62757 8.05919 7.83652 7.85589L7.8417 7.85085L7.84681 7.84574L14.2714 1.4114L14.7087 1.84461C14.7091 1.84502 14.7096 1.84544 14.71 1.84585C14.8144 1.95093 14.8823 2.09639 14.8914 2.25032L14.8696 2.4836L13.8518 7.37981ZM3.33333 9.66667V20.6667H1V9.66667H3.33333Z" stroke="#FFEED3" stroke-width="2"/></svg>
+                                <span class="count" id="like-value"><?= $article->values["Likes"]; ?></span>
+                                <?php if($user) { ?>
+                                    <script>
+                                        document.getElementById("like-btn").addEventListener("click", function (event) {
+                                            var xmlhttp = new XMLHttpRequest();
+                                            xmlhttp.onreadystatechange = function() {
+                                                if (this.readyState == 4 && this.status == 200) {
+                                                    let res =  this.responseText.split(':');
+                                                    if(res.length > 1) {
+                                                        document.getElementById("like-value").innerHTML = res[0];
+                                                        newClass = res[1];
+                                                        classList =  document.getElementById("like-btn").classList;
+                                                        if(newClass == 1) {
+                                                            classList.add("active");
+                                                        }else {
+                                                            classList.remove("active");
+                                                        }
                                                     }
                                                 }
-                                            }
-                                        };
-                                        xmlhttp.open("GET", "like.php?id=" + <?= $NumArt ?>, true);
-                                        xmlhttp.send();
-                                        
-                                    })
-                                </script>
-                            <?php } ?>
+                                            };
+                                            xmlhttp.open("GET", "like.php?id=" + <?= $NumArt ?>, true);
+                                            xmlhttp.send();
+                                            
+                                        })
+                                    </script>
+                                <?php } ?>
+                        </div>
                     </div>
             </section>
             <section class="section-comments" id="comments">
@@ -162,5 +172,6 @@ $size = 40;
             </section>
         </div>
     </main>
+    <?php include "common/footer.php"; ?>
 </body>
 </html>

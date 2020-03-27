@@ -48,6 +48,7 @@ section.articles {
     article.article {
         margin-top: 30px;
         margin-bottom: 30px;
+        overflow: hidden;
 
 
         & > * {
@@ -98,6 +99,23 @@ section.articles {
                 color: white;
                 font-size: 1.1em;
                 text-align: justify;
+            }
+        }
+
+        .keywords {
+            ul {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                list-style: none;
+                padding-left: 0;
+                overflow: hidden;
+                li {
+                    padding: 2px 10px;
+                    margin: 3px;
+                    background-color: white;
+                    white-space: nowrap;
+                }
             }
         }
         .link {

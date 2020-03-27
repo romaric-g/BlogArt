@@ -38,7 +38,28 @@ body .article p {
   font-size: 1.1em;
   font-weight: 400;
 }
-body .article .like-button {
+body .article .footer {
+  margin: 40px 0;
+  display: flex;
+  justify-content: space-between;
+}
+body .article .footer .keywords ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  padding-left: 0;
+  overflow: hidden;
+  margin: 0;
+}
+body .article .footer .keywords ul li {
+  padding: 2px 10px;
+  margin: 3px;
+  background-color: white;
+  white-space: nowrap;
+  color: black;
+}
+body .article .footer .like-button {
   display: flex;
   cursor: pointer;
   align-items: center;
@@ -49,21 +70,21 @@ body .article .like-button {
   text-align: center;
   color: white;
 }
-body .article .like-button.active svg path {
+body .article .footer .like-button.active svg path {
   fill: #E2A539;
 }
-body .article .like-button.nologged {
+body .article .footer .like-button.nologged {
   opacity: 0.4;
   cursor: not-allowed;
 }
-body .article .like-button svg {
+body .article .footer .like-button svg {
   height: 1em;
 }
-body .article .like-button span.count {
+body .article .footer .like-button span.count {
   display: inline-block;
   margin: 0 auto;
 }
-body .article .like-button::after {
+body .article .footer .like-button::after {
   content: "";
   position: relative;
   position: absolute;
