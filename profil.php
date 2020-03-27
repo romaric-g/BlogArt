@@ -42,7 +42,38 @@ if(!$USER) {
 <body>
     <?php PAGEHEADER($LANG, $USER, $LANGUAGE, "./", $conn) ?>
     <main>
-
+   
+    <div class="container">
+  <div class="row">
+    <div class="col">
+    <div class="image-user">
+            <img src="https://www.gravatar.com/avatar/9d7ccc9ba7020ed15feccc1c21846ca5?d=https%3A%2F%2Fwww.cierpgaud.fr%2Fwp-content%2Fuploads%2F2018%2F07%2Favatar.jpg&s=40" height="300px" width="300px">
+        </div>
+      <div>
+      <button type="submit" class="btn btn-primary" id="change-user">Modifier le nom d'utilisateur</button>
+      </div>
+    </div>
+  
+    <div class="col-6">
+        <h1>Informations actuelles:</h1>
+    <form>
+        <div class="form-group">
+          <label class="changerutilisateur" for="exampleInputprénom1">Modifier votre Nom d'utilisateur</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ex: bièrette3322">
+        </div>
+        <div class="form-group">
+            <label class="changeremail" for="exampleInputemail1">Modifier votre adresse email</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="ex: jacques@hotmail.fr">
+          </div>
+        <div class="form-group">
+            <label class="changerpassword" for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Nouveau mot de passe">
+          </div>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+      </form>
+    </div>
+    </div>
+</div>
     </main>
 </body>
 </html>
