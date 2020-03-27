@@ -51,8 +51,8 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
     }
     
 } else if($_SERVER["REQUEST_METHOD"] == "POST") {
-    if(isset($_GET["id"])) {
-        $user = new User($_GET["id"]);
+    if(isset($_POST["id"])) {
+        $user = new User($_POST["id"]);
         $user->load($conn);
 
         $requiredParams = array("email","firstname","lastname","password","passwordconfirm");
