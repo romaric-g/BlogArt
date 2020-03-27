@@ -99,13 +99,15 @@ $size = 40;
                                         xmlhttp.onreadystatechange = function() {
                                             if (this.readyState == 4 && this.status == 200) {
                                                 let res =  this.responseText.split(':');
-                                                document.getElementById("like-value").innerHTML = res[0];
-                                                newClass = res[1];
-                                                classList =  document.getElementById("like-btn").classList;
-                                                if(newClass == 1) {
-                                                    classList.add("active");
-                                                }else {
-                                                    classList.remove("active");
+                                                if(res.length > 1) {
+                                                    document.getElementById("like-value").innerHTML = res[0];
+                                                    newClass = res[1];
+                                                    classList =  document.getElementById("like-btn").classList;
+                                                    if(newClass == 1) {
+                                                        classList.add("active");
+                                                    }else {
+                                                        classList.remove("active");
+                                                    }
                                                 }
                                             }
                                         };

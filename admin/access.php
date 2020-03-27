@@ -5,9 +5,9 @@ require_once("../../class/Auth/User.php");
 require_once("../../class/Utils/connection.php");
 require_once("../../class/Utils/ctrlSaisies.php");
 
-$user = User::getLoggedUser($conn);
+$admin = User::getLoggedUser($conn);
 
-if(!$user || !$user->isAdmin()) {
+if(!$admin || !$admin->isAdmin()) {
     header("Location: ../index.php");
     exit();
 }

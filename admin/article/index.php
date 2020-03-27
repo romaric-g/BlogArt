@@ -50,8 +50,8 @@ $articles = Article::loadAll($conn);
                     <td><?= $article->values["DtCreA"] ?></td>
                     <td><?= $article->values["Likes"] ?></td>
                     <td>
-                    <a href="show.php?id=<?= $article->primaryKeyValue ?>" class="btn btn-success">Afficher</a>
-                    <a href="update.php?id=<?= $article->primaryKeyValue ?>" class="btn btn-info">Update</a>
+                    <a href="show.php?id=<?= $article->primaryKeyValue ?>" class="btn btn-info">Afficher</a>
+                    <a href="update.php?id=<?= $article->primaryKeyValue ?>" class="btn btn-primary">Update</a>
                         <a href="delete.php?id=<?= $article->primaryKeyValue ?>" class="btn btn-danger">Supprimer</a>
                     </td>
                 </tr>

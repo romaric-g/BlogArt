@@ -11,4 +11,8 @@ try {
     catch(PDOException $e) {
     echo "Impossible de se connecter!";
 }
+unset($host);
+unset($base);
+unset($user);
+unset($pass);
 ?>
