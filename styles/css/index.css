@@ -24,4 +24,67 @@ main .showmore .btn.btn-show {
   font-size: 1.4em;
 }
 
+.salut {
+  font-size: 1.2em;
+  font-family:"Montserrat" ;
+  margin-left: 5em;
+  margin-right: 5em;
+  transition: 0.2s ease;
+  color:#FFEED3;
+  
+}
+
+.svg {
+  width: 6em;
+  height: 6em;
+  transition: 0.2s ease;
+}
+
+.svg:hover {
+  transform: scale(1.05);
+}
+
+.f {
+  font-family: "Montserrat";
+  font-size: 1em;
+  margin-left: 2em;
+  margin-top: 1em;
+  margin-bottom: 0;
+}
+
+.salut:hover {
+  transform: scale(1.05);
+  color: #E2A539;
+  cursor: pointer;
+}
+
+.boutonpetit {
+  transition: 0.2s ease;
+  transition-property: transform();
+}
+
+.boutonpetit:hover {
+  transform: scale(1.02);
+}
+
+.bouton {
+  transition: 0.2s ease;
+  transition-property: transform();
+  width: auto;
+  height: auto;
+}
+
+.bouton:hover {
+  transform: scale(1.05);
+}
+
+#page-content {
+  flex: 1 0 auto;
+
+}
+
+#sticky-footer {
+  flex-shrink: none;
+}
+
 /*# sourceMappingURL=index.css.map */
