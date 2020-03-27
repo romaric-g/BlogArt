@@ -85,8 +85,8 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
                 $user->lastname = $_POST["lastname"];
                 $user->setPass($_POST["password"]);
                 if($user->getPseudo() != $admin->getPseudo()) {
-                    $admin = isset($_POST["admin"]);
-                    $user->setAdminToSQL($admin, $conn);
+                    $isAdmin = isset($_POST["admin"]);
+                    $user->setAdminToSQL($isAdmin, $conn);
                 }
                 $user->update($conn);
                 
@@ -165,7 +165,7 @@ if(!$user || !$user->loaded) {
                                         </label>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-inscription">Modifier le compte</button>
+                                <button type="submit" class="btn btn-success">Modifier le compte</button>
                                 <a href="index.php" class="btn btn-info">Retour</a>   
         </form>
     </div>

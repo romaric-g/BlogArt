@@ -126,7 +126,7 @@ function getSet($name) {
                                         </label>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-inscription">Ajouter le compte</button>
+                                <button type="submit" class="btn btn-success">Ajouter le compte</button>
                                 <a href="index.php" class="btn btn-info">Retour</a>   
         </form>
     </div>
