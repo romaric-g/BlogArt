@@ -12,6 +12,19 @@ require_once("./common/header.php");
 /* LANGUAGE SYSTEM */
 require_once("./lang/language.php");
 
+
+define('TARGET', 'uploads/');    // Repertoire cible
+define('MAX_SIZE', 100000000);    // Taille max en octets du fichier
+define('WIDTH_MAX', 4000);    // Largeur max de l'image en pixels
+define('HEIGHT_MAX', 4000);    // Hauteur max de l'image en pixels
+
+$tabExt = array('jpg','png','jpeg');    // Extensions autorisees
+$infosImg = array();
+ 
+$extension = '';
+$message = '';
+$nomImage = '';
+
 $LANG = $_SESSION["LANG"];
 $LANGUAGE = Language::INIT($LANG, "./");
 
@@ -83,6 +96,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         if( !isset($requiredParams["password"]) && !isset($requiredParams["passwordconfirm"]) && $_POST["password"] != $_POST["passwordconfirm"] ) {
             $registerError["passwordconfirm"] = "Les mots de passe ne corresponde pas";
         }
+        // On verifie si le champ est rempli
+        if( !empty($_FILES['file']['name']) ) {
+            // Recuperation de l'extension du fichier
+            $extension  = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+            // On verifie l'extension du fichier
+            if(in_array(strtolower($extension),$tabExt) && !empty($_FILES['file']['tmp_name'])){
+                // On recupere les dimensions du fichier
+                $infosImg = getimagesize($_FILES['file']['tmp_name']);
+                // On verifie le type de l'image
+                if($infosImg[2] >= 1 && $infosImg[2] <= 14){
+                    // On verifie les dimensions et taille de l'image
+                    if(($infosImg[0] <= WIDTH_MAX) && ($infosImg[1] <= HEIGHT_MAX) && (filesize($_FILES['file']['tmp_name']) <= MAX_SIZE)){
+                        // Parcours du tableau d'erreurs
+                        if(isset($_FILES['file']['error']) && UPLOAD_ERR_OK === $_FILES['file']['error']){
+                            // On renomme le fichier
+                            $nomImage = $USER->getPseudo() . "." . $extension;
+                            // Si c'est OK, on teste l'upload
+                            if(move_uploaded_file($_FILES['file']['tmp_name'], TARGET.$nomImage)){
+                                for ($i=0; $i < sizeof($tabExt); $i++) {
+                                    $fileName = TARGET. $USER->getPseudo() . "." . $tabExt[$i];
+                                    if(file_exists ($fileName) && $extension != $tabExt[$i] ){
+                                        unlink($fileName);//On supprime les images du meme nom, avec une extension differente
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         if(empty($registerError)) {
             try {
@@ -125,23 +168,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <main>
    
     <div class="container profil">
-        <div class="row justify-content-center">
-            <div class="col-10 head">
-                <h1 class="title">Vos informations</h1>
-                <?php if($error || $success) { ?>
-                    <div class="alert alert-<?php echo ($error ? "danger" : "success")?>" role="alert">
-                        <?php echo $error ? $error : $success; ?>
-                    </div>
-                <?php } ?>
-            </div>
-            <div class="col-md-3 left">
-                <div class="image-user">
-                    <img src="https://www.gravatar.com/avatar/9d7ccc9ba7020ed15feccc1c21846ca5?d=https%3A%2F%2Fwww.cierpgaud.fr%2Fwp-content%2Fuploads%2F2018%2F07%2Favatar.jpg&s=40" height="300px" width="300px">
+        <form enctype="multipart/form-data" method="POST" action="">
+            <div class="row justify-content-center">
+                <div class="col-10 head">
+                    <h1 class="title">Vos informations</h1>
+                    <?php if($error || $success) { ?>
+                        <div class="alert alert-<?php echo ($error ? "danger" : "success")?>" role="alert">
+                            <?php echo $error ? $error : $success; ?>
+                        </div>
+                    <?php } ?>
                 </div>
-            </div>
-            
-            <div class="col-md-7 right">
-                    <form method="POST" action="">
+                <div class="col-md-3 left">
+                    <div class="image-user">
+                        <img src="<?= "./class/Utils/privateProfileImage.php?id=" . urlencode($USER->getPseudo()); ?>" height="300px" width="300px">
+                    </div>
+                    <input class="inputfile" name="file" type="file" id="file" accept=".png,.jpg,.jpeg"/>
+                    <label for="file">Change image</label>
+                </div>
+                
+                <div class="col-md-7 right">
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col">
@@ -176,9 +221,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                         </div>
                         <button type="submit" class="btn btn-edit">Modifier</button>
-                    </form>
+                    
+                </div>
             </div>
-        </div>
+        </form>
     </div>
     </main>
 </body>

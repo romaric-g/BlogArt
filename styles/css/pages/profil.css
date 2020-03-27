@@ -66,6 +66,12 @@
   height: 100%;
   object-fit: cover;
 }
+.container.profil .left input {
+  display: none;
+}
+.container.profil .left label {
+  cursor: pointer;
+}
 .container.profil .left button {
   margin-top: 30px;
 }

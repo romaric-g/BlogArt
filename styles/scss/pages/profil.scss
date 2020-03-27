@@ -74,6 +74,14 @@
             }
         }
         
+        input {
+            display: none;
+        }
+
+        label {
+            cursor: pointer;
+        }
+
         button {
             margin-top: 30px;
         }

@@ -43,7 +43,7 @@ $artSeparator = 0;
         <?php foreach($users as $user){ ?>
             <div class="col-md-6 col-lg-4 col-xl-3">
             <div class="card bg-dark" style="width: 100%; margin: 15px 0">
-                <img class="card-img-top" src="https://www.cierpgaud.fr/wp-content/uploads/2018/07/avatar.jpg" alt="Card image cap">
+                <img class="card-img-top" src="<?= "./../../class/Utils/privateProfileImage.php?id=" . urlencode($user->getPseudo()); ?>" alt="Card image cap">
                 <div class="card-body">
         <h5 class="card-title"><?= $user->firstname . " " . $user->lastname ?><?php if($user->isAdmin()) { ?> <span class="badge badge-danger">Admin</span><?php } ?></h5>
                     <p class="card-text"><?= $user->email . "<br>" . $user->getPseudo() ?></p>
