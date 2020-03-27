@@ -29,11 +29,14 @@ $articles = Article::loadAll($conn, array(), "NumLang = '$LANG'", "ORDER BY DtCr
     <title>La pression bordelaise</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/css/common.css">
-    <link rel="stylesheet" href="styles/css/nav.css">
-    <link rel="stylesheet" href="styles/css/home.css">
-    <link rel="stylesheet" href="styles/css/m-home.css">
-    <link rel="stylesheet" href="styles/css/index.css">
-    <link rel="stylesheet" href="styles/css/articles.css">
+    <link rel="stylesheet" href="styles/css/menu/nav.css">
+    <link rel="stylesheet" href="styles/css/menu/home.css">
+    <link rel="stylesheet" href="styles/css/menu/m-home.css">
+    <link rel="stylesheet" href="styles/css/pages/index.css">
+
+    <link rel="stylesheet" href="styles/css/articles/articles.css">
+    <link rel="stylesheet" href="styles/css/articles/articlecard.css">
+
     <link rel="stylesheet" href="styles/css/footer.css">
     <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
     <script src="https://code.createjs.com/1.0.0/tweenjs.min.js"></script>

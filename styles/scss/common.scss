@@ -1,4 +1,10 @@
 body {
     background-color: #2B2B2B;
     font-family: 'Bebas Neue', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    main {
+        flex: 1;
+    }
 }

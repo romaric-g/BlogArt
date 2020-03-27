@@ -1,5 +1,5 @@
 <?php function printArticleCard($article, $LANGUAGE, $keywords) { ?>
-    <article class="article row justify-content-center">
+    <article class="article-card row justify-content-center">
         <div class="article-illu col-md-4">
             <img src="<?= $article->values["UrlPhotA"] ?>" alt="">
         </div>

@@ -1,0 +1,33 @@
+header {
+  background-image: url("../../../assets/images/home.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+main {
+  position: relative;
+  background-color: #2B2B2B;
+}
+main:before {
+  content: "";
+  position: absolute;
+  top: -68px;
+  height: 70px;
+  background-color: #2B2B2B;
+  left: 0;
+  right: 0;
+  clip-path: url(#courbe);
+}
+main .showmore {
+  text-align: center;
+}
+main .showmore .btn.btn-show {
+  text-align: center;
+  background: #FFEED3;
+  border-radius: 4px;
+  color: #2B2B2B;
+  padding: 4px 45px;
+  font-size: 1.4em;
+}
+
+/*# sourceMappingURL=index.css.map */

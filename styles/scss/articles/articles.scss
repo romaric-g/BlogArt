@@ -1,0 +1,46 @@
+
+body {
+    background-color: #2B2B2B;
+}
+
+section.articles {
+    padding-top: 70px;
+    padding-bottom: 70px;
+    text-align: center;
+
+    p {
+        margin: 0;
+    }
+    
+    .section-title {
+        position: relative;
+        display: inline-block;
+        color: #FFEED3;
+        font-size: 3.2em;
+        line-height: 1em;
+        text-align: center;
+        margin-bottom: 4rem;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: -4px;
+            height: 4px;
+            left: 0;
+            right: 0;
+            background-color: #E2A539;
+        }
+        span {
+            position: absolute;
+            font-size: 1.2rem;
+            line-height: 1em;
+            font-family: 'Montserrat';
+            top: 100%;
+            white-space: nowrap;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

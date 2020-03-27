@@ -90,8 +90,10 @@ if($user) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/css/common.css">
     <link rel="stylesheet" href="styles/css/auth.css">
-    <link rel="stylesheet" href="styles/css/nav.css">
-    <link rel="stylesheet" href="styles/css/m-home.css">
+
+    <link rel="stylesheet" href="styles/css/menu/nav.css">
+    <link rel="stylesheet" href="styles/css/menu/m-home.css">
+
     <link rel="stylesheet" href="styles/css/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>

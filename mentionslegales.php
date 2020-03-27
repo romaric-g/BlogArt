@@ -23,11 +23,13 @@ $user = User::getLoggedUser($conn);
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/css/common.css">
-    <link rel="stylesheet" href="styles/css/header.css">
-    <link rel="stylesheet" href="styles/css/m-header.css">
-    <link rel="stylesheet" href="styles/css/nav.css">
-    <link rel="stylesheet" href="styles/css/nav_dark.css">
-    <link rel="stylesheet" href="styles/css/mentionslegales.css">
+
+    <link rel="stylesheet" href="styles/css/menu/header.css">
+    <link rel="stylesheet" href="styles/css/menu/m-header.css">
+    <link rel="stylesheet" href="styles/css/menu/nav.css">
+    <link rel="stylesheet" href="styles/css/menu/nav_dark.css">
+    <link rel="stylesheet" href="styles/css/pages/mentionslegales.css">
+
     <link rel="stylesheet" href="styles/css/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">

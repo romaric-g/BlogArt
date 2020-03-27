@@ -1,0 +1,73 @@
+article.article-card {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+article.article-card > * {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+article.article-card .article-illu img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+article.article-card .article-content {
+  display: flex;
+  flex-direction: column;
+}
+article.article-card .article-content .title {
+  text-align: left;
+  position: relative;
+  padding-left: 14px;
+  color: #FFEED3;
+  font-size: 1.75rem;
+  line-height: 1em;
+}
+article.article-card .article-content .title:before {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 0;
+  height: 100%;
+  width: 4px;
+  background: #E2A539;
+}
+article.article-card .article-content .text {
+  margin: 10px 0;
+  flex: 1;
+  text-align: right;
+}
+article.article-card .article-content .text p {
+  font-family: Montserrat;
+  color: white;
+  font-size: 1.1em;
+  text-align: justify;
+}
+article.article-card .article-content .keywords ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  padding-left: 0;
+  overflow: hidden;
+}
+article.article-card .article-content .keywords ul li {
+  padding: 2px 10px;
+  margin: 3px;
+  background-color: white;
+  white-space: nowrap;
+}
+article.article-card .article-content .link {
+  text-align: right;
+}
+article.article-card .article-content .link .btn {
+  background: #FFEED3;
+  border-radius: 4px;
+  color: #2B2B2B;
+  padding: 4px 45px;
+}
+
+/*# sourceMappingURL=articlecard.css.map */
