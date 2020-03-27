@@ -20,6 +20,7 @@
 
     .head {
         text-align: center;
+
         .title {
             position: relative;
             display: inline-block;
@@ -35,6 +36,12 @@
                 left: 0;
                 right: 0;
                 background-color: #E2A539;
+            }
+        }
+
+        @media screen and (max-width: 575px) {
+            .title {
+                font-size: 2em;
             }
         }
 

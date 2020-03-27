@@ -38,14 +38,19 @@ function NAV($langSelectedID, $user, $language, $rootPath, $conn) {
                         ?>  
                     </ul>
                 </div>
-                <div class="btn-member">
+               
     <?php if($user) { ?>
+            <div class="btn btn-logout">
+                <a href="actions/logout.php">Déconnexion</a>
+            </div>
+            <div class="btn btn-member">
                 <a href="profil"><?= $user->firstname . " " . substr($user->lastname, 0, 1) . "."; ?></a>
+            </div>
     <?php }else{ ?>
+            <div class="btn btn-member">
                 <a href="login.php"><?= $language->for("auth","startbutton") ?></a>
-
+            </div>
     <?php } ?>
-                </div>
            </div>
             <ul class="links" id="links">
                 <li><a href="<?= $rootPath ?>index.php" class="btn">Home</a></li>

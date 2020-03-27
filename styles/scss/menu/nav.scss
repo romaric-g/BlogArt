@@ -3,6 +3,7 @@ nav {
     .head {
         font-size: 1.1em;
         display: flex;
+        flex-wrap: wrap;
         justify-content: flex-end;
         align-items: center;
 
@@ -70,7 +71,7 @@ nav {
             }
         }
 
-        .btn-member {
+        .btn {
             height: 100%;
             position: relative;
             padding: 0 14px;
@@ -83,11 +84,11 @@ nav {
                 color: #FFF;
                 text-decoration: none;
             }
-
             &:hover a {
                 transform: translateY(-4px);
             }
-
+        }
+        .btn-member {
             &::before {
                 content: "";
                 position: absolute;

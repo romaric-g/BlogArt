@@ -4,6 +4,7 @@ nav {
 nav .head {
   font-size: 1.1em;
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
 }
@@ -62,20 +63,20 @@ nav .head .lang ul li a {
 nav .head .lang ul li a:hover {
   text-decoration: none;
 }
-nav .head .btn-member {
+nav .head .btn {
   height: 100%;
   position: relative;
   padding: 0 14px;
   font-size: 1em;
 }
-nav .head .btn-member a {
+nav .head .btn a {
   display: block;
   transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
   transform: translateY(0);
   color: #FFF;
   text-decoration: none;
 }
-nav .head .btn-member:hover a {
+nav .head .btn:hover a {
   transform: translateY(-4px);
 }
 nav .head .btn-member::before {
