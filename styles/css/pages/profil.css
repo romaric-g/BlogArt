@@ -1,21 +1,63 @@
-body {
+.container.profil {
+  margin-top: 50px;
+}
+.container.profil body {
   background-color: #2b2b2b;
 }
-
-.changerprenom {
+.container.profil .changerutilisateur {
+  color: #FFEED3;
+  font-size: 24px;
+}
+.container.profil .changeremail {
+  color: #FFEED3;
+  font-size: 24px;
+}
+.container.profil .changerpassword {
+  color: #FFEED3;
+  font-size: 24px;
+}
+.container.profil .form-group {
+  margin-top: 50px;
+}
+.container.profil .col-6 {
+  margin-top: 70px;
+}
+.container.profil h1 {
   color: #FFEED3;
 }
-
-.changernom {
-  color: #FFEED3;
+.container.profil .btn-primary {
+  background-color: #FFEED3;
+  color: #2b2b2b;
 }
-
-.changeremail {
-  color: #FFEED3;
+.container.profil .btn-primary:hover {
+  background-color: white;
+  color: #2b2b2b;
+  transform: scale(1.2);
 }
-
-.changerpassword {
-  color: #FFEED3;
+.container.profil .btn-primary:active {
+  background-color: #FFEED3;
+  color: #2b2b2b;
+}
+.container.profil .left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.container.profil .left .image-user {
+  height: 200px;
+  width: 200px;
+}
+.container.profil .left .image-user img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.container.profil .left button {
+  margin-top: 30px;
+}
+.container.profil .image-user:hover {
+  transform: rotate(0.02turn);
 }
 
 /*# sourceMappingURL=profil.css.map */
