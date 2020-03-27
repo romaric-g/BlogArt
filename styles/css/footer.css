@@ -1,0 +1,60 @@
+footer .container .links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 767px) {
+  footer .container .links {
+    flex-direction: column;
+  }
+  footer .container .links .salut {
+    margin: 0 1em;
+    order: 10;
+  }
+}
+footer .container .salut {
+  font-size: 1.2em;
+  font-family: "Montserrat";
+  margin-left: 5em;
+  margin-right: 5em;
+  transition: 0.2s ease;
+  color: #FFEED3;
+}
+footer .container .svg {
+  width: 6em;
+  height: 6em;
+  transition: 0.2s ease;
+}
+footer .container .svg:hover {
+  transform: scale(1.05);
+}
+footer .container .f {
+  font-family: "Montserrat";
+  font-size: 1em;
+  margin-left: 2em;
+  margin-top: 1em;
+  margin-bottom: 0;
+}
+footer .container .salut:hover {
+  transform: scale(1.05);
+  color: #E2A539;
+  cursor: pointer;
+}
+footer .container .boutonpetit {
+  transition: 0.2s ease;
+  transition-property: transform();
+}
+footer .container .boutonpetit:hover {
+  transform: scale(1.02);
+}
+footer .container .bouton {
+  transition: 0.2s ease;
+  transition-property: transform();
+  width: auto;
+  height: auto;
+}
+footer .container .bouton:hover {
+  transform: scale(1.05);
+}
+
+/*# sourceMappingURL=footer.css.map */

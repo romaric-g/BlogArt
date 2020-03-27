@@ -61,6 +61,7 @@ $size = 40;
     <link rel="stylesheet" href="styles/css/nav_dark.css">
     <link rel="stylesheet" href="styles/css/article.css">
     <link rel="stylesheet" href="styles/css/article/comments.css">
+    <link rel="stylesheet" href="styles/css/footer.css">
     <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
     <script src="https://code.createjs.com/1.0.0/tweenjs.min.js"></script>
     <title>Document</title>
@@ -171,5 +172,6 @@ $size = 40;
             </section>
         </div>
     </main>
+    <?php include "common/footer.php"; ?>
 </body>
 </html>

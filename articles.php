@@ -41,6 +41,7 @@ $articles = Article::loadAll($conn, array(), $where, "ORDER BY DtCreA DESC");
     <link rel="stylesheet" href="styles/css/nav.css">
     <link rel="stylesheet" href="styles/css/nav_dark.css">
     <link rel="stylesheet" href="styles/css/articles.css">
+    <link rel="stylesheet" href="styles/css/footer.css">
     <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
     <script src="https://code.createjs.com/1.0.0/tweenjs.min.js"></script>
 </head>
@@ -55,5 +56,6 @@ $articles = Article::loadAll($conn, array(), $where, "ORDER BY DtCreA DESC");
             }?>
         </section>
     </main>
+    <?php include "common/footer.php"; ?>
 </body>
 </html>
