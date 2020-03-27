@@ -44,8 +44,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $likeActiveClass = $user ? (Comment::hasFakeComToLike($user->getPseudo(), $NumArt, $conn) ? " active" : "") : " nologged";
-$default = "https://www.cierpgaud.fr/wp-content/uploads/2018/07/avatar.jpg";
-$size = 40;   
 
 ?>
 <!DOCTYPE html>
@@ -153,14 +151,10 @@ $size = 40;
                     <?php } ?>
                 </div>
                 <div class="comments row justify-content-center">
-                    <?php foreach($comments as $comment) { 
-                        $email = $comment->values["EmailAuteur"];
-                        $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
- 
-                    ?>
+                    <?php foreach($comments as $comment) { ?>
                         <div class="comment col-md-10">
                             <div class="photo">
-                                <img src="<?= $grav_url ?>" alt="">
+                                <img src="<?= "./class/Utils/privateProfileImage.php?id=" . urlencode($comment->values["EmailAuteur"]); ?>" alt="">
                             </div>
                             <div class="comment-texts">
                                 <div class="comment-title-section">

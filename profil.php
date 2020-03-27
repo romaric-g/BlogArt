@@ -96,28 +96,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         if( !isset($requiredParams["password"]) && !isset($requiredParams["passwordconfirm"]) && $_POST["password"] != $_POST["passwordconfirm"] ) {
             $registerError["passwordconfirm"] = "Les mots de passe ne corresponde pas";
         }
-        // On verifie si le champ est rempli
         if( !empty($_FILES['file']['name']) ) {
-            // Recuperation de l'extension du fichier
             $extension  = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
-            // On verifie l'extension du fichier
             if(in_array(strtolower($extension),$tabExt) && !empty($_FILES['file']['tmp_name'])){
-                // On recupere les dimensions du fichier
                 $infosImg = getimagesize($_FILES['file']['tmp_name']);
-                // On verifie le type de l'image
                 if($infosImg[2] >= 1 && $infosImg[2] <= 14){
-                    // On verifie les dimensions et taille de l'image
                     if(($infosImg[0] <= WIDTH_MAX) && ($infosImg[1] <= HEIGHT_MAX) && (filesize($_FILES['file']['tmp_name']) <= MAX_SIZE)){
-                        // Parcours du tableau d'erreurs
                         if(isset($_FILES['file']['error']) && UPLOAD_ERR_OK === $_FILES['file']['error']){
-                            // On renomme le fichier
                             $nomImage = $USER->getPseudo() . "." . $extension;
-                            // Si c'est OK, on teste l'upload
                             if(move_uploaded_file($_FILES['file']['tmp_name'], TARGET.$nomImage)){
                                 for ($i=0; $i < sizeof($tabExt); $i++) {
                                     $fileName = TARGET. $USER->getPseudo() . "." . $tabExt[$i];
                                     if(file_exists ($fileName) && $extension != $tabExt[$i] ){
-                                        unlink($fileName);//On supprime les images du meme nom, avec une extension differente
+                                        unlink($fileName);
                                     }
                                 }
                             }
