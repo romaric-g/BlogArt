@@ -2,4 +2,22 @@
   color: white;
 }
 
+.btn, .btn:hover, .btn:focus, .btn:active {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+}
+.btn:hover, .btn:focus, .btn:active, .btn:hover:hover, .btn:hover:focus, .btn:hover:active, .btn:focus:hover, .btn:focus:focus, .btn:focus:active, .btn:active:hover, .btn:active:focus, .btn:active:active {
+  background-color: #E2A539;
+}
+
+.btn-danger, .btn-danger:hover {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+}
+.btn-danger:hover, .btn-danger:hover:hover {
+  background-color: #dc3545;
+}
+
 /*# sourceMappingURL=commons.css.map */

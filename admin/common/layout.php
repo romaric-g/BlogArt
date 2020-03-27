@@ -13,20 +13,23 @@ function LAYOUT__($select = "articles"){
                  </div>
                  <nav class="menu-nav">
                      <ul class="admin-panel-links">
-                         <li class="btn <?= strpos($select, "/admin/article/") ? 'btn-active' : '' ?>">
+                         <li class="<?= strpos($select, "/admin/article/") ? 'btn-active' : '' ?>">
                            <a href="../article/index.php">Articles</a>  
                          </li>
-                         <li class="btn <?= strpos($select, "/admin/comment/") ? 'btn-active' : '' ?>">   
+                         <li class="<?= strpos($select, "/admin/comment/") ? 'btn-active' : '' ?>">   
                              <a href="../comment/index.php">Commentaires</a>
                          </li>
-                         <li class="btn <?= strpos($select, "/admin/keyword/") ? 'btn-active' : '' ?>">
+                         <li class="<?= strpos($select, "/admin/keyword/") ? 'btn-active' : '' ?>">
                              <a href="../keyword/index.php">Mots clés</a>
                          </li>
-                         <li class="btn <?= strpos($select, "/admin/langue/") ? 'btn-active' : '' ?>">     
+                         <li class="<?= strpos($select, "/admin/langue/") ? 'btn-active' : '' ?>">     
                          <a href="../langue/index.php">Langues</a>
                          </li>
-                         <li class="btn <?= strpos($select, "/admin/theme/") ? 'btn-active' : '' ?>">
+                         <li class="<?= strpos($select, "/admin/theme/") ? 'btn-active' : '' ?>">
                          <a href="../theme/index.php">Themes</a>
+                         </li>
+                         <li class="<?= strpos($select, "/admin/user/") ? 'btn-active' : '' ?>">
+                         <a href="../user/index.php">Utilisateurs</a>
                          </li>
                      </ul>
                  </nav>

@@ -1,3 +1,23 @@
 *, table, td, tr, th{
     color: white;
 }
+
+.btn, .btn:hover, .btn:focus, .btn:active {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+
+    &:hover, &:focus, &:active  {
+        background-color: #E2A539;
+    }
+}
+
+.btn-danger, .btn-danger:hover {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+
+    &:hover {
+        background-color: #dc3545;
+    }
+}

@@ -36,7 +36,7 @@ body.comments .row.row-comments header .logo {
 body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links {
   padding-top: 250px;
 }
-body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn {
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li {
   position: relative;
   padding: 0;
   margin: 2px 0;
@@ -46,21 +46,21 @@ body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn 
   text-align: left;
   display: block !important;
 }
-body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn a {
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li a {
   display: block;
   line-height: 1em;
   color: #000;
 }
-body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn a:hover {
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li a:hover {
   text-decoration: none;
 }
-body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn:not(.btn-active):hover a {
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li:not(.btn-active):hover a {
   color: #E2A539;
 }
-body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn.btn-active {
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn-active {
   transform: translateX(10px);
 }
-body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn.btn-active::before {
+body.comments .row.row-comments header nav.menu-nav ul.admin-panel-links li.btn-active::before {
   content: "";
   position: absolute;
   display: block;

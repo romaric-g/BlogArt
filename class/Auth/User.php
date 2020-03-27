@@ -13,6 +13,8 @@ class User {
     public $lastname;
     public $firstname;
     public $email;
+
+    public $loaded = false;
     
 
     public function __construct($pseudo)
@@ -76,7 +78,6 @@ class User {
             $prepare = $conn->prepare($request);
             $prepare->execute();
         } catch (\PDOException $th) {
-            var_dump($th);
             $this->error = $th;
         }
     }
@@ -93,6 +94,7 @@ class User {
             $this->lastname = $row["LastName"];
             $this->firstname = $row["FirstName"];
             $this->email = $row["EMail"];
+            $this->loaded = TRUE;
         }
     }
 
@@ -112,8 +114,6 @@ class User {
         }
     }
 
-
-
     private function setPseudo($pseudo) {
         $this->pseudo = self::realPseudo($pseudo);
     }
@@ -123,25 +123,46 @@ class User {
     public static function realPseudo($pseudo) : string {
         return ltrim($pseudo, '*');
     }
-    public function setAdmin($bool) {
+    private function setAdmin($bool) {
         $this->admin = $bool;
+    }
+    public function setAdminToSQL($bool, $conn) {
+        $DBPseudoFormat = $this->getDBPseudoFormat();
+        $newDBPseudoFormat = static::getDBPseudoFormatFrom($bool, ($this->getPseudo()) );
+        $this->setAdmin($bool);
+        $request = "UPDATE USER SET Login='$newDBPseudoFormat' WHERE Login = '$DBPseudoFormat'";
+        try {
+            $prepare = $conn->prepare($request);
+            $prepare->execute();
+        } catch (\PDOException $th) {
+            
+        }
     }
     public function isAdmin() : bool {
         return $this->admin;
     }
+    public function getPass() {
+        return $this->pass;
+    }
+    public function setPass($pass) {
+        $this->pass = $pass;
+    }
     private function getDBPseudoFormat() {
-        return ($this->admin) ? "*" : "" . $this->pseudo;
+        return self::getDBPseudoFormatFrom($this->admin, $this->pseudo);
+    }
+    private static function getDBPseudoFormatFrom($admin, $pseudo) {
+        return (($admin) ? "*" : "") . $pseudo;
     }
     private function find($conn) {
         return self::findUserRowFromLogin($this->pseudo, $conn);
     }
-    private function findUserRowFromLogin($login, $conn) {
+    private static function findUserRowFromLogin($login, $conn) {
         $likeSearch = '%' . $login;
         $request = "SELECT * FROM USER WHERE LOGIN LIKE '$likeSearch'";
         $result = $conn->query($request);
         while($row = $result->fetch()){
             $rowPseudo = self::realPseudo($row["Login"]);
-            if($rowPseudo === $this->pseudo) {
+            if($rowPseudo === $login) {
                 return $row;
             }
         }
@@ -194,12 +215,32 @@ class User {
                     break;
                 }
             }
-
-            
         }else{
             throw new Exception('Cette adresse email est déja utilisé');
         }
         return $user;
+    }
+
+    public function delete($conn) {
+        $format = $this->getDBPseudoFormat();
+        $request = "DELETE FROM USER WHERE LOGIN = '$format'";
+        $conn->exec($request);
+    }
+
+        
+    public static function loadAll($connection)
+    {
+        $requete = "SELECT * FROM USER";
+        $result = $connection->query($requete);
+
+        $users = array();
+
+        while($userRow = $result->fetch()) {
+            $user = new static($userRow["Login"]);
+            $user->loadFromRow($userRow);
+            array_push($users, $user);
+        }
+        return $users;
     }
 }
 
