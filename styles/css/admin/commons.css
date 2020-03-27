@@ -1,23 +1,20 @@
-*, table, td, tr, th {
+body {
+  font-family: "Bebas Neue", sans-serif;
+}
+body input, body p, body textarea, body option, body select {
+  font-family: "Montserrat", sans-serif;
+  color: #000;
+}
+body table, body td, body tr, body th, body p, body h1, body h2, body h3, body h4, body h5, body label, body div {
   color: white;
 }
-
-.btn, .btn:hover, .btn:focus, .btn:active {
-  background-color: transparent;
+body .list-group, body .list-group li {
   color: #fff;
-  border: 1px solid #fff;
+  background-color: transparent !important;
+  border-color: transparent;
 }
-.btn:hover, .btn:focus, .btn:active, .btn:hover:hover, .btn:hover:focus, .btn:hover:active, .btn:focus:hover, .btn:focus:focus, .btn:focus:active, .btn:active:hover, .btn:active:focus, .btn:active:active {
-  background-color: #E2A539;
-}
-
-.btn-danger, .btn-danger:hover {
-  background-color: transparent;
-  color: #fff;
-  border: 1px solid #fff;
-}
-.btn-danger:hover, .btn-danger:hover:hover {
-  background-color: #dc3545;
+body .list-group {
+  margin-bottom: 0.5rem;
 }
 
 /*# sourceMappingURL=commons.css.map */

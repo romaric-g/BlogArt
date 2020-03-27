@@ -4,6 +4,7 @@
     overflow: hidden;
     clip-path: url(#topbar);
     background-color: #FFEED3;
+    position: relative;
   }
 
   .header {
@@ -11,6 +12,7 @@
     min-height: 0;
     max-height: 100px;
     transition: max-height 0.4s;
+    position: relative;
   }
   .header .head *:hover {
     transform: translateY(0) !important;

@@ -1,23 +1,25 @@
-*, table, td, tr, th{
-    color: white;
-}
+body {
+    font-family: "Bebas Neue", sans-serif;
 
-.btn, .btn:hover, .btn:focus, .btn:active {
-    background-color: transparent;
-    color: #fff;
-    border: 1px solid #fff;
-
-    &:hover, &:focus, &:active  {
-        background-color: #E2A539;
+    input, p, textarea, option, select {
+        font-family: 'Montserrat', sans-serif;
+        color: #000;
     }
-}
 
-.btn-danger, .btn-danger:hover {
-    background-color: transparent;
-    color: #fff;
-    border: 1px solid #fff;
-
-    &:hover {
-        background-color: #dc3545;
+    table, td, tr, th, p, h1, h2, h3, h4, h5, label, div{
+        color: white;
     }
+    
+    .list-group, .list-group li {
+        color: #fff;
+        background-color: transparent!important;
+        border-color: transparent;
+    }
+    .list-group {
+        margin-bottom: .5rem;
+    }
+    
+
 }
+
+

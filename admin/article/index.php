@@ -22,7 +22,7 @@ $articles = Article::loadAll($conn);
     <title>La pression bordelaise</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../styles/css/admin/commons.css">
-    <link rel="stylesheet" href="../../styles/css/admin/commentaires.css">
+    <link rel="stylesheet" href="../../styles/css/admin/layout.css">
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
@@ -45,13 +45,14 @@ $articles = Article::loadAll($conn);
         </thead>
         <tbody>
             <?php foreach($articles as $article){ ?>
+                
                 <tr>
                     <td><?= $article->values["LibTitrA"] ?></td>
                     <td><?= $article->values["DtCreA"] ?></td>
                     <td><?= $article->values["Likes"] ?></td>
                     <td>
                     <a href="show.php?id=<?= $article->primaryKeyValue ?>" class="btn btn-info">Afficher</a>
-                    <a href="update.php?id=<?= $article->primaryKeyValue ?>" class="btn btn-primary">Update</a>
+                    <a href="update.php?id=<?= $article->primaryKeyValue ?>" class="btn btn-info">Update</a>
                         <a href="delete.php?id=<?= $article->primaryKeyValue ?>" class="btn btn-danger">Supprimer</a>
                     </td>
                 </tr>

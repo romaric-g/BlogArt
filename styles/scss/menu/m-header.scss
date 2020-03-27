@@ -4,12 +4,14 @@
         overflow: hidden;
         clip-path: url(#topbar);
         background-color: #FFEED3;
+        position: relative;
     }
     .header {
         height: unset;
         min-height: 0;
         max-height: 100px;
         transition: max-height .4s;
+        position: relative;
         .head {
             *:hover {
                 transform: translateY(0)!important;  

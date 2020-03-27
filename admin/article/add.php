@@ -65,7 +65,7 @@ $keywords = $conn->query($requete);
     <title>La pression bordelaise</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../styles/css/admin/commons.css">
-    <link rel="stylesheet" href="../../styles/css/admin/commentaires.css">
+    <link rel="stylesheet" href="../../styles/css/admin/layout.css">
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
@@ -85,16 +85,21 @@ $keywords = $conn->query($requete);
             <?= (new TextArea("LibConclA", "Conclusion"))->row(3)->feedback($feedbacks, $_POST)->HTML(); ?>
             <?= (new TextArea("UrlPhotA", "Lien de la photo"))->feedback($feedbacks, $_POST)->HTML(); ?>
 
-            <div class="input-group mb-3">
-                    <?= (new SelectInput("NumLang","Langue"))->set($langues, "NumLang","Lib1Lang")->select('FRAN01')->HTML() ?>
-                    <?= (new SelectInput("NumThem","Thématique"))->set($thematiques, "NumThem","LibThem")->HTML() ?>
-                    <?= (new SelectInput("NumAngl","Angle"))->set($angles, "NumAngl","LibAngl")->HTML() ?>
+
+            <div class="form-group mb-9">
+                <div class="input-group mb-3">
+                        <?= (new SelectInput("NumLang","Langue"))->set($langues, "NumLang","Lib1Lang")->select('FRAN01')->HTML() ?>
+                        <?= (new SelectInput("NumThem","Thématique"))->set($thematiques, "NumThem","LibThem")->HTML() ?>
+                        <?= (new SelectInput("NumAngl","Angle"))->set($angles, "NumAngl","LibAngl")->HTML() ?>
+                </div>
             </div>
             
             <?php  (new KeywordsInput($keywords))->print("./../../") ?>
 
-            <button name="id" type="submit" name="Submit" class="btn btn-success">Valider</button>
-            <a href="index.php" class="btn btn-primary">Retour</a>
+            <div class="form-group mb-9">
+                <button name="id" type="submit" name="Submit" class="btn btn-success">Valider</button>
+                <a href="index.php" class="btn btn-primary">Retour</a>
+            </div>
         </form>
     </div>
 <?php __LAYOUT(); ?>

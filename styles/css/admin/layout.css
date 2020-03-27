@@ -1,3 +1,148 @@
+body {
+  background-color: #2B2B2B;
+}
 
+h1 {
+  font-family: "Bebas Neue", cursive;
+  color: #FFEED3;
+  padding-top: 60px;
+  font-size: 2rem;
+}
+
+body.admin-panel {
+  display: flex;
+}
+body.admin-panel header {
+  position: relative;
+  width: 250px;
+  height: 100vh;
+  margin-left: -15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+  z-index: 1000;
+}
+body.admin-panel header .toggle-menu {
+  display: none;
+}
+body.admin-panel header .fixed-header {
+  background-color: #FFEED3;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.59);
+}
+body.admin-panel header .head {
+  display: flex;
+  align-items: center;
+  background-color: #FFE0A9;
+  padding: 20px 15px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+body.admin-panel header .head .logo {
+  width: 65px;
+  height: 65px;
+}
+body.admin-panel header .head .info {
+  flex: 1;
+}
+body.admin-panel header .head .info p {
+  color: #000;
+  margin: 0 0 0 15px;
+}
+body.admin-panel header .head .info p.title {
+  font-size: 1.6rem;
+  line-height: 1rem;
+  font-family: "Bebas Neue", sans-serif;
+}
+body.admin-panel header nav {
+  flex: 1;
+}
+body.admin-panel header nav.menu-nav ul.admin-panel-links {
+  padding: 0;
+}
+body.admin-panel header nav.menu-nav ul.admin-panel-links li {
+  border-bottom: 1px solid #000;
+}
+body.admin-panel header nav.menu-nav ul.admin-panel-links li a {
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+body.admin-panel header nav.menu-nav ul.admin-panel-links li a span {
+  color: #000;
+  font-size: 1.2rem;
+}
+body.admin-panel header nav.menu-nav ul.admin-panel-links li a:hover, body.admin-panel header nav.menu-nav ul.admin-panel-links li a:active {
+  color: #000;
+  text-decoration: none;
+}
+body.admin-panel header nav.menu-nav ul.admin-panel-links li a svg {
+  height: 20px;
+  margin-right: 12px;
+}
+body.admin-panel header nav.menu-nav ul.admin-panel-links li.active {
+  background-color: #343a40;
+}
+body.admin-panel header nav.menu-nav ul.admin-panel-links li.active a span {
+  color: white;
+}
+body.admin-panel header nav.menu-nav ul.admin-panel-links li.active svg path {
+  fill: white;
+}
+body.admin-panel header .logout {
+  background-color: #FFE0A9;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.25);
+}
+body.admin-panel header .logout div {
+  position: relative;
+}
+body.admin-panel header .logout div span.logo {
+  position: absolute;
+  left: -20px;
+}
+body.admin-panel header .logout div span.logo svg path {
+  fill: #000;
+}
+body.admin-panel header .logout div span.text {
+  color: #000;
+}
+@media screen and (max-width: 767px) {
+  body.admin-panel header {
+    position: fixed;
+    height: 60px;
+    width: 100%;
+    background-color: #343a40;
+  }
+  body.admin-panel header .toggle-menu {
+    font-size: 1.2rem;
+    display: block;
+    float: right;
+    display: grid;
+    align-items: center;
+    height: 100%;
+    padding: 0 30px;
+    color: white;
+    cursor: pointer;
+  }
+  body.admin-panel header .fixed-header {
+    transform: translateX(-100%);
+    transition-duration: 0.2s;
+  }
+  body.admin-panel header.active .fixed-header {
+    transform: translateX(0);
+  }
+  body.admin-panel main {
+    padding-top: 60px;
+  }
+}
 
 /*# sourceMappingURL=layout.css.map */

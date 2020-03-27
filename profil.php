@@ -126,7 +126,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $USER->setPass($_POST["password"]);
                 $USER->update($conn);
                 
-                $success = "Les modifications ont bien été appliqué";
+                $success = "Les modifications ont bien été appliqués";
             } catch (\Exception $ex) {}
         }else{
             $error = "Des champs ne sont pas valide!";

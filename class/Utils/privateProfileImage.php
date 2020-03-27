@@ -13,7 +13,6 @@
         exit();
     }
 
-	if($USER && ($USER->getPseudo() == $_GET["id"]) || $USER->isAdmin() ){
         $ext = array("png", "jpg");
         for ($i=0; $i < sizeof($ext); $i++) {
             $fileName = "./../../uploads/". $_GET["id"] . "." . $ext[$i];
@@ -22,6 +21,6 @@
                 break;
             }
 		}
-	}
+	
     readfile($img);
 ?>

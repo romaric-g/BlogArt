@@ -1,5 +1,6 @@
 <?php
-session_start();
+require("../access.php");
+require("../common/layout.php");
 
 require_once("./../../class/Utils/ctrlSaisies.php");
 require_once("./../../class/Utils/connection.php");
