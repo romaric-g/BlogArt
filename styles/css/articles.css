@@ -85,6 +85,20 @@ section.articles article.article .article-content .text p {
   font-size: 1.1em;
   text-align: justify;
 }
+section.articles article.article .article-content .keywords ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  padding-left: 0;
+  overflow: hidden;
+}
+section.articles article.article .article-content .keywords ul li {
+  padding: 2px 10px;
+  margin: 3px;
+  background-color: white;
+  white-space: nowrap;
+}
 section.articles article.article .article-content .link {
   text-align: right;
 }

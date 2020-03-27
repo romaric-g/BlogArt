@@ -7,6 +7,7 @@ require_once("./class/Utils/ctrlSaisies.php");
 require_once("./class/Blog/Article.php");
 
 require_once("./common/header.php");
+require_once("./common/articlecard.php");
 
 /* LANGUAGE SYSTEM */
 require_once("./lang/language.php");
@@ -48,22 +49,10 @@ $articles = Article::loadAll($conn, array(), $where, "ORDER BY DtCreA DESC");
     <main>
         <section class="articles container">
             <h2 class="section-title">Nos Articles<span><?= $themeName; ?></span></h2>
-            <?php foreach( $articles as $article ) {?>
-                <article class="article row">
-                    <div class="article-illu col-md-6">
-                        <img src="<?= $article->values["UrlPhotA"] ?>" alt="">
-                    </div>
-                    <div class="article-content col-md-6">
-                        <div class="title">
-                            <p><?= $article->values["LibTitrA"] ?></p>
-                        </div>
-                        <div class="text">
-                            <p><?= $article->values["LibChapoA"] ?></p>
-                            <a href="article.php?id=<?= $article->primaryKeyValue ?>" class="btn btn-read">Lire</a>
-                        </div>
-                    </div>
-                </article>
-            <?php }?>
+            <?php foreach( $articles as $article ) {
+                $article->loadKeywords($conn);
+                printArticleCard($article, $LANGUAGE, $article->keywords);
+            }?>
         </section>
     </main>
 </body>

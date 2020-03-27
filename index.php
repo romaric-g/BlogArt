@@ -9,6 +9,7 @@ require_once("./class/Blog/Article.php");
 /* COMPOSANTS */
 require_once("./common/home.php");
 require_once("./common/nav.php");
+require_once("./common/articlecard.php");
 
 /* LANGUAGE SYSTEM */
 require_once("./lang/language.php");
@@ -52,24 +53,11 @@ $articles = Article::loadAll($conn, array(), "NumLang = '$LANG'", "ORDER BY DtCr
                 <svg><defs><clipPath id="courbe" clipPathUnits="objectBoundingBox"><path d="M0,1 V0 C0.376,0.473,0.594,0.495,1,0 V1"/></svg></clipPath></defs></svg>
             </div>
             <h2 class="section-title"><?= $LANGUAGE->for("article","newtitle") ?></h2>
-            <?php foreach( $articles as $article ) {?>
-                <article class="article row justify-content-center">
-                    <div class="article-illu col-md-4">
-                        <img src="<?= $article->values["UrlPhotA"] ?>" alt="">
-                    </div>
-                    <div class="article-content col-md-6">
-                        <div class="title">
-                            <p><?= $article->values["LibTitrA"] ?></p>
-                        </div>
-                        <div class="text">
-                            <p><?= $article->values["LibChapoA"] ?></p>
-                        </div>
-                        <div class="link">
-                            <a href="article.php?id=<?= $article->primaryKeyValue ?>" class="btn btn-read"><?= $LANGUAGE->for("article","read") ?></a>
-                        </div>
-                    </div>
-                </article>
-            <?php }?>
+            <?php foreach( $articles as $article ) 
+            {
+                $article->loadKeywords($conn);
+                printArticleCard($article, $LANGUAGE, $article->keywords);
+            }?>
             <div class="showmore">
                 <a href="articles" class="btn btn-show"><?= $LANGUAGE->for("article","allarticles") ?></a>
             </div>
