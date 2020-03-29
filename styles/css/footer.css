@@ -18,6 +18,8 @@ footer .container .salut {
   margin-left: 5em;
   margin-right: 5em;
   transition: 0.2s ease;
+}
+footer .container .salut a {
   color: #FFEED3;
 }
 footer .container .svg {

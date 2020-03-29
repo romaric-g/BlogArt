@@ -21,8 +21,10 @@ footer .container {
         margin-left: 5em;
         margin-right: 5em;
         transition: 0.2s ease;
-        color:#FFEED3;
-      
+
+        a {
+          color:#FFEED3;
+        }
       }
       
       .svg {
