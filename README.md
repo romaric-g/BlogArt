@@ -1,4 +1,5 @@
 # BlogArt
+
 Projet MMI 2020
 
 ## Fonctionnalités
@@ -43,4 +44,8 @@ On ignorera le champ 'TitrCom' des commentaires.
 La table 'Like' étant inexistante, on insérera chaque mention like dans la table 'Comment', la colonne 'TitrCom' étant ignoré, on viendra insérer le mot clé 'LIKE' dans ce champ.
 Une methode a été créé au sein de l'objet 'Comment' pour récuper la liste des commentaires réel.
 
+## Systeme de langues
 
+Les langues sont gérées dans des fichiers json, ils sont modifiables depuis le dossier Lang.
+
+**ATENTION** Lors de la création d'une langue depuis la base de données, pensez à bien créer un fichier json au format '{NumLang}.json' dans le repertoire Lang.
