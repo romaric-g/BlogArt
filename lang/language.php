@@ -45,6 +45,11 @@ class Language {
         }
         return $LANGUAGE;
     }
+
+    public static function AVAILABLE($langID, $rootPath) {
+        $fileName = $rootPath . "lang/$langID.json";
+        return file_exists($fileName);
+    }
 }
 
 ?>

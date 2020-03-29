@@ -35,6 +35,12 @@ class Article extends Crud{
         }
     }
 
+    public function valuesDecode() {
+        foreach($this->values as $key => $value) {
+            $this->values[$key] = html_entity_decode($value);
+        }
+    }
+
     public function loadKeywords($conn) 
     {
         $request = "SELECT * FROM `motclearticle` WHERE NumArt = '$this->primaryKeyValue'";

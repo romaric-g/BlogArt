@@ -44,7 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $likeActiveClass = $user ? (Comment::hasFakeComToLike($user->getPseudo(), $NumArt, $conn) ? " active" : "") : " nologged";
-
+$article->valuesDecode();
 ?>
 <!DOCTYPE html>
 <html lang="FR">

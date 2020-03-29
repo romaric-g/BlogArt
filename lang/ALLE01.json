@@ -1,0 +1,19 @@
+{
+    "title": {
+        "full": "Der Bordeaux-Druck",
+        "start": "Der Bordeaux",
+        "end": "Druck"
+    },
+    "auth": {
+        "startbutton": "Mitglied werden",
+        "profil": "Profil"
+    },
+    "article": {
+        "newtitle": "Unsere letzten Artikel",
+        "read": "Lesen",
+        "allarticles": "Alle Artikel",
+        "comments": {
+            "title": "Kommentar senden"
+        }
+    }
+}

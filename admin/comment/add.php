@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if(isset($_POST['id']) AND $_POST['id'] == 0) {
         $_POST['DtCreC'] = date("Y-m-d H:i:s");
-        if( Comment::paramsAllSet($_POST) ) {
+        if( Comment::paramsAllSet($_POST, array("TitrCom")) ) {
             $comment = Comment::new($_POST, $conn);
         }
     }
@@ -48,13 +48,9 @@ $articles = $conn->query($requete);
                 <input type="text" class="form-control" id="PseudoAuteur" name="PseudoAuteur" maxlength="25" placeholder="Pseudo" autofocus="autofocus" >
             </div>
             <div class="form-group">
-                <label for="EmailAuteur">Email</label>
-                <input type="email" class="form-control" id="EmailAuteur" name="EmailAuteur" placeholder="Email">
+                <label for="EmailAuteur">Login</label>
+                <input type="text" class="form-control" id="EmailAuteur" name="EmailAuteur" placeholder="Login">
             </div>
-            <div class="form-group">
-                <label for="TitrCom">Phrase d'accroche</label>
-                <input type="text" class="form-control" id="TitrCom" name="TitrCom" placeholder="Titre">
-            </div>  
             <div class="form-group">
                 <label for="LibCom">Commentaire</label>
                 <textarea class="form-control" id="LibCom" name="LibCom" rows="3" placeholder="Votre commentaire"></textarea>

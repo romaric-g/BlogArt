@@ -54,8 +54,8 @@ $artSeparator = 0;
             ?>
             <div class="card col-md-4 bg-dark mb-3">
                 <div class="card-body">
-                    <h5 class="card-title"><?= $comment->values["TitrCom"] ?> <span class="badge badge-secondary"><?= $comment->values["DtCreC"] ?></span></h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><?= $comment->values["PseudoAuteur"] ?> - <?= $comment->values["EmailAuteur"] ?></h6>
+                    <h5 class="card-title"><?= $comment->values["PseudoAuteur"] ?></h5>
+                    <h6 class="card-subtitle mb-2 text-muted"><?= $comment->values["EmailAuteur"] ?> <span class="badge badge-secondary"><?= $comment->values["DtCreC"] ?></span></h6>
                     <p class="card-text"><?= $comment->values["LibCom"] ?></p>
                     <a href="update.php?id=<?= $comment->primaryKeyValue ?>" class="btn btn-info">Update</a>
                     <a href="delete.php?id=<?= $comment->primaryKeyValue ?>" class="btn btn-danger">Supprimer</a>

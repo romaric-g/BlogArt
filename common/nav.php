@@ -29,7 +29,7 @@ function NAV($langSelectedID, $user, $language, $rootPath, $conn) {
                     <li><a><?= substr($langSelected->values["Lib1Lang"],0,2); ?></a></li>
                         <?php 
                         foreach($langs as $lang) {
-                            if($lang->primaryKeyValue != $langSelectedID) {
+                            if($lang->primaryKeyValue != $langSelectedID && Language::AVAILABLE($lang->primaryKeyValue, $rootPath)) {
                         ?>
                             <li><a href="<?= $setLangFile ?>?id=<?= $lang->primaryKeyValue; ?>"><?= substr($lang->values["Lib1Lang"],0,2); ?></a></li>
                         <?php

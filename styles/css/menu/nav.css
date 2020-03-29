@@ -25,7 +25,7 @@ nav .head .lang svg path {
   fill: #E2A539;
 }
 nav .head .lang.grow ul {
-  max-width: 200px;
+  max-width: 100px;
   padding-left: 10px;
 }
 nav .head .lang.grow ul li {

@@ -15,7 +15,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
         $comment->loadDataFromSQL($conn);
     }
 }else if($_SERVER["REQUEST_METHOD"] == "POST") {
-    if(isset($_POST["id"]) && Comment::paramsAllSet($_POST, array("DtCreC"))) {
+    if(isset($_POST["id"]) && Comment::paramsAllSet($_POST, array("DtCreC","TitrCom"))) {
         $NumCom = $_POST["NumCom"];
         $comment = new Comment($NumCom);
         $comment->loadDataFromSQL($conn);
@@ -58,13 +58,9 @@ $articles = $conn->query($requete);
                 <input type="text" class="form-control" id="PseudoAuteur" name="PseudoAuteur" maxlength="25" placeholder="Pseudo" autofocus="autofocus" value="<?= $comment->values["PseudoAuteur"]?>">
             </div> 
             <div class="form-group">
-                <label for="EmailAuteur">Email</label>
-                <input type="email" class="form-control" id="EmailAuteur" name="EmailAuteur" placeholder="Email" value="<?= $comment->values["EmailAuteur"]?>">
+                <label for="EmailAuteur">Login</label>
+                <input type="text" class="form-control" id="EmailAuteur" name="EmailAuteur" placeholder="Email" value="<?= $comment->values["EmailAuteur"]?>">
             </div>
-            <div class="form-group">
-                <label for="TitrCom">Phrase d'accroche</label>
-                <input type="text" class="form-control" id="TitrCom" name="TitrCom" placeholder="Titre" value="<?= $comment->values["TitrCom"]?>">
-            </div>  
             <div class="form-group">
                 <label for="LibCom">Commentaire</label>
                 <textarea class="form-control" id="LibCom" name="LibCom" rows="3" placeholder="Votre commentaire"><?= $comment->values["LibCom"]?></textarea>
