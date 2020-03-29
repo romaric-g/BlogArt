@@ -77,7 +77,7 @@ if($user) {
                                 ?>
                                 <div class="form-group">
                                 <button type="submit" class="btn btn-login anim">Se connecter</button>
-                                <p class="already-accound">Vous n'avez pas encore compte ? <br><a href="register">Inscrivez-vous</a></p>
+                                <p class="already-accound">Vous n'avez pas encore compte ? <br><a href="register.php">Inscrivez-vous</a></p>
                             </form>
                         </div>
                 </div>

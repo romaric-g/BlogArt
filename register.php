@@ -154,7 +154,7 @@ if($user) {
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-inscription">S'inscrire</button>
-                                <p class="already-accound">Vous avez déjà un compte ? <br><a href="login">Connectez-vous</a></p>
+                                <p class="already-accound">Vous avez déjà un compte ? <br><a href="login.php">Connectez-vous</a></p>
                             </form>
                         </div>
                 </div>
