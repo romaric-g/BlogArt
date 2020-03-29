@@ -15,7 +15,7 @@ Projet MMI 2020
 - [x] Page de connexion/inscription
 - [x] Page de profil pour gerer ces informations (Nom, Prénom, Adresse eumail, Mot de passe, Photo)
 - [x] Panel admin avec tous les CRUDs
-- [x] Systeme de gesion des utilistaeur
+- [x] Systeme de gesion des utilistaeurs
 - [ ] Systeme de redaction libre et intuitif
 
 ## Structure et règles de la Base de données
