@@ -44,7 +44,7 @@ function NAV($langSelectedID, $user, $language, $rootPath, $conn) {
                 <a href="actions/logout.php">Déconnexion</a>
             </div>
             <div class="btn btn-member">
-                <a href="profil"><?= $user->firstname . " " . substr($user->lastname, 0, 1) . "."; ?></a>
+                <a href="profil.php"><?= $user->firstname . " " . substr($user->lastname, 0, 1) . "."; ?></a>
             </div>
     <?php }else{ ?>
             <div class="btn btn-member">
