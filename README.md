@@ -32,7 +32,7 @@ Pour créer un utilisateur, il faut entrer:
 Le Login est géneré en fonction du prenom, de la date de création ainsi que 3 nombres aléatoires supplémentaire.
 
 Afin de différencier un admin d'un membre, on viendra insérer en toute sécurité le caractère '*' devant le Login.
-La chaine Login est isolé dans l'objet User et est modifiable par l'intermédiaire des méthodes 'setAdmin()' et 'setLogin()'
+La chaine Login est isolé dans l'objet `User` et est modifiable par l'intermédiaire des méthodes `setAdmin()` et `setLogin()`
 
 ### Pour les commentaires
 
@@ -42,7 +42,7 @@ On ignorera le champ 'TitrCom' des commentaires.
 ### Pour les likes
 
 La table 'Like' étant inexistante, on insérera chaque mention like dans la table 'Comment', la colonne 'TitrCom' étant ignoré, on viendra insérer le mot clé 'LIKE' dans ce champ.
-Une methode a été créé au sein de l'objet 'Comment' pour récuper la liste des commentaires réel.
+Une methode a été créé au sein de l'objet `Comment` pour récuper la liste des commentaires réel.
 
 ## Systeme de langues
 
