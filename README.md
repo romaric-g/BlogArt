@@ -18,6 +18,15 @@ Projet MMI 2020
 - [x] Systeme de gesion des utilistaeurs
 - [ ] Systeme de redaction libre et intuitif
 
+## Panel Admin
+
+Accessible depuis: `./admin/`
+
+**Identifiant local**
+
+> email: `root@lbp.com`  
+> mdp: `root`  
+
 ## Structure et règles de la Base de données
 
 La base de données n'a pas été modifié.
