@@ -33,6 +33,8 @@ Accessible depuis: `./admin/`
 La base de données n'a pas été modifié.
 Afin de pouvoir intégrer toutes les fonctionnalités, nous avons défini des règles au sein même du code pour pouvoir accéder à toutes les données.
 
+Fichier de connection à la base de données `./class/Utils/connection.php`
+
 ### Pour les utilisteurs
 
 Pour créer un utilisateur, il faut entrer:
