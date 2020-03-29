@@ -24,7 +24,7 @@ Accessible depuis: `./admin/`
 
 **Identifiant local**
 
-> email: `root@lbp.com`  
+> email: `root@lpb.com`  
 > mdp: `root`  
 
 ## Structure et règles de la Base de données
