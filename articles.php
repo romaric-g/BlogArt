@@ -4,6 +4,7 @@ session_start();
 require_once("./class/Auth/User.php");
 require_once("./class/Utils/connection.php");
 require_once("./class/Utils/ctrlSaisies.php");
+require_once("./class/Utils/articleImage.php");
 require_once("./class/Blog/Article.php");
 
 require_once("./common/header.php");
@@ -56,7 +57,7 @@ $articles = Article::loadAll($conn, array(), $where, "ORDER BY DtCreA DESC");
             <h2 class="section-title">Nos Articles<span><?= $themeName; ?></span></h2>
             <?php foreach( $articles as $article ) {
                 $article->loadKeywords($conn);
-                printArticleCard($article, $LANGUAGE, $article->keywords);
+                printArticleCard($article, $LANGUAGE, $article->keywords, getArticleImageUrl("./", $article->values["UrlPhotA"]));
             }?>
         </section>
     </main>

@@ -12,6 +12,7 @@ require_once("./../../class/Forms/TextArea.php");
 require_once("./../../class/Forms/SelectInput.php");
 require_once("./../../class/Forms/Alert.php");
 require_once("./../../class/Forms/KeywordsInput.php");
+require_once("./../../class/Forms/UploadImage.php");
 
 $langue = NULL;
 $feedbacks = NULL;
@@ -22,7 +23,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST['id']) AND $_POST['id'] == 0) {
         $_POST['DtCreA'] = date("Y-m-d");
         $_POST['Likes'] = 0;
-        $noset = Article::getParamsNoSet($_POST);
+        $imageError = NULL;
+        if ((isset($_FILES['UrlPhotA']) AND $_FILES['UrlPhotA']['error'] == 0)) {
+                // Test si fichier pas trop gros
+                if ($_FILES['UrlPhotA']['size'] <= 4000000) {
+                    // Test si extension autorisée
+                    $infosfile = pathinfo($_FILES['UrlPhotA']['name']);
+                    $extension_upload = $infosfile['extension'];
+                    $extensions_OK = array('jpg', 'jpeg', 'gif', 'png');
+                    $name = $infosfile['filename'];
+                    $file = '' .time() . '.' .$extension_upload;
+                    $path = '../../uploads/articles/';
+                    if ( ! is_dir($path)) {
+                        mkdir($path);
+                    }
+                    if (in_array($extension_upload, $extensions_OK)) {
+                        move_uploaded_file($_FILES['UrlPhotA']['tmp_name'], $path . $file);
+                        $_POST["UrlPhotA"] = $file;
+                    }else $imageError = "Seuls les fichiers jpg, jpeg, gif, png sont acceptés";
+                }else $imageError = "(Poids limité à 8Mo) !";
+        }else $imageError = "Veuillez selectionner un fichier...";
+        if($imageError && isset($_POST["UrlPhotA"])) {
+            $imageError = NULL;
+        }
+        $noset = Article::getParamsNoSet($_POST, array("LibAccrochA"));
         if( empty($noset) ) {
             $keywords = $_POST["Keywords"];
             unset($_POST["Keywords"]);
@@ -38,6 +62,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }else{
             $feedbacks = Article::getFeedbackMessages($noset);
+            if($imageError && isset($feedbacks["UrlPhotA"])) {
+                $feedbacks["UrlPhotA"]["message"] = $imageError;
+            }
             $feedbackMessage["error"] = "Impossible de créer l'Article";
         }
     }
@@ -73,17 +100,17 @@ $keywords = $conn->query($requete);
     <div class="container">
         <h1>Créer un nouvelle article</h1>
         <?= (new Alert($feedbackMessage))->HTML() ?>
-        <form method="post" action="add.php">
+        <form enctype="multipart/form-data" method="post" action="add.php">
             <?= (new Input("LibTitrA", "Titre de l'Article"))->first()->feedback($feedbacks, $_POST)->HTML(); ?>
-            <?= (new TextArea("LibChapoA", "Chapeau de l'Article"))->row(3)->feedback($feedbacks, $_POST)->HTML(); ?>
-            <?= (new Input("LibAccrochA", "Phrase d'accroche"))->feedback($feedbacks, $_POST)->HTML(); ?>
-            <?= (new TextArea("Parag1A", "Paragraphe 1"))->row(3)->feedback($feedbacks, $_POST)->HTML(); ?>
-            <?= (new TextArea("LibSsTitr1", "LibSsTitr1"))->row(3)->feedback($feedbacks, $_POST)->HTML(); ?>
-            <?= (new TextArea("Parag2A", "Paragraphe 2"))->row(3)->feedback($feedbacks, $_POST)->HTML(); ?>
-            <?= (new TextArea("LibSsTitr2", "LibSsTitr2"))->row(3)->feedback($feedbacks, $_POST)->HTML(); ?>
-            <?= (new TextArea("Parag3A", "Paragraphe 3"))->row(3)->feedback($feedbacks, $_POST)->HTML(); ?>
-            <?= (new TextArea("LibConclA", "Conclusion"))->row(3)->feedback($feedbacks, $_POST)->HTML(); ?>
-            <?= (new TextArea("UrlPhotA", "Lien de la photo"))->feedback($feedbacks, $_POST)->HTML(); ?>
+            <?= (new TextArea("LibChapoA", "Chapeau de l'Article"))->row(6)->feedback($feedbacks, $_POST)->HTML(); ?>
+            <?= (new TextArea("LibAccrochA", "Phrase d'accroche"))->row(3)->feedback($feedbacks, $_POST)->HTML(); ?>
+            <?= (new TextArea("Parag1A", "Paragraphe 1"))->row(6)->feedback($feedbacks, $_POST)->HTML(); ?>
+            <?= (new TextArea("LibSsTitr1", "Titre 1"))->row(2)->feedback($feedbacks, $_POST)->HTML(); ?>
+            <?= (new TextArea("Parag2A", "Paragraphe 2"))->row(6)->feedback($feedbacks, $_POST)->HTML(); ?>
+            <?= (new TextArea("LibSsTitr2", "Titre 2"))->row(2)->feedback($feedbacks, $_POST)->HTML(); ?>
+            <?= (new TextArea("Parag3A", "Paragraphe 3"))->row(6)->feedback($feedbacks, $_POST)->HTML(); ?>
+            <?= (new TextArea("LibConclA", "Conclusion"))->row(4)->feedback($feedbacks, $_POST)->HTML(); ?>
+            <?= (new UploadImage("UrlPhotA", "Lien de la photo"))->setRoot("../../")->feedback($feedbacks, $_POST)->HTML(); ?>
 
 
             <div class="form-group mb-9">

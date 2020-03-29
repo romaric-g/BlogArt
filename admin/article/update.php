@@ -12,7 +12,7 @@ require_once("./../../class/Forms/TextArea.php");
 require_once("./../../class/Forms/SelectInput.php");
 require_once("./../../class/Forms/Alert.php");
 require_once("./../../class/Forms/KeywordsInput.php");
-
+require_once("./../../class/Forms/UploadImage.php");
 
 $langue = NULL;
 $feedbacks = NULL;
@@ -29,7 +29,30 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
         $NumArt = $_POST["NumArt"];
         $langue = new Article($NumArt);
         $langue->loadDataFromSQL($conn);
-        if(isset($_POST["id"]) && Article::paramsAllSet($_POST, array("DtCreA","Likes"))) {
+        $imageError = NULL;
+        if ((isset($_FILES['UrlPhotA']) AND $_FILES['UrlPhotA']['error'] == 0)) {
+            // Test si fichier pas trop gros
+            if ($_FILES['UrlPhotA']['size'] <= 4000000) {
+                // Test si extension autorisée
+                $infosfile = pathinfo($_FILES['UrlPhotA']['name']);
+                $extension_upload = $infosfile['extension'];
+                $extensions_OK = array('jpg', 'jpeg', 'gif', 'png');
+                $name = $infosfile['filename'];
+                $file = '' .time() . '.' .$extension_upload;
+                $path = '../../uploads/articles/';
+                if ( ! is_dir($path)) {
+                    mkdir($path);
+                }
+                if (in_array($extension_upload, $extensions_OK)) {
+                    move_uploaded_file($_FILES['UrlPhotA']['tmp_name'], $path . $file);
+                    $_POST["UrlPhotA"] = $file;
+                }else $imageError = "Seuls les fichiers jpg, jpeg, gif, png sont acceptés";
+            }else $imageError = "(Poids limité à 8Mo) !";
+        }else $imageError = "Veuillez selectionner un fichier...";
+        if($imageError && isset($_POST["UrlPhotA"])) {
+            $imageError = NULL;
+        }
+        if(isset($_POST["id"]) && Article::paramsAllSet($_POST, array("DtCreA","Likes","LibAccrochA"))) {
             $keywords = $_POST["Keywords"];
             unset($_POST["Keywords"]);
             $langue->changeData($_POST, FALSE);
@@ -80,7 +103,7 @@ $keywords = $conn->query($requete);
                 <?php echo $langue->error ? $langue->error : $langue->success; ?>
             </div>
         <?php } ?>
-        <form method="post" action="update.php">
+        <form enctype="multipart/form-data" method="post" action="update.php">
            <input type="hidden" id="NumArt" name="NumArt" value="<?php echo $langue->primaryKeyValue ?>">
            <?= (new Input("LibTitrA", "Titre de l'Article"))->first()->feedback($feedbacks, $values)->HTML(); ?>
             <?= (new TextArea("LibChapoA", "Chapeau de l'Article"))->row(3)->feedback($feedbacks, $values)->HTML(); ?>
@@ -91,7 +114,9 @@ $keywords = $conn->query($requete);
             <?= (new TextArea("LibSsTitr2", "LibSsTitr2"))->row(3)->feedback($feedbacks, $values)->HTML(); ?>
             <?= (new TextArea("Parag3A", "Paragraphe 3"))->row(3)->feedback($feedbacks, $values)->HTML(); ?>
             <?= (new TextArea("LibConclA", "Conclusion"))->row(3)->feedback($feedbacks, $values)->HTML(); ?>
-            <?= (new TextArea("UrlPhotA", "Lien de la photo"))->feedback($feedbacks, $values)->HTML(); ?>
+                
+            <?= (new UploadImage("UrlPhotA", "Lien de la photo"))->setRoot("../../")->feedback($feedbacks, $values)->HTML(); ?>
+
 
             <div class="input-group mb-3">
                 <?= (new SelectInput("NumLang","Langue"))->set($langues, "NumLang","Lib1Lang")->select($values["NumLang"])->HTML() ?>

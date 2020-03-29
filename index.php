@@ -4,6 +4,7 @@ session_start();
 require_once("./class/Auth/User.php");
 require_once("./class/Utils/connection.php");
 require_once("./class/Utils/ctrlSaisies.php");
+require_once("./class/Utils/articleImage.php");
 require_once("./class/Blog/Article.php");
 
 /* COMPOSANTS */
@@ -60,7 +61,7 @@ $articles = Article::loadAll($conn, array(), "NumLang = '$LANG'", "ORDER BY DtCr
             <?php foreach( $articles as $article ) 
             {
                 $article->loadKeywords($conn);
-                printArticleCard($article, $LANGUAGE, $article->keywords);
+                printArticleCard($article, $LANGUAGE, $article->keywords, getArticleImageUrl("./", $article->values["UrlPhotA"]));
             }?>
             <div class="showmore">
                 <a href="articles" class="btn btn-show"><?= $LANGUAGE->for("article","allarticles") ?></a>

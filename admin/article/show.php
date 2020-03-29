@@ -5,6 +5,7 @@ require("../common/layout.php");
 
 require_once("./../../class/Utils/ctrlSaisies.php");
 require_once("./../../class/Utils/connection.php");
+require_once("./../../class/Utils/articleImage.php");
 require_once("./../../class/Blog/Article.php");
 require_once("./../../class/Blog/KeyWord.php");
 
@@ -43,7 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
 <?php LAYOUT__(); ?>
     <div class="container">
             <h1><?= $article->values["LibTitrA"]; ?></h1>
-            <img src="<?= $article->values["UrlPhotA"]; ?>" alt="" srcset="">
+            <img src="<?= getArticleImageUrl("./../../",$article->values["UrlPhotA"]); ?>" class="img-fluid mx-auto d-block" alt="Responsive image" style="max-height: 400px;">
             <p><?= $article->values["LibChapoA"]; ?></p>
             <p><?= $article->values["LibAccrochA"]; ?></p>
             <h2><?= $article->values["LibSsTitr1"]; ?></h2>

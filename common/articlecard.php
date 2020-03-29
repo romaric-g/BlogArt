@@ -1,7 +1,7 @@
-<?php function printArticleCard($article, $LANGUAGE, $keywords) { ?>
+<?php function printArticleCard($article, $LANGUAGE, $keywords, $imageURL) { ?>
     <article class="article-card row justify-content-center">
         <div class="article-illu col-md-4">
-            <img src="<?= $article->values["UrlPhotA"] ?>" alt="">
+            <img src="<?= $imageURL ?>" alt="">
         </div>
         <div class="article-content col-md-6">
             <div class="title">

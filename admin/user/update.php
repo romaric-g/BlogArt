@@ -6,6 +6,7 @@ require_once("./../../class/Auth/User.php");
 require_once("./../../class/Utils/connection.php");
 require_once("./../../class/Utils/ctrlSaisies.php");
 
+
 $registerError = array();
 
 function printFeedback($name) {
